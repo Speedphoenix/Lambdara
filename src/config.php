@@ -9,4 +9,5 @@ define("POSSIBLECATEGS", array(
 	"vetements",
 	"sportloisir"));
 
+
 ?>
