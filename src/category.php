@@ -7,6 +7,8 @@ if (isset($_GET['categ']) && in_array($_GET['categ'], POSSIBLECATEGS))
 else
 	$categ = DEFAULTCATEG; // 'all'
 
+$pageTitle = $categ . "items";
+
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
