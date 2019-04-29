@@ -11,5 +11,17 @@ function itemExists($whatID)
 	return true;
 }
 
+// returns an array of items from the DB that have these IDs
+// $IDs is an array of ids
+function getFromIDs($IDs)
+{
+	// SELECT FROM items WHERE id=$IDs[$i]
+	
+
+	// below is for testing purposes, make sure you remove afterwards
+	global $testitems;
+	return $testitems;
+}
+
 
 ?>
