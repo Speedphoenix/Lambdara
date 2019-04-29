@@ -1,5 +1,12 @@
 <?php
 
+include_once "config.php";
+
+if (isset($_GET['categ']) && in_array($_GET['categ'], POSSIBLECATEGS))
+	$categ = $_GET['categ'];
+else
+	$categ = DEFAULTCATEG; // 'all'
+
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
@@ -22,8 +29,13 @@ $items = array(
 		),
 );
 
-//if (
 
+function showArticle($what)
+{
+	echo "<div class='article' id='" . $what["ID"] . "'>";
+	echo "pour l'instant vide";
+	echo "</div>";
+}
 
 include "header.php";
 ?>
@@ -34,9 +46,9 @@ include "header.php";
 <?php
 foreach ($items as $i)
 {
-	echo "<li><div class='article' id='" . $i["ID"] . "'>";
-	echo "pour l'instant vide";
-	echo "</div></li>";
+	echo "<li>";
+	showArticle($i);
+	echo "</li>";
 }
 // tous les trucs à afficher ici
 ?>

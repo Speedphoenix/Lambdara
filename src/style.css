@@ -1,0 +1,12 @@
+#header {
+	position: static;
+	top: 0px;
+}
+
+#footer {
+	bottom: 0px;
+	height: 30px;
+	width: 100%;
+	clear: left;
+	text-align: center;
+}

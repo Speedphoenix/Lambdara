@@ -7,6 +7,6 @@ define("POSSIBLECATEGS", array(
 	"livres",
 	"musique",
 	"vetements",
-	"sportloisir");
+	"sportloisir"));
 
 ?>
