@@ -38,7 +38,11 @@ function showLogin() {
             <button id="register-btn" class="log_btn">Créez un compte</button>
             <form id='register-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
                 <input type='hidden' name='formtype' value='register'/>
-                <table class="log_tab">
+                <table class="log_tab"> 
+                    <tr>
+                        <!--<td>Nom complet:</td>-->
+                        <td><input class="log_field" type='text' name='fullname' placeholder="Nom complet:"></td>
+                    </tr>
                     <tr>
                         <!--<td>Nom d'utilisateur:</td>-->
                         <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur:"></td>
@@ -61,6 +65,7 @@ function showLogin() {
                 </table>
             </form>
         </div>
+
 	</div>
 
 	<div id='login' class="clearfix">
