@@ -3,11 +3,17 @@
 define("DEFAULTCATEG", "all");
 
 define("POSSIBLECATEGS", array(
-	"all",
-	"livres",
-	"musique",
-	"vetements",
-	"sportloisir"));
+	"all" => "Tout",
+	"livres" => "Livres",
+	"musique" => "Musique",
+	"vetements" => "Vetements",
+	"sportloisir" => "Sport et Loisir"));
+define("CHOIXDETRI", array(
+	"date" => "Date d'ajout",
+	"priceup" => "Prix croissant",
+	"pricedown" => "Prix decroissant",
+	"rating" => "Notes"));
+define("DEFAULTTRI", "date");
 
 define("COOKIESEP", ';');
 define("COOKIEITEMSEP", ':');
