@@ -106,14 +106,27 @@
     width: 23%;   
     box-sizing: border-box;   
     font-family: PT sans;   
-    font-size: 13px;   
+    font-size: 18px;   
     font-weight: normal;   
     letter-spacing: 2px;
-    text-transform: uppercase;   
+    text-transform: uppercase;
+    text-align: center;
     color: #ffffff;
+    line-height: 20px;
 }
 button:hover{
     background-color: darkorange;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    font-size: 13px;
+    color: #fff;
+    background-color: lightblue;
+    float:right;
 }
 #footer {
 	bottom: 0px;
