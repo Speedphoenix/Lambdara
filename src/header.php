@@ -10,8 +10,10 @@ include_once "config.php";
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 	<?php
+	echo "<title>";
 	if (isset($pageTitle))
-		echo "<title>$pageTitle</title>";
+		echo "$pageTitle - ";
+	echo SITENAME . "</title>";
 	?>
 </head>
 <body>
@@ -29,10 +31,4 @@ include_once "config.php";
           <a id="login-link" href="login.php#login"><button>Sign In</button></a>
           <a id="register-link" href="login.php#register"><button>Sign Up</button></a>
         </div>
-        
-        <div class="column search">
-        <input class="field" name="q" type="text" placeholder="Rechercher" /><br>
-        <input class="btn" type="submit" value="Rechercher" />
-        </div>
-        
     </div>

@@ -1,13 +1,22 @@
 <?php
 
+define("SITENAME", "Λara");
+define("SITENAMEASCII", "Lambdara");
+
 define("DEFAULTCATEG", "all");
 
 define("POSSIBLECATEGS", array(
-	"all",
-	"livres",
-	"musique",
-	"vetements",
-	"sportloisir"));
+	"all" => "Tout",
+	"livres" => "Livres",
+	"musique" => "Musique",
+	"vetements" => "Vetements",
+	"sportloisir" => "Sport et Loisir"));
+define("CHOIXDETRI", array(
+	"date" => "Date d'ajout",
+	"priceup" => "Prix croissant",
+	"pricedown" => "Prix decroissant",
+	"rating" => "Notes"));
+define("DEFAULTTRI", "date");
 
 define("COOKIESEP", ';');
 define("COOKIEITEMSEP", ':');
@@ -59,7 +68,12 @@ $testitems = array(
 
 
 define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
-define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
+define("ERRNAMETAKEN", "Un utilisateur avec ce nom existe déjà");
+define("ERREMAILTAKEN", "Un utilisateur avec cet email existe déjà");
+define("ERRUNSAFEPASS", "Mot de passe pas suffisament complexe");
+define("ERRPASSNOMATCH", "Le mot de passe ne correspond pas à sa confirmation");
+define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
+define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
 
 
 ?>

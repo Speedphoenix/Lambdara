@@ -23,5 +23,9 @@ function getFromIDs($IDs)
 	return $testitems;
 }
 
+function addUserCentral($username, $fullname, $email)
+{
+	return true;
+}
 
 ?>
