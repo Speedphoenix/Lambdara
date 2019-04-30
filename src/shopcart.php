@@ -19,6 +19,8 @@ $total = 0;
 
 foreach ($items as $i)
 {
+	if (!isset($currShopcart[$i['ID']]))
+		continue;
 	echo "<tr>";
 	echo "<td>";
 	echo "nombres dans le panier: " . $currShopcart[$i['ID']] . "</br>";

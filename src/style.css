@@ -7,7 +7,8 @@
 }
 
 .column {
-  float: right;
+    margin: auto; 
+  
   padding: 15px;
 }
 
@@ -50,13 +51,23 @@
     padding: 10px 10px 10px 10px;
     text-align: center;
 }
+#leftpart{
+    float: left;
+    background-color: gainsboro;
+    border-style: solid;
+    border-width: 1px;
+    border-color: slategray;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    width:25%;
+}
 
 .menu {
-    width: 75%;
+    width: 100%;
 }
 
 .search {
-    width: 25%;
+    width: 100%;
 }
 
 .menu ul {
@@ -96,7 +107,7 @@
     border-color: #dddddd;  
     padding: 5px 10px 5px 10px;
     margin: 5px 10px 5px 10px; 
-    width: 98%;  
+    width: 95%;  
     box-sizing: border-box;  
     font-family: Lato; 
     font-size: 12px;   
@@ -110,7 +121,7 @@
     border-color: #E8B960;
     padding: 5px 10px 5px 10px;
     margin: 5px 10px 5px 10px; 
-    width: 98%;   
+    width: 95%;   
     box-sizing: border-box;   
     font-family: PT sans;   
     font-size: 13px;   
@@ -173,6 +184,21 @@
     font-weight: normal;   
     letter-spacing: 1px;
 }
+.field{
+    background-color: #ffffff;  
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #dddddd;  
+    padding: 5px 10px 5px 10px;
+    margin: 5px 10px 5px 10px; 
+    width: 98%;  
+    box-sizing: border-box;  
+    font-family: Lato; 
+    font-size: 12px;   
+    font-weight: normal;   
+    letter-spacing: 1px;
+    color: red;
+}
 button:hover{
     background-color: darkorange;
 }
@@ -187,6 +213,98 @@ button:hover{
     background-color: lightblue;
     float:right;
 }
+/*
+.selector{
+    font-family: Lato;
+    width: 98%;
+}
+.selector select{
+    display: none;
+}
+.select-selected{
+    background-color: DodgerBlue;
+}
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+.select-items form,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+.select-hide {
+    display: none;
+}
+
+.select-items form:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}*/
+select{
+    width: 95%;
+    height: auto;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 10px 5px 10px;
+    font-family: PT sans;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #E8B960;
+    text-decoration-color: aqua;
+    border-color: #E8B960;
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    -ms-appearance: none;
+    appearance: none; 
+    cursor: pointer; 
+    background: url(https://monasteryeventcenter.com/wp-content/uploads/revslider/home/white-down-arrow-png-2.png) 96% / 5% no-repeat #E8B960;
+}
+select::-ms-expand { 
+    display: none; 
+}
+select:hover{
+    background: url(https://monasteryeventcenter.com/wp-content/uploads/revslider/home/white-down-arrow-png-2.png) 96% / 5% no-repeat darkorange;
+}
+
+/*.select-wrapper {
+	position: relative;	
+}
+
+.select-wrapper:after {
+	font-family: FontAwesome;
+  	content: '>';
+  	font-size: 20px;
+  	position: absolute;
+  	
+  	color: #434B67;
+  	pointer-events: none;
+}*/
+
 #footer {
 	bottom: 0px;
 	height: 30px;
