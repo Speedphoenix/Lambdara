@@ -50,6 +50,8 @@ $testitems = array(
 );
 
 
+define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
+define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
 
 
 ?>
