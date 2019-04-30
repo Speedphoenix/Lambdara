@@ -19,7 +19,13 @@ include_once "config.php";
         
         <div class="column menu">
           <a href="sell.php"><button>Vendre</button></a>
-          <a href="shopcart.php"><button>Panier</button></a>
+          <a href="shopcart.php"><button>Panier
+              <?php
+                    if (isset($nbShopcart))
+                        echo "(".$nbShopcart.")";
+                ?>
+              
+          </button></a>
           <a id="login-link" href="login.php#login"><button>Sign In</button></a>
           <a id="register-link" href="login.php#register"><button>Sign Up</button></a>
         </div>
