@@ -39,6 +39,10 @@ function showLogin() {
 			<input type='hidden' name='formtype' value='register'/>
 			<table>
 				<tr>
+					<td>Nom complet:</td>
+					<td><input type='text' name='fullname'></td>
+				</tr>
+				<tr>
 					<td>Nom d'utilisateur:</td>
 					<td><input type='text' name='username'></td>
 				</tr>

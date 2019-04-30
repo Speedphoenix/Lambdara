@@ -7,8 +7,15 @@ function passIsSecure($password)
 	return (is_string($password) && (strlen($password) >= 8));
 }
 
+$answer = null;
+
 if (isset($_POST['formtype']) && 
-	($_POST['formtype'] === 'register' || $_POST['formtype'] === 'login'))
+		($_POST['formtype'] === 'register' && isset($_POST['fullname'])
+		&& isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])
+		&& isset($_POST['confirm-password']))
+	||
+		($_POST['formtype'] === 'login' && isset($_POST['username'])
+		&& isset($_POST['password'])))
 {
 	$conn = new mysqli(DBHOST, DBS['secure']['DBuser'], DBS['secure']['password'],
 		DBS['secure']['name'];
@@ -18,7 +25,33 @@ if (isset($_POST['formtype']) &&
 		//do something instead of dying
 		//die("Connection failed: " . $conn->connect_error);
 	} 
-	
+	$conn->query("SET NAMES UTF8");
+
+	if ($_POST['formtype'] === 'login')
+	{
+		$result = $conn->query("SELECT * FROM users WHERE id=" . $_POST['username'] . ";");
+		if ($result->num_rows !== 1)
+			$result = $conn->query("SELECT * FROM users WHERE email=" . $_POST['username'] . ";");
+		$answer = "Invalid username or password";	
+	}
+	else // register
+	{
+
+	}
+
+/*
+	$result = $conn->query("SELECT * FROM membre WHERE Prenom like '%MA%' ORDER BY Prenom asc");
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			echo "id: " . $row["ID"]. " - Nom: " . $row["Nom"]. " " . $row["Prenom"]. "<br>";
+		}
+	} else {
+		echo "0 results";
+	}
+*/
+	$conn->close();
+
 }
 
 
