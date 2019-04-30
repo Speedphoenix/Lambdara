@@ -1,4 +1,9 @@
 <?php
+
+include_once "auth.php";
+
+$pageTitle = "Login";
+
 include "header.php";
 ?>
 
@@ -33,31 +38,36 @@ function showLogin() {
 
 <div id='mainContainer'>
 
+<?php
+	if (!empty($errormsg))
+		echo "<h2 style='color: red;'>$errormsg</h2>";
+?>
+
 	<div id='register' class="clearfix">
         <div class="login">
             <button id="register-btn" class="log_btn">Créez un compte</button>
             <form id='register-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
-                <input type='hidden' name='formtype' value='register'/>
+                <input type='hidden' name='formtype' value='register' required/>
                 <table class="log_tab"> 
                     <tr>
                         <!--<td>Nom complet:</td>-->
-                        <td><input class="log_field" type='text' name='fullname' placeholder="Nom complet:"></td>
+                        <td><input class="log_field" type='text' name='fullname' placeholder="Nom complet:" required></td>
                     </tr>
                     <tr>
                         <!--<td>Nom d'utilisateur:</td>-->
-                        <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur:"></td>
+                        <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur:" required></td>
                     </tr>
                     <tr>
                         <!--<td>Email:</td>-->
-                        <td><input class="log_field" type='text' name='email' placeholder="Email:"></td>
+                        <td><input class="log_field" type='email' name='email' placeholder="Email:" required></td>
                     </tr>
                     <tr>
                         <!--<td>Mot de passe:</td>-->
-                        <td><input class="log_field" type='password' id='registerpass' name='password' placeholder="Mot de passe:"></td>
+                        <td><input class="log_field" type='password' id='registerpass' name='password' placeholder="Mot de passe:" required></td>
                     </tr>
                     <tr>
                         <!--<td>Confirmer le mot de passe:</td>-->
-                        <td><input class="log_field" type='password' id='confirmpass' name='confirm-password' placeholder="Confirmer le mot de passe:"></td>
+                        <td><input class="log_field" type='password' id='confirmpass' name='confirm-password' placeholder="Confirmer le mot de passe:" required></td>
                     </tr>
                     <tr>
                         <td colspan='2'><input class="btn" type='submit' value="C'est parti!"></td>
@@ -72,15 +82,15 @@ function showLogin() {
         <div class="login">
             <button id="login-btn" class="log_btn">Déjà utilisateur?</button>
             <form id='login-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
-                <input type='hidden' name='formtype' value='login'/>
+                <input type='hidden' name='formtype' value='login' required/>
                 <table class="log_tab">
                     <tr>
                         <!--<td>Nom d'utilisateur ou email:</td>-->
-                        <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur ou email:"></td>
+                        <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur ou email:" required></td>
                     </tr>
                     <tr>
                         <!--<td>Mot de passe:</td>-->
-                        <td><input class="log_field" type='password' name='password' placeholder="Mot de passe"></td>
+                        <td><input class="log_field" type='password' name='password' placeholder="Mot de passe" required></td>
                     </tr>
                     <tr>
                         <td colspan='2'><input class="btn" type='submit' value="S'identifier"></td>

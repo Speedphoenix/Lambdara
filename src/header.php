@@ -10,8 +10,10 @@ include_once "config.php";
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 	<?php
+	echo "<title>";
 	if (isset($pageTitle))
-		echo "<title>$pageTitle</title>";
+		echo "$pageTitle - ";
+	echo SITENAME . "</title>";
 	?>
 </head>
 <body>
