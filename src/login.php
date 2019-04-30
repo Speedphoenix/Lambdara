@@ -3,23 +3,31 @@ include "header.php";
 ?>
 
 <script type="text/javascript">
+function showRegister() {
+	$('#login-form').css('display', 'none');
+	$('#register-form').css('display', 'block');
+	$('#login-btn').css('display', 'block');
+	$('#register-btn').css('display', 'none');
+}
+
+function showLogin() {
+	$('#login-form').css('display', 'block');
+	$('#register-form').css('display', 'none');
+	$('#login-btn').css('display', 'none');
+	$('#register-btn').css('display', 'block');
+}
+
 	$(document).ready(function(){
 		if (window.location.hash && window.location.hash.substring(1) === 'login') {
-			$('#login-form').css('display', 'block');
-			$('#register-form').css('display', 'none');
+			showLogin();
 		}
 		else{
-			$('#login-form').css('display', 'none');
-			$('#register-form').css('display', 'block');
+			showRegister();
 		}
-		$('#login-btn').click(function(){
-			$('#login-form').css('display', 'block');
-			$('#register-form').css('display', 'none');
-		});
-		$('#register-btn').click(function(){
-			$('#login-form').css('display', 'none');
-			$('#register-form').css('display', 'block');
-		});
+		$('#login-btn').click(showLogin);
+		$('#register-btn').click(showRegister);
+		$('#login-link').click(showLogin);
+		$('#register-link').click(showRegister);	
 	});
 </script>
 

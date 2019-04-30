@@ -14,6 +14,21 @@ define("COOKIEITEMSEP", ':');
 
 define("COOKIEDURATION", (365 * 24 * 3600));
 
+// THIS IS NOT A SECURE WAY OF DOING THINGS
+// but we chose to use it as this is only a school project
+define("DBS", array(
+	"secure" => array(
+		"name" => "id9327242_secure",
+		"DBuser" => "id9327242_root",
+		"password" => "rootroot"),
+	"central" => array(
+		"name" => "id9327242_central",
+		"DBuser" => "id9327242_root2",
+		"password" => "rootroot")
+	));
+
+define("DBHOST", "localhost");
+
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
 $testitems = array(
 	array(
