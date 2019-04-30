@@ -6,6 +6,8 @@ include_once "config.php";
 <head>
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 	<?php
 	if (isset($pageTitle))
 		echo "<title>$pageTitle</title>";
@@ -15,10 +17,10 @@ include_once "config.php";
 	<div id="upperpart" class="clearfix">
         
         <div class="column menu">
-          <a href="vendre.php"><button>Vendre</button></a>
-          <a href="#panier.php"><button>Panier</button></a>
-          <a href="#signin.php"><button>Sign In</button></a>
-          <a href="#signup.php"><button>Sign Up</button></a>
+          <a href="sell.php"><button>Vendre</button></a>
+          <a href="shopcart.php"><button>Panier</button></a>
+          <a href="login.php#login"><button>Sign In</button></a>
+          <a href="login.php#register"><button>Sign Up</button></a>
         </div>
         
         <div class="column search">
