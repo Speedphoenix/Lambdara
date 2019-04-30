@@ -33,52 +33,56 @@ function showLogin() {
 
 <div id='mainContainer'>
 
-	<div id='register'>
-		<button id="register-btn">Créez un compte</button>
-		<form id='register-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
-			<input type='hidden' name='formtype' value='register'/>
-			<table>
-				<tr>
-					<td>Nom d'utilisateur:</td>
-					<td><input type='text' name='username'></td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td><input type='text' name='email'></td>
-				</tr>
-				<tr>
-					<td>Mot de passe:</td>
-					<td><input type='password' id='registerpass' name='password'></td>
-				</tr>
-				<tr>
-					<td>Confirmer le mot de passe:</td>
-					<td><input type='password' id='confirmpass' name='confirm-password'></td>
-				</tr>
-				<tr>
-					<td colspan='2'><input type='submit' value="C'est parti!"></td>
-				</tr>
-			</table>
-		</form>
+	<div id='register' class="clearfix">
+        <div class="login">
+            <button id="register-btn" class="log_btn">Créez un compte</button>
+            <form id='register-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
+                <input type='hidden' name='formtype' value='register'/>
+                <table class="log_tab">
+                    <tr>
+                        <!--<td>Nom d'utilisateur:</td>-->
+                        <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur:"></td>
+                    </tr>
+                    <tr>
+                        <!--<td>Email:</td>-->
+                        <td><input class="log_field" type='text' name='email' placeholder="Email:"></td>
+                    </tr>
+                    <tr>
+                        <!--<td>Mot de passe:</td>-->
+                        <td><input class="log_field" type='password' id='registerpass' name='password' placeholder="Mot de passe:"></td>
+                    </tr>
+                    <tr>
+                        <!--<td>Confirmer le mot de passe:</td>-->
+                        <td><input class="log_field" type='password' id='confirmpass' name='confirm-password' placeholder="Confirmer le mot de passe:"></td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'><input class="btn" type='submit' value="C'est parti!"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 	</div>
 
-	<div id='login'>
-		<button id="login-btn">Déjà utilisateur?</button>
-		<form id='login-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
-			<input type='hidden' name='formtype' value='login'/>
-			<table>
-				<tr>
-					<td>Nom d'utilisateur ou email:</td>
-					<td><input type='text' name='username'></td>
-				</tr>
-				<tr>
-					<td>Mot de passe:</td>
-					<td><input type='password' name='password'></td>
-				</tr>
-				<tr>
-					<td colspan='2'><input type='submit' value="S'identifier"></td>
-				</tr>
-			</table>
-		</form>
+	<div id='login' class="clearfix">
+        <div class="login">
+            <button id="login-btn" class="log_btn">Déjà utilisateur?</button>
+            <form id='login-form' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
+                <input type='hidden' name='formtype' value='login'/>
+                <table class="log_tab">
+                    <tr>
+                        <!--<td>Nom d'utilisateur ou email:</td>-->
+                        <td><input class="log_field" type='text' name='username' placeholder="Nom d'utilisateur ou email:"></td>
+                    </tr>
+                    <tr>
+                        <!--<td>Mot de passe:</td>-->
+                        <td><input class="log_field" type='password' name='password' placeholder="Mot de passe"></td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'><input class="btn" type='submit' value="S'identifier"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 	</div>
 
 </div>
