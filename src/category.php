@@ -54,9 +54,7 @@ include "header.php";
 </div>
 
 <div id='mainContainer'>
-<?php
-echo "items in cart: " . $nbShopcart;
-?>
+
 	<table>
 
 <?php
