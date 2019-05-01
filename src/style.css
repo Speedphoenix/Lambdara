@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+table{
+  width: 100%;
+  
+}
+
 .column {
     margin: auto; 
   
@@ -78,8 +83,9 @@
     border-style: solid;
     border-width: 1px;
     border-color: slategray;
-    background-color: #cccc00;
+    background-color: #cccccc;
     width:auto;
+    
     
 }
 
