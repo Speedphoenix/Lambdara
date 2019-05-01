@@ -61,6 +61,27 @@
     text-align: center;
     width:25%;
 }
+#mainContainer{
+    float: right;
+    margin:auto;
+    background-color: #cccccc;
+    border-style: solid;
+    border-width: 1px;
+    border-color: slategray;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    width:75%;
+}
+
+#articles{
+    width:500px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: slategray;
+    background-color: #cccc00;
+    width:auto;
+    
+}
 
 .menu {
     width: 100%;
