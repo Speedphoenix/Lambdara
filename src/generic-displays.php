@@ -1,13 +1,3 @@
-
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/query/3.1.1/jquery.min.js"></script>
-	<script type="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</head>
 <?php
 function showArticle($what)
 {
@@ -24,15 +14,15 @@ function showArticle($what)
 		$what["description"]=$toto;
 	}
 
-echo "<div class='test' id='articles'>";
-echo "	<table>
+echo "<div id='articles'>";
+echo "	<table class='articleUnique'>
 
 		  <tr>
-		    <td rowspan='2'><img src='".$what["photo"]."'width='100' height='100'/></td>
-		    <th>".$what["nom"]."</th>
-		    <th>prix : ".$what["prix"]."$</th>
-		    <th>note :".$what["note"]."/5</th>
-		    <th>Quantité restante : ".$what['quantité']."</th>
+		    <td rowspan='2'><img src='".$what["photo"]."'width='100' height='100' style='float : left'/></td>
+		    <th class='articleDetail'>".$what["nom"]."</th>
+		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
+		    <td class='articleDetail'>note :".$what["note"]."/5</td>
+		    <td class='articleDetail'>Quantité restante : ".$what['quantité']."</td>
 		  </tr>
 
 		  <tr>
@@ -40,12 +30,6 @@ echo "	<table>
 		  </tr>
 		 
 		</table> ";
-
-
-
-
-
-	echo "</div>";
+echo "</div>";
 }
-
 ?>

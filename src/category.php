@@ -26,7 +26,7 @@ include_once "generic-displays.php";
 
 include "header.php";
 ?>
-
+<div id="mainContainer">
 <div id="leftpart" class="clearfix">
     <div class="column search">
         <input class="field" name="q" type="text" placeholder="Rechercher" /><br>
@@ -55,7 +55,7 @@ include "header.php";
     </div>
 </div>
 
-<div id='mainContainer'>
+<div id='articleListing'>
 
 	<table>
 
@@ -79,6 +79,7 @@ foreach ($items as $i)
     </div>
 </div>
 -->
+</div>
 <?php
 include "footer.php";
 ?>

@@ -6,9 +6,13 @@
   box-sizing: border-box;
 }
 
-table{
+.articleUnique{
   width: 100%;
   
+}
+
+.articleDetail{
+    width: 25%;
 }
 
 .column {
@@ -66,7 +70,9 @@ table{
     text-align: center;
     width:25%;
 }
-#mainContainer{
+
+
+#articleListing{
     float: right;
     margin:auto;
     background-color: #cccccc;

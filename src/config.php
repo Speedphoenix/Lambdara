@@ -41,7 +41,8 @@ define("DBS", array(
 define("DBHOST", "localhost");
 
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
-$testitems = array(
+
+/*$testitems = array(
 	array(
 		"ID" => 129,
 		"photo" => "https://5.imimg.com/data5/XX/BC/MY-71755908/school-book-250x250.jpg",
@@ -67,7 +68,7 @@ $testitems = array(
 		"quantité" => 4
 		),
 	
-);
+);*/
 
 
 define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
