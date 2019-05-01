@@ -315,13 +315,13 @@ select{
     -ms-appearance: none;
     appearance: none; 
     cursor: pointer; 
-    background: url(https://monasteryeventcenter.com/wp-content/uploads/revslider/home/white-down-arrow-png-2.png) 96% / 5% no-repeat #E8B960;
+    background: url(white-down-arrow-png-2.png) 96% / 5% no-repeat #E8B960;
 }
 select::-ms-expand { 
     display: none; 
 }
 select:hover{
-    background: url(https://monasteryeventcenter.com/wp-content/uploads/revslider/home/white-down-arrow-png-2.png) 96% / 5% no-repeat darkorange;
+    background: url(white-down-arrow-png-2.png) 96% / 5% no-repeat darkorange;
 }
 
 /*.select-wrapper {
