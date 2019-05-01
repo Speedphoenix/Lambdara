@@ -1,6 +1,7 @@
 <?php
 
 include_once "config.php";
+include_once "dbFuncs.php";
 
 if (isset($_GET['categ']) && in_array($_GET['categ'], array_keys(POSSIBLECATEGS)))
 	$categ = $_GET['categ'];
@@ -17,7 +18,7 @@ $pageTitle = $categ . " items";
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
-$items = $testitems;
+$items = getAllItems($categ); // et le tri si besoin
 
 
 include_once "shopcart-general.php";
@@ -49,6 +50,7 @@ include "header.php";
                     }
                 ?>
             </select>
+			<input class="btn" type='submit' value="C'est parti!">
         </form>
     </div>
 </div>

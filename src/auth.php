@@ -19,7 +19,7 @@ function passIsSecure($password)
 	return (is_string($password) && (strlen($password) >= 2));
 }
 
-$errormsg = "";
+$errormsg = null;
 
 function loginusr($conn)
 {
@@ -31,13 +31,15 @@ function loginusr($conn)
 	$result = $conn->query("SELECT * FROM users WHERE username='" . $_POST['username'] . "';");
 
 	if ($result->num_rows !== 1)
-		$result = $conn->query("SELECT * FROM users WHERE email='" . $_POST['email'] . "';");
+		$result = $conn->query("SELECT * FROM users WHERE email='" . $_POST['username'] . "';");
+
+	$row = $result->fetch_assoc();
 
 	if ($result->num_rows !== 1)
 		return ERRUSRNOTFOUND;	
-	else if (password_verify($_POST['password'], $result->fetch_assoc()['password_hash']))
+	else if (password_verify($_POST['password'], $row['password_hash']))
 	{
-		$_SESSION['username'] = $_POST['username'];
+		$_SESSION['username'] = $row['username'];
 		return "";
 	}
 	else
@@ -95,15 +97,7 @@ function loginon()
 		return;
 	}
 
-	$conn = new mysqli(DBHOST, DBS['secure']['DBuser'], DBS['secure']['password'],
-		DBS['secure']['name']);
-
-	// Check connection
-	if ($conn->connect_error) {
-		//do something instead of dying
-		die("Connection failed: " . $conn->connect_error);
-	}
-	$conn->query("SET NAMES UTF8");
+	$conn = connectDB('secure');
 
 	//login
 	if ($_POST['formtype'] === 'login')
@@ -119,12 +113,11 @@ function loginon()
 	$conn->close();
 }
 
-
 loginon();
 
 if ($errormsg === "")
 {
-	header("location: category.php"); // maybe change this to be the previous page?
+	$logSuccess = true;
 }
 
 

@@ -1,5 +1,9 @@
 <?php
 include_once "config.php";
+
+if (session_status() == PHP_SESSION_NONE)
+	session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,17 +22,28 @@ include_once "config.php";
 </head>
 <body>
 	<div id="upperpart" class="clearfix">
-        
-        <div class="column menu">
-          <a href="sell.php"><button>Vendre</button></a>
-          <a href="shopcart.php"><button>Panier
-              <?php
-                    if (isset($nbShopcart))
-                        echo "(".$nbShopcart.")";
-                ?>
-              
-          </button></a>
-          <a id="login-link" href="login.php#login"><button>Sign In</button></a>
-          <a id="register-link" href="login.php#register"><button>Sign Up</button></a>
-        </div>
-    </div>
+		
+		<div class="column menu">
+			<a href="sell.php"><button>Vendre</button></a>
+			<a href="shopcart.php"><button>Panier
+				<?php
+					if (isset($nbShopcart))
+						echo "(".$nbShopcart.")";
+				?>
+			</button></a>
+			<?php
+			if (empty($_SESSION['username']))
+			{
+				echo '
+				<a id="login-link" href="login.php#login"><button>Connection</button></a>
+				<a id="register-link" href="login.php#register"><button>S\'enregistrer</button></a>';
+			}
+			else
+			{
+				echo '
+				<a id="logout-link" href="logout.php?previouspage=' . $_SERVER['PHP_SELF'] . '"><button>Deconnection</button></a>
+				<a id="settings-link" href="#"><button>Paramètres</button></a>';
+			}
+			?>
+		</div>
+	</div>
