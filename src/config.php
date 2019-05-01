@@ -48,7 +48,7 @@ $testitems = array(
 		"date_ajout" => time(),
 		"prix" => 45,
 		"note" => 3,
-		"description" => "des livres" . PHP_EOL . "muahaha",
+		"description" => "Un homme, Jean Valjean, a volé un pain parce qu'il avait faim et il est condamné au bagne comme forçat. Il parvient à s'évader et est ébergé par un évêque qui lui fait passer la nuit chez lui. Jean Valjean s'enfuit en emportant les chandeliers d'argent de l'évêque. Arrêté par la police, il risque le bagne à vie mais l'évêque le sauve en disant qu'il lui offert les chandeliers. Ce geste va bouleverser sa vie. A partir de ce moment, il se consacre à faire du bien autour de lui. Il recueille Cosette, une malheureuse, exploitée par des malfrats, les Thénardiers. Il l'éduque et l'aime comme sa fille. Cosette devient amoureuse de Marius et Jean Gabin se sacrifie pour sauver le jeune homme, blessé gravement lors de la révolution. Il meurt en voyant le jeune couple heureux auprès de lui.",
 		"popularité" => 209,
 		"quantité" => 24
 		),
@@ -60,7 +60,7 @@ $testitems = array(
 		"date_ajout" => (time() - 3600 * 24 * 30),
 		"prix" => 57,
 		"note" => 3,
-		"description" => "une peluche" . PHP_EOL . "muahaha",
+		"description" => "une peluche " . PHP_EOL . "muahaha",
 		"popularité" => 409,
 		"quantité" => 4
 		),
