@@ -2,6 +2,12 @@
 
 include_once "auth.php";
 
+if (!empty($_SESSION['username']))
+	header("location: category.php"); // maybe change this to be the previous page?
+
+if (isset($logSuccess) && $logSuccess === true)
+	header("location: category.php"); // maybe change this to be the previous page?
+
 $pageTitle = "Login";
 
 include "header.php";
@@ -39,6 +45,8 @@ function showLogin() {
 <div id='mainContainer'>
 
 <?php
+	if (isset($_SESSION['username']))
+		echo "<h2 style='color: red;'>" . $_SESSION['username'] . "</h2>";
 	if (!empty($errormsg))
 		echo "<h2 style='color: red;'>$errormsg</h2>";
 ?>

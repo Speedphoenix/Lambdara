@@ -11,11 +11,13 @@ define("POSSIBLECATEGS", array(
 	"musique" => "Musique",
 	"vetements" => "Vetements",
 	"sportloisir" => "Sport et Loisir"));
+
 define("CHOIXDETRI", array(
 	"date" => "Date d'ajout",
 	"priceup" => "Prix croissant",
 	"pricedown" => "Prix decroissant",
 	"rating" => "Notes"));
+
 define("DEFAULTTRI", "date");
 
 define("COOKIESEP", ';');
@@ -67,5 +69,10 @@ define("ERRPASSNOMATCH", "Le mot de passe ne correspond pas à sa confirmation")
 define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
 define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
 
+// TODO: À changer!!
+function failedSql($msg)
+{
+	die($msg);
+}
 
 ?>
