@@ -103,6 +103,24 @@
     width: 100%;
 }
 
+.btn{
+    background-color: #E8B960;   
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #E8B960;
+    padding: 5px 10px 5px 10px;
+    margin: auto; 
+    width: 23%;   
+    box-sizing: border-box;   
+    font-family: PT sans;   
+    font-size: 18px;   
+    font-weight: normal;   
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+    line-height: 20px;
+}
 .menu ul {
     list-style-type: none;
     margin: 0;
