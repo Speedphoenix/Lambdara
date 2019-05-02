@@ -45,7 +45,7 @@ echo "</tr>";
 
 ?>
 	</table>
-	<form action="checkout.php" method="post"><input class="btn" type="submit" value="Passer à la commande"/></form>
+    <form action="checkout.php" method="post"><input class="btn" type="submit" value="Passer à la commande"/></form>
 </div>
 
 <?php
