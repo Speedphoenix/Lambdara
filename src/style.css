@@ -340,7 +340,7 @@ button:hover{
 }*/
 .search input[type=range] {
     -webkit-appearance: none;
-    width: 95%;
+    width: 90%;
     margin: auto;
 }
 .search input[type=range]:focus {

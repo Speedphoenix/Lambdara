@@ -50,7 +50,7 @@ include "header.php";
                     }
                 ?>
             </select><br><br>
-            <!--<input type="range" max="100" min="0" value="50" name="price"/>-->
+            <input type="range" max="100" min="0" value="50" name="price"/><br><br>
 			<input class="btn" type='submit' value="C'est parti!">
         </form>
     </div>
