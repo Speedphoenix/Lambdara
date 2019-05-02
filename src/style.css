@@ -17,10 +17,6 @@
     display: table;
 }
 
-button:hover{
-    background-color: darkorange;
-}
-
 .column {
     margin: auto; 
   
@@ -75,9 +71,6 @@ button:hover{
     text-align: center;
     color: #ffffff;
     line-height: 20px;
-}
-.btn:hover{
-    background-color: darkorange;
 }
 
 
@@ -144,6 +137,10 @@ button:hover{
     letter-spacing: 2px;
     text-transform: uppercase;   
     color: #ffffff; 
+}
+
+.login .log_tab .btn:hover{
+    background-color: darkorange;
 }
 .log_btn{
     background-color: #E8B960;   
@@ -430,8 +427,13 @@ button:hover{
 }
 
 
-
-
+/*DO NOT MOVE !!! LEAVE IT IN THE EOF*/
+button:hover{
+    background-color: darkorange;
+}
+.btn:hover{
+    background-color: darkorange;
+}
 /*!!!!!!!!!!!!!!!!*/
 /*FOOTER*/
 #footer {
