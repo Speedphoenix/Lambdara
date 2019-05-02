@@ -1,4 +1,7 @@
 <?php
+
+include_once "config.php";
+
 function showArticle($what)
 {
 
@@ -22,7 +25,23 @@ echo "	<table class='articleUnique'>
 		    <th class='articleDetail'>".$what["nom"]."</th>
 		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
-		    <td class='articleDetail'>Quantité restante : ".$what['quantité']."</td>
+		    <td class='articleDetail'>Quantité restante : " . $what['quantité'];
+			if (TESTING)
+			{
+				global $currShopcart;
+				echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
+					<input type='number' name='addAmount' min='0'";
+
+				if (isset($currShopcart) && isset($currShopcart[$what["ID"]]))
+    				echo "value='" . $currShopcart[$what["ID"]] . "'";
+
+				echo "/>
+					<input type='hidden' name='addShopcart' value='" . $what["ID"] . "'>
+					<input type='submit' value='Add to cart'/>
+				</form>";
+
+			}
+			echo"</td>
 		  </tr>
 
 		  <tr>

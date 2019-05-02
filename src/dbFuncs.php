@@ -73,7 +73,8 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	$query = "SELECT * FROM Articles";
 
 	$query .= " WHERE ";
-	$lastKey = end(array_keys($IDs));
+	$IDarraykeys = array_keys($IDs);
+	$lastKey = end($IDarraykeys);
 	foreach ($IDs as $key => $elem)
 	{	
 		$query .= "ID='$elem'";
