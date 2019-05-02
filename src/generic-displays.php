@@ -41,7 +41,7 @@ function showSingleArticle($what){
 echo "	<table class='articleUnique'>
 
 		  <tr>
-		    <td rowspan='2'><img src='".$what["photo"]."'width='500' height='500' style='float : left'/></td>
+		    <td rowspan='2'><img src='".$what["photo"]."'width='400' height='400' style='float : left,  border: 1px solid black;'/></td>
 		    <th class='articleDetail'>".$what["nom"]."</th>
 		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
