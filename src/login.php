@@ -2,6 +2,7 @@
 
 include_once "auth.php";
 include_once "genericFuncs.php";
+include_once "generic-displays.php";
 
 setPrevPage();
 
@@ -49,9 +50,9 @@ function showLogin() {
 
 <?php
 	if (isset($_SESSION['username']))
-		echo "<h2 style='color: red;'>" . $_SESSION['username'] . "</h2>";
+		showError($_SESSION['username'] . "is already logged");
 	if (!empty($errormsg))
-		echo "<h2 style='color: red;'>$errormsg</h2>";
+		showError($errormsg);
 ?>
 
 	<div id='register' class="clearfix">
