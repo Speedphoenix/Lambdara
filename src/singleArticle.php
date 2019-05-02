@@ -10,7 +10,7 @@ if (empty($_GET['ID']))
 $itemID = $_GET['ID']; //on set notre article avec celui de la BDD correspondant à l'id récupéré
 
 //on vérifie que la clé de l'article passé existe bien
-if (!itemExists($item["ID"]))
+if (!itemExists($itemID))
     header("location: 404.php");
 
 $article = getFromIDs(array($_GET['ID']))[0];
