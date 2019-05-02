@@ -342,6 +342,7 @@ select:hover{
 	bottom: 0px;
 	height: 30px;
 	width: 100%;
-	clear: left;
+	clear: both;
 	text-align: center;
+	background-color: #d67600;
 }
