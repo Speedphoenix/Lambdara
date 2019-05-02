@@ -36,20 +36,24 @@ function loginusr($conn)
 	$row = $result->fetch_assoc();
 
 	if ($result->num_rows !== 1)
-		return ERRUSRNOTFOUND;	
+		return ERRUSRNOTFOUND . "1 " . $result->num_rows;
 	else if (password_verify($_POST['password'], $row['password_hash']))
 	{
+		$status = getUserInfo($row['username'], 'statut');
+		if (STATUSTOPERM[$status] != $row['permissions'])
+			return ERRCHEATER . "2  " . $status . "  " . $row['permissions'] . "  " . STATUSTOPERM[$status];
 		$_SESSION['username'] = $row['username'];
 		return "";
 	}
 	else
-		return ERRUSRNOTFOUND;
+		return ERRUSRNOTFOUND . "3";
 	return "";
 }
 
 function registerusr($conn)
 {
 	if (empty($_POST['fullname']) || empty($_POST['username']) || empty($_POST['email'])
+		|| (!isset($_POST['userstatus']))
 		|| empty($_POST['password']) || empty($_POST['confirm-password']))
 		return ERREMPTYFIELD;
 
@@ -67,14 +71,21 @@ function registerusr($conn)
 	if ($result->num_rows !== 0)
 		return ERREMAILTAKEN;
 	
+	if (!in_array($_POST['userstatus'], array_keys(USERSTATUSES))
+		|| USERSTATUSES[$_POST['userstatus']] === 'admin')
+		return ERRCHEATER . "4";
+	
 	$query = "INSERT INTO users (username, email, password_hash, permissions)
 				VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "'," .
 				" '" . password_hash($_POST['password'], PASSWORD_DEFAULT) . "', '0');";
 
 	$result = $conn->query($query);
 	if ($result !== true)
-		return ERRSQLINSI;
-	addUserCentral($_POST['username'], $_POST['fullname'], $_POST['email']);
+		return ERRSQLINSI . " (secure)";
+
+	if (addUserCentral($_POST['username'], $_POST['fullname'],
+		$_POST['email'], $_POST['userstatus']) !== true)
+		return ERRSQLINSI . " (central)";
 	return "";
 }
 
@@ -102,12 +113,13 @@ function loginon()
 	//login
 	if ($_POST['formtype'] === 'login')
 	{
-		$errormsg = loginusr($conn);
+		$errormsg .= loginusr($conn);
 	}
 	else // register
 	{
-		$errormsg = registerusr($conn);
-		$errormsg = loginusr($conn);
+		$errormsg .= registerusr($conn);
+		if (empty($errormsg))
+			$errormsg .= loginusr($conn);
 	}
 
 	$conn->close();
