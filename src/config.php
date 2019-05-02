@@ -20,6 +20,14 @@ define("CHOIXDETRI", array(
 
 define("DEFAULTTRI", "date");
 
+define("DATESORT", array(
+	"1m" => "Un mois",
+	"3m" => "Trois mois",
+	"1a" => "Un an",
+	"ttt" => "Tout le temps"));
+
+define("DEFAULTDATESORT", "1m");
+
 define("COOKIESEP", ';');
 define("COOKIEITEMSEP", ':');
 

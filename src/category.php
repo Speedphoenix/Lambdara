@@ -37,7 +37,7 @@ include "header.php";
                 <?php
                     foreach(POSSIBLECATEGS as $key => $val)
                     {
-                        echo "<option value='$key'>$val</option>"; 
+                        echo "<option value='$key'>$val</option>";
                     }
                 ?>
             </select><br><br>
@@ -49,8 +49,8 @@ include "header.php";
                         echo "<option value='$key'>$val</option>"; 
                     }
                 ?>
-            </select>
-            <br><br>
+            </select><br><br>
+            <!--<input type="range" max="100" min="0" value="50" name="price"/>-->
 			<input class="btn" type='submit' value="C'est parti!">
         </form>
     </div>
