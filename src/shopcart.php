@@ -57,7 +57,7 @@ echo "</tr>";
 
 ?>
 	</table>
-	<a href="checkout.php"><button>Passer à la commande</button></a>
+	<a href="checkout.php"><button class="btn">Passer à la commande</button></a>
 </div>
 
 <?php

@@ -30,6 +30,14 @@ define("DATESORT", array(
 
 define("DEFAULTDATESORT", "1m");
 
+define("DEFAULTPRICESORT", 500);
+define("MINPRICESORT", 0);
+define("MAXPRICESORT", 5000);
+
+define("POSSIBLEPRICESORT", range(MINPRICESORT, MAXPRICESORT, 1));
+
+
+
 define("COOKIESEP", ';');
 define("COOKIEITEMSEP", ':');
 
