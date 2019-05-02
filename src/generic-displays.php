@@ -13,7 +13,7 @@ function showArticle($what)
 		$toto[$lim+2]='.';
 		$what["description"]=$toto;
 	}
-
+<a href= singleArticle.php > Contactez-nous </a>
 echo "<div id='articles'>";
 echo "	<table class='articleUnique'>
 
@@ -22,7 +22,7 @@ echo "	<table class='articleUnique'>
 		    <th class='articleDetail'>".$what["nom"]."</th>
 		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
-		    <td class='articleDetail'>Quantité restante : ".$what['quantité']."</td>
+		    <td class='articleDetail'>Quantité restante : ".$what['quantite']."</td>
 		  </tr>
 
 		  <tr>
@@ -32,4 +32,14 @@ echo "	<table class='articleUnique'>
 		</table> ";
 echo "</div>";
 }
+
+
+function showSingleArticle($what){
+
+}
+
+
+
+
+
 ?>
