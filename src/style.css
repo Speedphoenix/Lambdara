@@ -133,37 +133,6 @@
   background-color: #0099cc;
 }
 
-.search .field{
-    background-color: #ffffff;  
-    border-style: solid;   
-    border-width: 1px;   
-    border-color: #dddddd;  
-    padding: 5px;
-    margin: auto;
-    margin-bottom: 10px;
-    width: 90%;  
-    box-sizing: border-box;  
-    font-family: Lato; 
-    font-size: 12px;   
-    font-weight: normal;   
-    letter-spacing: 1px;
-}
-.search .btn{
-    background-color: #E8B960;   
-    border-style: solid;   
-    border-width: 1px;   
-    border-color: #E8B960;
-    padding: 5px;
-    margin: auto;
-    width: 90%;   
-    box-sizing: border-box;   
-    font-family: PT sans;   
-    font-size: 13px;   
-    font-weight: normal;   
-    letter-spacing: 2px;
-    text-transform: uppercase;   
-    color: #ffffff; 
-}
 .btn:hover{
     background-color: darkorange;
 }
@@ -295,6 +264,39 @@ button:hover{
 .select-items form:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
 }*/
+
+.search .field{
+    background-color: #ffffff;  
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #dddddd;  
+    padding: 5px;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 90%;  
+    box-sizing: border-box;  
+    font-family: Lato; 
+    font-size: 12px;   
+    font-weight: normal;   
+    letter-spacing: 1px;
+}
+.search .btn{
+    background-color: #E8B960;   
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #E8B960;
+    padding: 5px;
+    margin: auto;
+    width: 90%;   
+    box-sizing: border-box;   
+    font-family: PT sans;   
+    font-size: 13px;   
+    font-weight: normal;   
+    letter-spacing: 2px;
+    text-transform: uppercase;   
+    color: #ffffff; 
+}
+
 .search select{
     width: 90%;
     height: auto;
@@ -325,6 +327,25 @@ button:hover{
     background: url(white-down-arrow-png-2.png) 96% / 5% no-repeat darkorange;
 }
 
+.search .price_show{
+    background-color: #E8B960;   
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #E8B960;
+    padding: 5px;
+    margin: auto;
+    margin-bottom:10px; 
+    width: 20%;
+    height:auto;
+    box-sizing: border-box;   
+    font-family: PT sans;   
+    font-size: 13px;   
+    font-weight: normal;   
+    letter-spacing: 2px;
+    text-transform: uppercase;   
+    color: #ffffff;
+}
+
 /*.select-wrapper {
 	position: relative;	
 }
@@ -341,6 +362,7 @@ button:hover{
 .search input[type=range] {
     -webkit-appearance: none;
     width: 90%;
+    margin-bottom:10px;
     margin: auto;
 }
 .search input[type=range]:focus {
