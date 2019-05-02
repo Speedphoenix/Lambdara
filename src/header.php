@@ -28,6 +28,7 @@ if (session_status() == PHP_SESSION_NONE)
 	<div id="upperpart" class="clearfix">
 		
 		<div class="column menu">
+            <a href="category.php"><button>Accueil</button></a>
 			<a href="sell.php"><button>Vendre</button></a>
 			<a href="shopcart.php"><button>Panier
 				<?php
