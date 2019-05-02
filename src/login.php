@@ -70,6 +70,15 @@ function showLogin() {
                         <td><input class="log_field" type='email' name='email' placeholder="Email:" required></td>
                     </tr>
                     <tr>
+                        <!--<td>Email:</td>-->
+                        <td>
+							<input type='radio' id='buyradio' name='userstatus' value='0' required checked>
+							<label for='buyradio'>Acheteur</label></br>
+							<input type='radio' id='sellradio' name='userstatus' value='1' required>
+							<label for='sellradio'>Vendeur</label>
+						</td>
+                    </tr>
+                    <tr>
                         <!--<td>Mot de passe:</td>-->
                         <td><input class="log_field" type='password' id='registerpass' name='password' placeholder="Mot de passe:" required></td>
                     </tr>
