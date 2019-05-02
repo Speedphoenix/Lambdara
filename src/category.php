@@ -83,7 +83,7 @@ include "header.php";
 
 <div id='articleListing'>
 
-	<table>
+	<table class='articleUnique'>
 
 <?php
 

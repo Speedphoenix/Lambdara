@@ -36,17 +36,17 @@ function loginusr($conn)
 	$row = $result->fetch_assoc();
 
 	if ($result->num_rows !== 1)
-		return ERRUSRNOTFOUND . "1 " . $result->num_rows;
+		return ERRUSRNOTFOUND;
 	else if (password_verify($_POST['password'], $row['password_hash']))
 	{
 		$status = getUserInfo($row['username'], 'statut');
 		if (STATUSTOPERM[$status] != $row['permissions'])
-			return ERRCHEATER . "2  " . $status . "  " . $row['permissions'] . "  " . STATUSTOPERM[$status];
+			return ERRCHEATER;
 		$_SESSION['username'] = $row['username'];
 		return "";
 	}
 	else
-		return ERRUSRNOTFOUND . "3";
+		return ERRUSRNOTFOUND;
 	return "";
 }
 
@@ -73,7 +73,7 @@ function registerusr($conn)
 	
 	if (!in_array($_POST['userstatus'], array_keys(USERSTATUSES))
 		|| USERSTATUSES[$_POST['userstatus']] === 'admin')
-		return ERRCHEATER . "4";
+		return ERRCHEATER;
 	
 	$query = "INSERT INTO users (username, email, password_hash, permissions)
 				VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "'," .

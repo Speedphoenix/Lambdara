@@ -3,6 +3,8 @@
 define("SITENAME", "Λara");
 define("SITENAMEASCII", "Lambdara");
 
+define("TESTING", true);
+
 define("DEFAULTCATEG", "all");
 
 define("POSSIBLECATEGS", array(
