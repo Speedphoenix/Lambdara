@@ -28,16 +28,7 @@ foreach ($items as $i)
 	echo "coût total: " . ($currShopcart[$i['ID']] * $i['prix']);
 	$total += ($currShopcart[$i['ID']] * $i['prix']); 
 
-	echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
-		<input type='number' name='addAmount' min='0'";
-
-	if (isset($currShopcart) && isset($currShopcart[$i["ID"]]))
-		echo "value='" . $currShopcart[$i["ID"]] . "'";
-
-	echo "/>
-		<input type='hidden' name='addShopcart' value='" . $i["ID"] . "'>
-		<input type='submit' value='Add to cart'/>
-	</form>";
+	addToShopcartForm($i);
 
 	echo "</td>";
 	echo "<td>";
