@@ -1,12 +1,15 @@
 <?php
 
 include_once "auth.php";
+include_once "genericFuncs.php";
 
-if (!empty($_SESSION['username']))
-	header("location: category.php"); // maybe change this to be the previous page?
+setPrevPage();
 
-if (isset($logSuccess) && $logSuccess === true)
-	header("location: category.php"); // maybe change this to be the previous page?
+if (!empty($_SESSION['username'])
+	|| (isset($logSuccess) && ($logSuccess === true)))
+{
+	header("location: " . getPrevPage("category.php"));
+}
 
 $pageTitle = "Login";
 

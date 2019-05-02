@@ -3,7 +3,7 @@
 define("SITENAME", "Λara");
 define("SITENAMEASCII", "Lambdara");
 
-define("TESTING", true);
+define("TESTING", false);
 
 define("DEFAULTCATEG", "all");
 
@@ -29,6 +29,14 @@ define("DATESORT", array(
 	"ttt" => "Tout le temps"));
 
 define("DEFAULTDATESORT", "1m");
+
+define("DEFAULTPRICESORT", 500);
+define("MINPRICESORT", 0);
+define("MAXPRICESORT", 5000);
+
+define("POSSIBLEPRICESORT", range(MINPRICESORT, MAXPRICESORT, 1));
+
+
 
 define("COOKIESEP", ';');
 define("COOKIEITEMSEP", ':');
@@ -60,6 +68,11 @@ define("USERSTATUSES", array(
 	0 => 'buyer',
 	1 => 'seller',
 	2 => 'admin'));
+
+define("TYPECARDID", array(
+	0 => 'Visa',
+	1 => 'Mastercard',
+	2 => 'America Express'));
 
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
 
@@ -106,5 +119,8 @@ function failedSql($msg)
 {
 	die($msg);
 }
+
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 ?>

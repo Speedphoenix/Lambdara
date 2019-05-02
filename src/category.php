@@ -13,6 +13,17 @@ if (isset($_GET['choix_de_tri']) && in_array($_GET['choix_de_tri'], array_keys(C
 else
 	$tri = DEFAULTTRI;
 
+if (isset($_GET['date_sort_choice']) && in_array($_GET['date_sort_choice'], array_keys(DATESORT)))
+	$date_sort = $_GET['date_sort_choice'];
+else
+	$date_sort = DEFAULTDATESORT;
+
+if (isset($_GET['price_sort']) && in_array($_GET['price_sort'], array_keys(DATESORT)))
+	$s_price = $_GET['price_sort'];
+else
+	$s_price = DEFAULTPRICESORT;
+
+
 $pageTitle = $categ . " items";
 
 //ici on chargera tous les items à afficher à partir des BDD
@@ -50,7 +61,21 @@ include "header.php";
                     }
                 ?>
             </select><br><br>
-            <!--<input type="range" max="100" min="0" value="50" name="price"/>-->
+            <select name="date_sort_choice">
+                <option value="" selected disabled hidden>Depuis:</option>
+                <?php
+                    foreach(CHOIXDETRI as $key => $val)
+                    {
+                        echo "<option value='$key'>$val</option>"; 
+                    }
+                ?>
+            </select><br><br>
+            <!--<?php/*
+                echo "<input type='range' max=" . MAXPRICESORT . " min=" . MINPRICESORT . " value=" . $s_price . " name='price_sort' oninput='sort_price_outp.value=sort_price_inp.value'/><br>";*/
+            ?>-->
+            <!--<output class='price_show' name='sort_price_show' id='sort_price_outp'></output><br>-->
+            <input type="range" max='<?php echo MAXPRICESORT; ?>' min=<?php echo MINPRICESORT; ?>' value=<?php echo $s_price; ?>' name="sort_price" id="sort_price_inp" oninput="sort_price_outp.value=sort_price_inp.value"/><br>
+            <div class="price_show"><output name="sort_price_show" id="sort_price_outp"><?php echo $s_price ?></output> $</div>
 			<input class="btn" type='submit' value="C'est parti!">
         </form>
     </div>

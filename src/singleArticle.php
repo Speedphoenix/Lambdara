@@ -31,3 +31,7 @@ include "header.php";
     showSingleArticle($article); 
     ?>   
 </div>
+
+<?php
+include "footer.php";
+?>

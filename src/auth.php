@@ -3,8 +3,6 @@
 include_once "config.php";
 include_once "dbFuncs.php";
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 

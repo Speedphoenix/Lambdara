@@ -36,6 +36,19 @@ echo "	<table class='articleUnique'>
 echo "</div>";
 }
 
+function addToShopcartForm($what)
+{
+	global $currShopcart;
+	echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
+		<input type='number' name='addAmount' min='0'";
+
+	if (isset($currShopcart[$what["ID"]]))
+		echo "value='" . $currShopcart[$what["ID"]] . "'/>
+		<input type='hidden' name='addShopcart' value='" . $what["ID"] . "'>
+		<input type='submit' value='Add to cart'/>
+	</form>";
+}
+
 
 function showSingleArticle($what){
 echo "	<table class='articleUnique'>
@@ -47,21 +60,7 @@ echo "	<table class='articleUnique'>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
 
 		    <td class='articleDetail'>Quantité restante : " . $what['quantite'];
-			if (TESTING)
-			{
-				global $currShopcart;
-				echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
-					<input type='number' name='addAmount' min='0'";
-
-				if (isset($currShopcart) && isset($currShopcart[$what["ID"]]))
-    				echo "value='" . $currShopcart[$what["ID"]] . "'";
-
-				echo "/>
-					<input type='hidden' name='addShopcart' value='" . $what["ID"] . "'>
-					<input type='submit' value='Add to cart'/>
-				</form>";
-
-			}
+			addToShopcartForm($what);
 			echo"</td>
 		  </tr>
 
