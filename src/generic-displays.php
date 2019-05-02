@@ -46,7 +46,7 @@ echo "	<table class='articleUnique'>
 		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
 
-		    <td class='articleDetail'>Quantité restante : " . $what['quantité'];
+		    <td class='articleDetail'>Quantité restante : " . $what['quantite'];
 			if (TESTING)
 			{
 				global $currShopcart;
