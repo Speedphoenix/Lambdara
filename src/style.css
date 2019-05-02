@@ -108,6 +108,10 @@
     width: 25%;
 }
 
+.articleDetail .link{
+	color: inherit;
+	text-decoration: inherit;
+}
 
 
 /*!!!!!!!!!!!!!!!!*/
