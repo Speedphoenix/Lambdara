@@ -98,9 +98,32 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	return $rep;
 }
 
-function addUserCentral($username, $fullname, $email)
+// all the parameters should be right, make sure to check wrong input before alling this function
+function addUserCentral($username, $fullname, $email, $userstatus)
 {
-	return true;
+	$conn = connectDB('central');
+	$query = "INSERT INTO users (username, nom_complet, email, statut, est_verifie)
+		VALUES ('$username', '$fullname', '$email', '$userstatus', '0');";
+	
+	$result = $conn->query($query);
+	
+	$conn->close();
+
+	return ($result === true);
+}
+
+function getUserInfo($username, $what)
+{
+	$conn = connectDB('central');
+	$query = "SELECT * FROM users WHERE username='$username';";
+	
+	$result = $conn->query($query);
+	
+	$conn->close();
+	
+	if (!$result)
+		return false;
+	return $result->fetch_assoc()[$what];
 }
 
 ?>
