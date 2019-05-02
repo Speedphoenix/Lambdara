@@ -50,6 +50,7 @@ include "header.php";
                     }
                 ?>
             </select>
+            <br><br>
 			<input class="btn" type='submit' value="C'est parti!">
         </form>
     </div>
