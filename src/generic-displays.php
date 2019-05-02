@@ -39,19 +39,14 @@ echo "</div>";
 function addToShopcartForm($what)
 {
 	global $currShopcart;
-	if (empty($currShopcart))
-		return;
-	if (!empty($currShopcart))
-	{
-		echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
-			<input type='number' name='addAmount' min='0'";
+	echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
+		<input type='number' name='addAmount' min='0'";
 
-		if (isset($currShopcart[$what["ID"]]))
-			echo "value='" . $currShopcart[$what["ID"]] . "'/>
-			<input type='hidden' name='addShopcart' value='" . $what["ID"] . "'>
-			<input type='submit' value='Add to cart'/>
-		</form>";
-	}
+	if (isset($currShopcart[$what["ID"]]))
+		echo "value='" . $currShopcart[$what["ID"]] . "'/>
+		<input type='hidden' name='addShopcart' value='" . $what["ID"] . "'>
+		<input type='submit' value='Add to cart'/>
+	</form>";
 }
 
 
