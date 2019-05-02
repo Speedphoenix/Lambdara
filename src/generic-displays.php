@@ -38,8 +38,8 @@ function showSingleArticle($what){
 echo "	<table class='articleUnique'>
 
 		  <tr>
-		    <td rowspan='2'><a href='singleArticle.php?ID=" . $what['ID'] . "'><img src='".$what["photo"]."'width='100' height='100' style='float : left'/></a></td>
-		    <th class='articleDetail'><a href='singleArticle.php?ID=" . $what['ID'] . "' >".$what["nom"]."</a></th>
+		    <td rowspan='2'><img src='".$what["photo"]."'width='500' height='500' style='float : left'/></td>
+		    <th class='articleDetail'>".$what["nom"]."</th>
 		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
 		    <td class='articleDetail'>Quantité restante : ".$what['quantite']."</td>
