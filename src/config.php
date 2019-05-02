@@ -3,7 +3,7 @@
 define("SITENAME", "Λara");
 define("SITENAMEASCII", "Lambdara");
 
-define("TESTING", true);
+define("TESTING", false);
 
 define("DEFAULTCATEG", "all");
 
@@ -61,6 +61,11 @@ define("USERSTATUSES", array(
 	1 => 'seller',
 	2 => 'admin'));
 
+define("TYPECARDID", array(
+	0 => 'Visa',
+	1 => 'Mastercard',
+	2 => 'America Express'));
+
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
 
 /*$testitems = array(
@@ -106,5 +111,8 @@ function failedSql($msg)
 {
 	die($msg);
 }
+
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 ?>

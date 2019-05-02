@@ -115,9 +115,9 @@ function addUserCentral($username, $fullname, $email, $userstatus)
 
 function getUserInfo($username, $what)
 {
-	$conn = connectDB('central');
 	$query = "SELECT * FROM users WHERE username='$username';";
-	
+	$conn = connectDB('central');
+
 	$result = $conn->query($query);
 	
 	$conn->close();
@@ -127,4 +127,37 @@ function getUserInfo($username, $what)
 	return $result->fetch_assoc()[$what];
 }
 
+function getAdress($username)
+{
+	$query = "SELECT adresse.* 
+		FROM users, adresse
+		WHERE username='$username' AND users.adress_id=adresse.ID;";
+
+	$conn = connectDB('central');
+
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	if ($result->num_rows === 0)
+		return false;
+	return $result->fetch_assoc();
+}
+
+function getCB($username)
+{
+	$query = "SELECT bank_info.* 
+		FROM users, bank_info
+		WHERE username='$username' AND users.bank_info_id=bank_info.ID;";
+
+	$conn = connectDB('secure');
+
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	if ($result->num_rows === 0)
+		return false;
+	return $result->fetch_assoc();
+}
 ?>

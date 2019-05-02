@@ -23,10 +23,22 @@ foreach ($items as $i)
 		continue;
 	echo "<tr>";
 	echo "<td>";
-	echo "nombres dans le panier: " . $currShopcart[$i['ID']] . "</br>";
+	echo "nombre dans le panier: " . $currShopcart[$i['ID']] . "</br>";
 	echo "prix à l'unité: " . $i['prix'] . "</br>";
 	echo "coût total: " . ($currShopcart[$i['ID']] * $i['prix']);
 	$total += ($currShopcart[$i['ID']] * $i['prix']); 
+
+	echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
+		<input type='number' name='addAmount' min='0'";
+
+	if (isset($currShopcart) && isset($currShopcart[$i["ID"]]))
+		echo "value='" . $currShopcart[$i["ID"]] . "'";
+
+	echo "/>
+		<input type='hidden' name='addShopcart' value='" . $i["ID"] . "'>
+		<input type='submit' value='Add to cart'/>
+	</form>";
+
 	echo "</td>";
 	echo "<td>";
 	showArticle($i);
@@ -45,7 +57,7 @@ echo "</tr>";
 
 ?>
 	</table>
-	<form action="checkout.php" method="post"><input type="submit" value="Passer à la commande"/></form>
+	<a href="checkout.php"><button>Passer à la commande</button></a>
 </div>
 
 <?php
