@@ -40,6 +40,17 @@ define("DBS", array(
 
 define("DBHOST", "localhost");
 
+define("STATUSTOPERM", array(
+	0 => 0,
+	1 => 0,
+	2 => 1)
+);
+
+define("USERSTATUSES", array(
+	0 => 'buyer',
+	1 => 'seller',
+	2 => 'admin'));
+
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
 
 /*$testitems = array(
@@ -78,6 +89,7 @@ define("ERRUNSAFEPASS", "Mot de passe pas suffisament complexe");
 define("ERRPASSNOMATCH", "Le mot de passe ne correspond pas à sa confirmation");
 define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
 define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
+define("ERRCHEATER", "Please don't try to cheat the system");
 
 // TODO: À changer!!
 function failedSql($msg)
