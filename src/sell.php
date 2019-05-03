@@ -17,11 +17,11 @@ if (!empty($errormsg))
 	showError($errormsg);
     ?>
     <div class='clearfix'>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>">
-            <div class='sell'>
-                <table>
+        <div class='vente'>
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>">
+                <table class="tab">
                     <tr>
-                        <th>Preparation de la mise en vente de votre article</th>
+                        <th colspan="2" style="text-align:center">Preparation de la mise en vente de votre article</th>
                     </tr>
                     <tr>
                         <td rowspan='4'></td>
@@ -49,8 +49,8 @@ if (!empty($errormsg))
                         </td>
                     </tr>
                 </table>
-            </div>
-        </form>
+                </form>
+        </div>
     </div>
 </div>
 
