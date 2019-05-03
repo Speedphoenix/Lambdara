@@ -116,6 +116,14 @@
     width: 25%;
 }
 
+.articleDetail a{
+	color: inherit;
+	text-decoration: inherit;
+}
+
+.articleDetail a:hover{
+	color: inherit;
+}
 
 
 /*!!!!!!!!!!!!!!!!*/
