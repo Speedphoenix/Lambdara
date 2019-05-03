@@ -99,13 +99,74 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	return $rep;
 }
 
+function addAddr($username, $addr)
+{
+	$addrId = getUserInfo($username, 'adress_id');
+
+	$result;
+	$conn = connectDB('central');
+	if ($addrId === NULL)
+	{
+		$query = "INSERT INTO adresse (adresse_ligne, code_postal, telephone, ville, pays)
+			VALUES ('" . $addr['adresse_ligne'] . "', '" . $addr['code_postal'] . "', '"
+			. $addr['telephone'] . "', '" . $addr['ville'] . "', '" . $addr['pays'] . "');";
+		$result = $conn->query($query);
+		$lastId = $conn->insert_id;
+		$query = "UPDATE users SET adress_id='$lastId' WHERE username='$username';";
+		$result2 = $conn->query($query);
+	}
+	else
+	{
+		$query = "UPDATE adresse
+			SET adresse_ligne='" . $addr['adresse_ligne'] . "', code_postal='"
+			. $addr['code_postal'] . "', telephone='" . $addr['telephone'] . "', ville='"
+			. $addr['ville'] . "', pays='" . $addr['pays'] . "'
+			WHERE ID='" . $addrId . "';";
+		$result = $conn->query($query);
+	}
+	$conn->close();
+
+	return ($result === true && (!isset($result2) || $result2 === true));
+}
+
+// pretty much the previous function copypasted
+function addCard($username, $card)
+{
+	$cardId = getUserInfo($username, 'bank_info_id', 'secure');
+
+	$result;
+	$conn = connectDB('secure');
+	if ($cardId === NULL)
+	{
+		$query = "INSERT INTO bank_info (type_carte, num_carte, nom, date_exp, code_secur)
+			VALUES ('" . $card['type_carte'] . "', '" . $card['num_carte'] . "', '"
+			. $card['nom'] . "', '" . $card['date_exp'] . "', '" . $card['code_secur'] . "');";
+		$result = $conn->query($query);
+		$lastId = $conn->insert_id;
+		$query = "UPDATE users SET bank_info_id='$lastId' WHERE username='$username';";
+		$result2 = $conn->query($query);
+	}
+	else
+	{
+		$query = "UPDATE bank_info
+			SET type_carte='" . $card['type_carte'] . "', num_carte='"
+			. $card['num_carte'] . "', nom='" . $card['nom'] . "', date_exp='"
+			. $card['date_exp'] . "', code_secur='" . $card['code_secur'] . "'
+			WHERE ID='" . $cardId . "';";
+		$result = $conn->query($query);
+	}
+	$conn->close();
+
+	return ($result === true && (!isset($result2) || $result2 === true));
+}
+
 // all the parameters should be right, make sure to check wrong input before alling this function
 function addUserCentral($username, $fullname, $email, $userstatus)
 {
-	$conn = connectDB('central');
 	$query = "INSERT INTO users (username, nom_complet, email, statut, est_verifie)
 		VALUES ('$username', '$fullname', '$email', '$userstatus', '0');";
-	
+
+	$conn = connectDB('central');
 	$result = $conn->query($query);
 	
 	$conn->close();
@@ -113,16 +174,16 @@ function addUserCentral($username, $fullname, $email, $userstatus)
 	return ($result === true);
 }
 
-function getUserInfo($username, $what)
+function getUserInfo($username, $what, $db = 'central')
 {
 	$query = "SELECT * FROM users WHERE username='$username';";
-	$conn = connectDB('central');
+	$conn = connectDB($db);
 
 	$result = $conn->query($query);
 	
 	$conn->close();
 	
-	if (!$result)
+	if ($result === false)
 		return false;
 	return $result->fetch_assoc()[$what];
 }

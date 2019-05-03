@@ -9,7 +9,7 @@ include_once "config.php";
 
 function showError($errmsg)
 {
-	echo "<h2 style='color: red;text-align: center;'>$errormsg</h2>";
+	echo "<h2 style='color: red;text-align: center;'>$errmsg</h2>";
 }
 
 

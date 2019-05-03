@@ -113,6 +113,7 @@ define("ERRPASSNOMATCH", "Le mot de passe ne correspond pas à sa confirmation")
 define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
 define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
 define("ERRCHEATER", "Please don't try to cheat the system");
+define("ERRCARDNOTV", "Carte de crédit non valide");
 
 // TODO: À changer!!
 function failedSql($msg)
@@ -122,5 +123,18 @@ function failedSql($msg)
 
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+foreach ($_POST as $key => $elem)
+{
+	if ($key !== 'password' && $key !== 'confirm-password')
+		$_POST[$key] = htmlspecialchars($elem);
+}
+
+foreach ($_GET as $key => $elem)
+{
+	if ($key !== 'password' && $key !== 'confirm-password')
+		$_GET[$key] = htmlspecialchars($elem);
+}
+
 
 ?>

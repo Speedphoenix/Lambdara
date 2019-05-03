@@ -43,4 +43,11 @@ foreach ($currShopcart as $id => $i)
 	$nbShopcart += $i;
 }
 
+function clearShopcart()
+{
+	// setting the expiration date in the past will delete the cookie
+	// apparently that's the right way to do it
+	setcookie('shopcart', "", time() - 3600);
+}
+
 ?>
