@@ -42,5 +42,9 @@ function isValidCard($card)
 	return true;
 }
 
+function doPayment($price, $card)
+{
+	return true;
+}
 
 ?>

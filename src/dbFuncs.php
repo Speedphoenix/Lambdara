@@ -188,6 +188,20 @@ function getUserInfo($username, $what, $db = 'central')
 	return $result->fetch_assoc()[$what];
 }
 
+function updateItemInfo($ID, $what, $value)
+{
+	$db = 'central';
+	$query = "UPDATE Articles SET $what='$value' WHERE ID='$ID';";
+	$conn = connectDB($db);
+
+	$result = $conn->query($query);
+	
+	$conn->close();
+	
+	return ($result !== false);
+}
+
+
 function getAdress($username)
 {
 	$query = "SELECT adresse.* 

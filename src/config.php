@@ -114,6 +114,7 @@ define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
 define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
 define("ERRCHEATER", "Please don't try to cheat the system");
 define("ERRCARDNOTV", "Carte de crédit non valide");
+define("ERRCARTEMPTY", "Votre panier est vide!");
 
 // TODO: À changer!!
 function failedSql($msg)

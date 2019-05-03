@@ -8,6 +8,19 @@ include_once "dbFuncs.php";
 
 $currShopcart = array();
 
+function limitItemNB()
+{
+	global $currShopcart;
+	$incartitems = getFromIDs(array_keys($currShopcart));
+
+	foreach ($incartitems as $i)
+	{
+		if ($currShopcart[$i['ID']] > $i['quantite'])
+			$currShopcart[$i['ID']] = $i['quantite'];
+	}
+}
+
+
 if (isset($_COOKIE['shopcart']))
 {
 	$cookieCart = explode(COOKIESEP, $_COOKIE['shopcart']);
@@ -32,10 +45,15 @@ if (isset($_POST['addAmount']) && is_numeric($_POST['addAmount']) && $_POST['add
 {
 	$currShopcart[$_POST['addShopcart']] = $_POST['addAmount'];
 
+	limitItemNB();
+
 	setcookie('shopcart',
 		implode(COOKIESEP, array_map($cookiemapfunc, array_keys($currShopcart), $currShopcart)),
 		time() + COOKIEDURATION);
 }
+else
+	limitItemNB();
+
 
 $nbShopcart = 0;
 foreach ($currShopcart as $id => $i)
