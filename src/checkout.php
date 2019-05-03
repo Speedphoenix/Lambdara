@@ -53,6 +53,18 @@ if ($card !== false)
 
 <?php
 }
+else // default stuff
+{
+?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input[name='type_carte'][value='0']").prop("checked", true);
+	});
+</script>
+
+<?php
+}
 
 ?>
 
