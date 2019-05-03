@@ -27,7 +27,6 @@ function showArticle($what)
 		$toto[$lim+2]='.';
 		$what["description"]=$toto;
 	}
-
 echo "<div id='articles'>";
 echo "	<table class='articleUnique'>
 
@@ -42,7 +41,6 @@ echo "	<table class='articleUnique'>
 		  <tr>
 		  	<td colspan='4'>".$what["description"]."</td>
 		  </tr>
-		 
 		</table> ";
 echo "</div>";
 }
@@ -65,18 +63,30 @@ function addToShopcartForm($what)
 
 
 //affiche un seul article
-//style='  border: 1px solid black', width: 2%>
 function showSingleArticle($what){
+
+//remplir un tableau de variations
+
+
 echo "	<table class='articleUniqueTab'>
 
 		  <tr>
-		    <td class='sigleImage' rowspan='6' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
+		    <td class='sigleImage' rowspan='4' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
-			</td>
+		    <td>variations</td>
+		    ";
+		    
+		    ///IF VAR[0] exist THEN PRINT A CASE WHITH TYPE OF VARIATION AND A SCROLLING BAR WITH THE NAME OF ALL VARIATION GETTING THE SAME TYPE
+
+
+echo "		
 		  </tr>
 		  <tr>
-		  	<td class='singleArticle'>Quantité restante : " . $what['quantite']."
-		  </tr>
+		  	<td class='singleArticle'>Quantité restante : " . $what['quantite']."</td>";
+
+		  	///IF VAR[1] exist THEN PRINT A CASE WHITH TYPE OF VARIATION AND A SCROLLING BAR WITH THE NAME OF ALL VARIATION GETTING THE SAME TYPE
+
+echo "	  </tr>
 		  <tr>
 		  	<td class='singleArticle'>prix :".$what["prix"]."</td>
 		  </tr>
@@ -84,15 +94,19 @@ echo "	<table class='articleUniqueTab'>
 		  	<td>".$what["note"]."/5</td>
 		  </tr>
 		  <tr>
-		  	<td class='singleArticle'>saisissez votre note sur 5</td>
-		  </tr>
-		  <tr>
 		  	<td class='singleArticle'>".$what["description"]."</td>
 		  </tr>		 
 		</table> ";
 
-echo "Quelle quantité désirez vous commander ?<br>";
-		addToShopcartForm($what);
+echo "<table>
+		<tr>
+			<td>(Il reste ".$what["quantite"]." artticle(s))<br>Je commande : ";
+			addToShopcartForm($what);
+			echo "<td/>
+			<td rowspan='2'>mettez votre note sur 5<td/>
+		</tr>
+	  </table>";
+
 
 echo "<br><br><br>";
 
