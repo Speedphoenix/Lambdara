@@ -70,9 +70,9 @@ define("USERSTATUSES", array(
 	2 => 'admin'));
 
 define("TYPECARDID", array(
-	0 => 'Visa',
-	1 => 'Mastercard',
-	2 => 'America Express'));
+	0 => 'visa',
+	1 => 'mastercard',
+	2 => 'amex'));
 
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
 

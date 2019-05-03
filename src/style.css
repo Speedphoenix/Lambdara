@@ -442,6 +442,97 @@ button:hover{
 .btn:hover{
     background-color: darkorange;
 }
+
+
+/*!!!!!!!!!!!!!!!!*/
+/*PAYMENT*/
+.payment{
+    text-align: center;
+    font-family: Lato;
+    width: auto;
+    height: auto;
+    margin: auto;
+    padding: 15px;
+}
+.payment .tab{
+    margin: auto;
+}
+.payment.btn{
+    background-color: #E8B960;   
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #E8B960;
+    padding: 5px 10px 5px 10px;
+    margin: auto;
+    margin-top: 20px;
+    width: 98%;   
+    box-sizing: border-box;   
+    font-family: PT sans;   
+    font-size: 13px;   
+    font-weight: normal;   
+    letter-spacing: 2px;
+    text-transform: uppercase;   
+    color: #ffffff; 
+}
+
+.payment.btn:hover{
+    background-color: darkorange;
+}
+
+.payment .tab .field{
+    background-color: #ffffff;  
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #dddddd;  
+    padding: 5px 10px 5px 10px;
+    margin: auto;
+    margin-top: 15px;
+    width: 98%;  
+    box-sizing: border-box;  
+    font-family: Lato; 
+    font-size: 12px;   
+    font-weight: normal;   
+    letter-spacing: 1px;
+}
+.payment .tab .l_field {
+    
+    background-color: #ffffff;  
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #dddddd;  
+    padding: 5px 10px 5px 10px;
+    margin: auto; 
+    margin-top: 39px;
+    width: 98%;  
+    box-sizing: border-box;  
+    font-family: Lato; 
+    font-size: 12px;   
+    font-weight: normal;   
+    letter-spacing: 1px;
+}
+.payment .mastercard{
+    left: 0px;
+    width: 61px;
+    height: 38px;
+    margin-right:2px;
+    background: url('https://www.merchantequip.com/images/logos/visa-mc-amex-184x38.gif') 0px 0px;
+}
+.payment .visa{
+    left: 0px;
+    width: 61px;
+    height: 38px;
+    margin-right: 10px;
+    background: url('https://www.merchantequip.com/images/logos/visa-mc-amex-184x38.gif') -61px 0px;
+}
+.payment .amex{
+    left: 0px;
+    width: 61px;
+    height: 38px;
+    margin-left: 5px;
+    background: url('https://www.merchantequip.com/images/logos/visa-mc-amex-184x38.gif') -122px 0px;
+}
+
+
 /*!!!!!!!!!!!!!!!!*/
 /*FOOTER*/
 #footer {
