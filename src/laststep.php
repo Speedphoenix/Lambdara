@@ -18,7 +18,7 @@ if (empty($_POST['adresse_ligne']) || empty($_POST['code_postal']) || empty($_PO
 }
 else if (!empty($_POST['rememberaddr']))
 {
-	if (!empty($_POST['adresse_ligne2'))
+	if (!empty($_POST['adresse_ligne2']))
 		$_POST['adresse_ligne'] .= $_POST['adresse_ligne2'];
 	if (addAddr($_SESSION['username'], $_POST) !== true)
 		return ERRSQLINSI . " (central)";
@@ -31,7 +31,9 @@ if (!isset($_POST['type_carte']) || empty($_POST['num_carte']) || empty($_POST['
 }
 else
 {
-	$dump = explode('/', $_POST['date_exp']);
+	$dump = explode('-', $_POST['date_exp']);
+	if (count($dump) !== 2 || !is_numeric($dump[1]) || !is_numeric($dump[0]))
+		$errormsg .= " " . PHP_EOL . ERRCARDNOTV;
 	$properDate = $dump[1] . '-' . $dump[0] . '-00';
 	$_POST['date_exp'] = $properDate; //strtotime($properDate);
 	$_POST['num_carte'] = str_replace('-', '', $_POST['num_carte']); 
@@ -52,15 +54,85 @@ if (!empty($errormsg))
 	$_SESSION['errormsg'] = $errormsg;
 	header("location: checkout.php");
 }
-/// if errormsg not empty send the guys back to checkout.php with the error in tow
+
+// from here on we look at the shopcart and make 'em pay + send email
+
+// TODO remove the bought items 
+
+
+$receipt = "";
+if (!empty($currShopcart))
+{
+	$items = getFromIDs(array_keys($currShopcart));
+	$total = 0;
+
+	$receipt .= "<table>
+	<tr>
+		<th>Nom de l'article</th>
+		<th>Quantité achetée</th>
+		<th>Prix unitaire</th>
+		<th>prix total</th>
+	</tr>";
+
+
+	foreach ($items as $i)
+	{
+		if (!isset($currShopcart[$i['ID']]))
+			continue;
+		$receipt .= "<tr>
+		<td>" . $i['nom'] . "</td>
+		<td>" . $currShopcart[$i['ID']] . "</td>
+		<td>" . $i['prix'] . "</td>
+		<td>" . ($currShopcart[$i['ID']] * $i['prix']) . "</td>
+		</tr>";
+		updateItemInfo($i['ID'], 'quantite', $i['quantite'] - $currShopcart[$i['ID']]);
+		$total += ($currShopcart[$i['ID']] * $i['prix']); 
+	}
+	$receipt .= "<tr>
+	<td>
+	Total: $total
+	</td>
+	</tr>
+	</table>";
+}
+
+doPayment($total, $_POST);
+clearShopcart();
+
+//now to send the mail
+
+$to = getUserInfo($_SESSION['username'], 'email');
+
+// Subject
+$subject = "Votre commande";
+
+// Message
+$message = "<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>Votre commande</title>
+</head>
+<body>
+	<h3>Votre commande a été effectuée avec succes</h3>
+	$receipt
+</body>
+</html>";
+
+// To send HTML mail, the Content-type header must be set
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "Content-type: text/html; charset=iso-8859-1";
+
+// Mail it
+mail($to, $subject, $message, implode("\r\n", $headers));
+
 
 include "header.php";
 ?>
 
 <div id='mainContainer'>
+	<h3>Votre commande a été effectuée avec succes</h3>
 <?php
-
-// tous les trucs à afficher ici
+	echo $receipt;
 ?>
 </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 include_once "config.php";
+include_once "genericFuncs.php";
 
 
 
@@ -9,7 +10,7 @@ include_once "config.php";
 
 function showError($errmsg)
 {
-	echo "<h2 style='color: red;text-align: center;'>$errmsg</h2>";
+	echo "<h2 class='error'>$errmsg</h2>" . PHP_EOL;
 }
 
 
@@ -48,7 +49,7 @@ echo "</div>";
 function addToShopcartForm($what)
 {
 	global $currShopcart;
-	echo "<form method='post' action=" . $_SERVER['PHP_SELF'] .">
+	echo "<form method='post' action='" . $_SERVER['PHP_SELF'] . makeGetUrl() . "'>
 		<input type='number' name='addAmount' min='0'";
 
 	if (isset($currShopcart[$what["ID"]]))

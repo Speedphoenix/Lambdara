@@ -5,8 +5,24 @@
 
 include_once "config.php";
 include_once "dbFuncs.php";
+include_once "generic-displays.php";
 
 $currShopcart = array();
+
+function limitItemNB()
+{
+	global $currShopcart;
+	$incartitems = getFromIDs(array_keys($currShopcart));
+
+	foreach ($incartitems as $i)
+	{
+		if ($currShopcart[$i['ID']] > $i['quantite'])
+		{
+			$currShopcart[$i['ID']] = $i['quantite'];
+		}
+	}
+}
+
 
 if (isset($_COOKIE['shopcart']))
 {
@@ -31,11 +47,14 @@ if (isset($_POST['addAmount']) && is_numeric($_POST['addAmount']) && $_POST['add
 	isset($_POST['addShopcart']) && itemExists($_POST['addShopcart']))
 {
 	$currShopcart[$_POST['addShopcart']] = $_POST['addAmount'];
-
-	setcookie('shopcart',
-		implode(COOKIESEP, array_map($cookiemapfunc, array_keys($currShopcart), $currShopcart)),
-		time() + COOKIEDURATION);
 }
+
+limitItemNB();
+
+setcookie('shopcart',
+	implode(COOKIESEP, array_map($cookiemapfunc, array_keys($currShopcart), $currShopcart)),
+	time() + COOKIEDURATION);
+
 
 $nbShopcart = 0;
 foreach ($currShopcart as $id => $i)

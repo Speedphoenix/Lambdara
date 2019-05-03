@@ -70,9 +70,9 @@ define("USERSTATUSES", array(
 	2 => 'admin'));
 
 define("TYPECARDID", array(
-	0 => 'Visa',
-	1 => 'Mastercard',
-	2 => 'America Express'));
+	0 => 'visa',
+	1 => 'mastercard',
+	2 => 'amex'));
 
 // POUR TESTER. devra proprement être enlevé et remplacé par les données prises de la BD
 
@@ -114,6 +114,7 @@ define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
 define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
 define("ERRCHEATER", "Please don't try to cheat the system");
 define("ERRCARDNOTV", "Carte de crédit non valide");
+define("ERRCARTEMPTY", "Votre panier est vide!");
 
 // TODO: À changer!!
 function failedSql($msg)
