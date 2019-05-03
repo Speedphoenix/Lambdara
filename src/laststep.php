@@ -18,6 +18,8 @@ if (empty($_POST['adresse_ligne']) || empty($_POST['code_postal']) || empty($_PO
 }
 else if (!empty($_POST['rememberaddr']))
 {
+	if (!empty($_POST['adresse_ligne2'))
+		$_POST['adresse_ligne'] .= $_POST['adresse_ligne2'];
 	if (addAddr($_SESSION['username'], $_POST) !== true)
 		return ERRSQLINSI . " (central)";
 }
@@ -45,6 +47,11 @@ else
 	}
 }
 
+if (!empty($errormsg))
+{
+	$_SESSION['errormsg'] = $errormsg;
+	header("location: checkout.php");
+}
 /// if errormsg not empty send the guys back to checkout.php with the error in tow
 
 include "header.php";
@@ -52,8 +59,6 @@ include "header.php";
 
 <div id='mainContainer'>
 <?php
-if (!empty($errormsg))
-	showError($errormsg);
 
 // tous les trucs à afficher ici
 ?>
