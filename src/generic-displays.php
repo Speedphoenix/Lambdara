@@ -60,38 +60,45 @@ function addToShopcartForm($what)
 	</form>";
 }
 
-
+//affichage des variations d'articles s'ils existent
+function repeatVariation($var, $compteur)
+{   
+	foreach ($var as $i) 
+	{
+		if($i!=null)
+		    echo "<tr><td>".$i['type']."<td/></tr>";
+	}	
+}
 
 //affiche un seul article
 function showSingleArticle($what){
 
-//remplir un tableau de variations
+//remplir un tableau des variation ayant le artice_id=$what['ID']
+	$var=getVariation($what['ID']);
+	$compteur=0;
+	$taille=max(sizeof($var),5);
 
 
 echo "	<table class='articleUniqueTab'>
 
 		  <tr>
-		    <td class='sigleImage' rowspan='4' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
+		    <td class='singleImage' rowspan='".$taille."' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
-		    <td>variations</td>
-		    ";
-		    
-		    ///IF VAR[0] exist THEN PRINT A CASE WHITH TYPE OF VARIATION AND A SCROLLING BAR WITH THE NAME OF ALL VARIATION GETTING THE SAME TYPE
-
-
-echo "		
+		    <td rowspan='".$taille."'> 
+		    	<table>";
+		    		repeatVariation($var,$compteur);
+		    echo"</table>
+		    </td>		
 		  </tr>
 		  <tr>
 		  	<td class='singleArticle'>Quantité restante : " . $what['quantite']."</td>";
-
-		  	///IF VAR[1] exist THEN PRINT A CASE WHITH TYPE OF VARIATION AND A SCROLLING BAR WITH THE NAME OF ALL VARIATION GETTING THE SAME TYPE
-
-echo "	  </tr>
-		  <tr>
-		  	<td class='singleArticle'>prix :".$what["prix"]."</td>
+		  	echo "<td>  </td>
 		  </tr>
 		  <tr>
-		  	<td>".$what["note"]."/5</td>
+		  	<td class='singleArticle'>prix :".$what["prix"]."</td>
+		  			  </tr>
+		  <tr>
+		  	<td class='singleArticle'>".$what["note"]."/5</td>
 		  </tr>
 		  <tr>
 		  	<td class='singleArticle'>".$what["description"]."</td>
