@@ -6,12 +6,6 @@ include_once "dbFuncs.php";
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
-foreach ($_POST as $key => $elem)
-{
-	if ($key !== 'password' && $key !== 'confirm-password')
-		$_POST[$key] = htmlspecialchars($elem);
-}
-
 function passIsSecure($password)
 {
 	return (is_string($password) && (strlen($password) >= 2));

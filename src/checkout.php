@@ -3,6 +3,7 @@
 include_once "config.php";
 include_once "genericFuncs.php";
 include_once "dbFuncs.php";
+include_once "shopcart-general.php";
 
 if (empty($_SESSION['username']))
 {
@@ -29,7 +30,7 @@ if ($addr !== false)
 		$("input[name='ville']").val("<?= $addr['ville'] ?>");
 		$("input[name='pays']").val("<?= $addr['pays'] ?>");
 		$("input[name='telephone']").val("<?= $addr['telephone'] ?>");
-	}
+	});
 </script>
 
 <?php
@@ -41,13 +42,13 @@ if ($card !== false)
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("input[name='num_carte']").val("<?= $addr['num_carte'] ?>");
-		$("input[name='date_exp']").val("<?= $addr['date_exp'] ?>");
-		$("input[name='nom']").val("<?= $addr['nom'] ?>");
-		$("input[name='code_secur']").val("<?= $addr['code_secur'] ?>");
-		$("input[name='type_carte'][value='<?= $addr['type_carte'] ?>']").prop("checked", true);
+		$("input[name='num_carte']").val("<?= $card['num_carte'] ?>");
+		$("input[name='date_exp']").val("<?= $card['date_exp'] ?>");
+		$("input[name='nom']").val("<?= $card['nom'] ?>");
+		$("input[name='code_secur']").val("<?= $card['code_secur'] ?>");
+		$("input[name='type_carte'][value='<?= $card['type_carte'] ?>']").prop("checked", true);
 		$("input[name='remembercard']").prop("checked", true);
-	}
+	});
 </script>
 
 <?php

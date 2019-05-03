@@ -3,6 +3,7 @@ include_once "config.php";
 include_once "dbFuncs.php";
 include_once "generic-displays.php";
 include_once "genericFuncs.php";
+include_once "shopcart-general.php";
 
 if (empty($_SESSION['username']))
 	header("location: checkout.php"); 
@@ -13,7 +14,7 @@ $errormsg = "";
 if (empty($_POST['adresse_ligne']) || empty($_POST['code_postal']) || empty($_POST['ville'])
 	|| empty($_POST['pays']) || empty($_POST['telephone']))
 {
-	$errormsg = ERREMPTYFIELD;
+	$errormsg .= ERREMPTYFIELD;
 }
 else if (!empty($_POST['rememberaddr']))
 {
@@ -21,16 +22,16 @@ else if (!empty($_POST['rememberaddr']))
 		return ERRSQLINSI . " (central)";
 }
 
-if (empty($_POST['type_carte']) || empty($_POST['num_carte']) || empty($_POST['date_exp'])
+if (!isset($_POST['type_carte']) || empty($_POST['num_carte']) || empty($_POST['date_exp'])
 	|| empty($_POST['nom']) || empty($_POST['code_secur']))
 {
-	$errormsg = ERREMPTYFIELD;
+	$errormsg .= ERREMPTYFIELD;
 }
 else
 {
 	$dump = explode('/', $_POST['date_exp']);
 	$properDate = $dump[1] . '-' . $dump[0] . '-00';
-	$_POST['date_exp'] = strtotime($properDate);
+	$_POST['date_exp'] = $properDate; //strtotime($properDate);
 	$_POST['num_carte'] = str_replace('-', '', $_POST['num_carte']); 
 	$_POST['num_carte'] = str_replace(' ', '', $_POST['num_carte']); 
 	$_POST['num_carte'] = str_replace('_', '', $_POST['num_carte']); 

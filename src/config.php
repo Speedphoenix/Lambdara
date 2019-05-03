@@ -124,4 +124,17 @@ function failedSql($msg)
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
+foreach ($_POST as $key => $elem)
+{
+	if ($key !== 'password' && $key !== 'confirm-password')
+		$_POST[$key] = htmlspecialchars($elem);
+}
+
+foreach ($_GET as $key => $elem)
+{
+	if ($key !== 'password' && $key !== 'confirm-password')
+		$_GET[$key] = htmlspecialchars($elem);
+}
+
+
 ?>
