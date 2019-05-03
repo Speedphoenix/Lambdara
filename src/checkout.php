@@ -14,8 +14,14 @@ if (empty($_SESSION['username']))
 $addr = getAdress($_SESSION['username']);
 $card = getCB($_SESSION['username']);
 
+if (!isset($errormsg))
+	$errormsg = "";
 
-//TYPECARDID
+if (!empty($_SESSION['errormsg']))
+{
+	$errormsg .= $_SESSION['errormsg'];
+	unset($_SESSION['errormsg']);
+}
 
 include "header.php";
 
@@ -69,6 +75,10 @@ else // default stuff
 ?>
 
 <div id='mainContainer'>
+<?php
+if (!empty($errormsg))
+	showError($errormsg);
+?>
 	<form action='laststep.php' method='post'>
 		<input type='text' name='adresse_ligne' placeholder="Addresse"/>
 		<input type='text' name='code_postal' placeholder="Code postal"/>
