@@ -24,7 +24,7 @@ if ($addr !== false)
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("input[name='addresse_ligne']").val("<?= $addr['addresse_ligne'] ?>");
+		$("input[name='adresse_ligne']").val("<?= $addr['adresse_ligne'] ?>");
 		$("input[name='code_postal']").val("<?= $addr['code_postal'] ?>");
 		$("input[name='ville']").val("<?= $addr['ville'] ?>");
 		$("input[name='pays']").val("<?= $addr['pays'] ?>");
@@ -57,12 +57,12 @@ if ($card !== false)
 
 <div id='mainContainer'>
 	<form action='laststep.php' method='post'>
-		<input type='text' name='addresse_ligne' placeholder="Addresse"/>
+		<input type='text' name='adresse_ligne' placeholder="Addresse"/>
 		<input type='text' name='code_postal' placeholder="Code postal"/>
 		<input type='text' name='ville' placeholder="Ville"/>
 		<input type='text' name='pays' placeholder="Pays"/>
 		<input type='text' name='telephone' placeholder="Telephone"/>
-		<label><input type='checkbox' name='rememberaddr' checked/>Mémoriser l'addresse de livraison</label>
+		<label><input type='checkbox' name='rememberaddr' checked/>Mémoriser l'adresse de livraison</label>
 
 		<?php
 		foreach (TYPECARDID as $key => $elem)
@@ -73,7 +73,7 @@ if ($card !== false)
 		<span>Numéro de Carte:</span>
 		<input type='text' name='num_carte' placeholder="XXXX-XXXX-XXXX-XXXX"/>
 		<span>Date d'expiration:</span>
-		<input type='text' name='date_exp' placeholder="XX/XX"/>
+		<input type='text' name='date_exp' placeholder="MM/YY"/>
 		<span>Nom sur la carte:</span>
 		<input type='text' name='nom' placeholder="Jane Doe"/>
 		<span>Cryptogramme visuel:</span>
