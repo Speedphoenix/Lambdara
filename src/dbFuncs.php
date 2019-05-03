@@ -252,7 +252,9 @@ function getVariation($id){
 	$rep = array();
 	while ($row = $result->fetch_assoc())
 	{
-		array_push($rep, $row);
+		if (!isset($rep[$row['type']]))
+			$rep[$row['type']] = array();
+		array_push($rep[$row['type']], $row);
 	}
 	return $rep;
 }
