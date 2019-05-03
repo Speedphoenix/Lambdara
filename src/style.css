@@ -533,6 +533,31 @@ button:hover{
 }
 
 
+
+
+/*!!!!!!!!!!!!!!!!*/
+/*ERROR*/
+
+.error{
+    background-color: lightyellow;  
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: darksalmon;  
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 50%;
+    height: auto;
+    box-sizing: border-box;  
+    font-family: Lato; 
+    font-size: 30px;   
+    font-weight: normal;   
+    letter-spacing: 2px;
+    color: orangered;
+    text-align: center;
+}
+
 /*!!!!!!!!!!!!!!!!*/
 /*FOOTER*/
 #footer {
@@ -543,3 +568,5 @@ button:hover{
 	text-align: center;
 	background-color: #d67600;
 }
+
+
