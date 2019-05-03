@@ -35,48 +35,49 @@ if (empty($currShopcart))
 else
 {
 ?>
-	<table>
-<?php
+    <div class="basket">
+	   <table class="tab">
+            <?php
 
-$total = 0;
+            $total = 0;
 
-foreach ($items as $i)
-{
-	if (!isset($currShopcart[$i['ID']]))
-		continue;
-	echo "<tr>";
-	echo "<td>";
-	echo "nombre dans le panier: " . $currShopcart[$i['ID']] . "</br>";
-	echo "prix à l'unité: " . $i['prix'] . "</br>";
-	echo "coût total: " . ($currShopcart[$i['ID']] * $i['prix']);
-	$total += ($currShopcart[$i['ID']] * $i['prix']); 
+            foreach ($items as $i)
+            {
+                if (!isset($currShopcart[$i['ID']]))
+                    continue;
+                echo "<tr style='border-bottom: 1px solid #ddd;'>";
+                echo "<td>";
+                echo "Nombre dans le panier: " . $currShopcart[$i['ID']] . "</br>";
+                echo "Prix à l'unité: " . $i['prix'] . "</br>";
+                echo "Coût total: " . ($currShopcart[$i['ID']] * $i['prix']);
+                $total += ($currShopcart[$i['ID']] * $i['prix']); 
 
-	addToShopcartForm($i);
+                addToShopcartForm($i);
 
-	echo "</td>";
-	echo "<td>";
-	showArticle($i);
-	// tous les trucs à afficher ici
-	echo "</td>";
-	echo "</tr>";
-}
-echo "<tr>";
-echo "<td>";
-echo "total: " . $total; 
-echo "</td>";
-echo "<td>";
-// tous les trucs à afficher ici
-echo "</td>";
-echo "</tr>";
+                echo "</td>";
+                echo "<td>";
+                showArticle($i);
+                // tous les trucs à afficher ici
+                echo "</td>";
+                echo "</tr>";
+            }
+            echo "<tr>";
+            echo "<td colspan='2'>";
+            echo "Coût total: " . $total; 
+            echo "</td>";
+            echo "<td>";
+            // tous les trucs à afficher ici
+            echo "</td>";
+            echo "</tr>";
 
-?>
-	</table>
-	<a href="checkout.php"><button class="btn">Passer à la commande</button></a>
+            ?>
+	   </table>
+	   <a href="checkout.php"><button class="btn">Passer à la commande</button></a>
 
-<?php
-}
-?>
-
+        <?php
+        }
+        ?>
+    </div>
 </div>
 
 <?php

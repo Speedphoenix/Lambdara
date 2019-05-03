@@ -50,14 +50,14 @@ function addToShopcartForm($what)
 {
 	global $currShopcart;
 	echo "<form method='post' action='" . $_SERVER['PHP_SELF'] . makeGetUrl() . "'>
-		<input type='number' name='addAmount' min='0'";
+		<input class='field' type='number' name='addAmount' min='0'";
 
 	if (isset($currShopcart[$what["ID"]]))
 		echo "value='" . $currShopcart[$what["ID"]] . "'";
 		
 		echo "/>
 		<input type='hidden' name='addShopcart' value='" . $what["ID"] . "'>
-		<input type='submit' value='Add to cart'/>
+		<input class='basket_btn' type='submit' value='Add to cart'/>
 	</form>";
 }
 
