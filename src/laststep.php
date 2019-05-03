@@ -11,6 +11,7 @@ if (empty($_SESSION['username']))
 
 $errormsg = "";
 
+
 if (empty($_POST['adresse_ligne']) || empty($_POST['code_postal']) || empty($_POST['ville'])
 	|| empty($_POST['pays']) || empty($_POST['telephone']))
 {
@@ -62,74 +63,78 @@ if (!empty($errormsg))
 
 // TODO remove the bought items 
 
-
-$receipt = "";
-$total = 0;
-if (!empty($currShopcart))
+if ($nbShopcart !== 0)
 {
-	$items = getFromIDs(array_keys($currShopcart));
-
-	$receipt .= "<table>
-	<tr>
-		<th>Nom de l'article</th>
-		<th>Quantité achetée</th>
-		<th>Prix unitaire</th>
-		<th>prix total</th>
-	</tr>";
-
-
-	foreach ($items as $i)
+	$receipt = "";
+	$total = 0;
+	if (!empty($currShopcart))
 	{
-		if (!isset($currShopcart[$i['ID']]))
-			continue;
-		$receipt .= "<tr>
-		<td>" . $i['nom'] . "</td>
-		<td>" . $currShopcart[$i['ID']] . "</td>
-		<td>" . $i['prix'] . "</td>
-		<td>" . ($currShopcart[$i['ID']] * $i['prix']) . "</td>
+		$items = getFromIDs(array_keys($currShopcart));
+
+		$receipt .= "<table>
+		<tr>
+			<th>Nom de l'article</th>
+			<th>Quantité achetée</th>
+			<th>Prix unitaire</th>
+			<th>prix total</th>
 		</tr>";
-		updateItemInfo($i['ID'], 'quantite', $i['quantite'] - $currShopcart[$i['ID']]);
-		$total += ($currShopcart[$i['ID']] * $i['prix']); 
+
+
+		foreach ($items as $i)
+		{
+			if (!isset($currShopcart[$i['ID']]))
+				continue;
+			$receipt .= "<tr>
+			<td>" . $i['nom'] . "</td>
+			<td>" . $currShopcart[$i['ID']] . "</td>
+			<td>" . $i['prix'] . "</td>
+			<td>" . ($currShopcart[$i['ID']] * $i['prix']) . "</td>
+			</tr>";
+			updateItemInfo($i['ID'], 'quantite', $i['quantite'] - $currShopcart[$i['ID']]);
+			$total += ($currShopcart[$i['ID']] * $i['prix']); 
+		}
+		$receipt .= "<tr>
+		<td>
+		Total: $total
+		</td>
+		</tr>
+		</table>";
 	}
-	$receipt .= "<tr>
-	<td>
-	Total: $total
-	</td>
-	</tr>
-	</table>";
+
+	doPayment($total, $_POST);
+	clearShopcart();
+
+	//now to send the mail
+
+	$to = getUserInfo($_SESSION['username'], 'email');
+
+	// Subject
+	$subject = "Votre commande";
+
+	// Message
+	$message = "<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>Votre commande</title>
+	</head>
+	<body>
+		<h3>Votre commande a été effectuée avec succes</h3>
+		$receipt
+	</body>
+	</html>";
+
+	// To send HTML mail, the Content-type header must be set
+	$headers[] = "MIME-Version: 1.0";
+	$headers[] = "Content-type: text/html; charset=iso-8859-1";
+	$headers[] = 'From:"Lambdara"';
+	$headers[] = 'Content-Type:text/html; charset="utf-8"';
+	$headers[] = 'Content-Transfer-Encoding: 8bit';
+
+	// Mail it
+	mail($to, $subject, $message, implode("\r\n", $headers));
 }
-
-doPayment($total, $_POST);
-clearShopcart();
-
-//now to send the mail
-
-$to = getUserInfo($_SESSION['username'], 'email');
-
-// Subject
-$subject = "Votre commande";
-
-// Message
-$message = "<html>
-<head>
-	<meta charset='utf-8'/>
-	<title>Votre commande</title>
-</head>
-<body>
-	<h3>Votre commande a été effectuée avec succes</h3>
-	$receipt
-</body>
-</html>";
-
-// To send HTML mail, the Content-type header must be set
-$headers[] = "MIME-Version: 1.0";
-$headers[] = "Content-type: text/html; charset=iso-8859-1";
-$headers[] = 'From:"Lambdara"';
-$headers[] = 'Content-Type:text/html; charset="utf-8"';
-$headers[] = 'Content-Transfer-Encoding: 8bit';
-
-// Mail it
-mail($to, $subject, $message, implode("\r\n", $headers));
+else
+	$errormsg = ERRCARTEMPTY;
 
 $nbShopcart = 0;
 
@@ -139,6 +144,9 @@ include "header.php";
 <div id='mainContainer'>
 	<h3>Votre commande a été effectuée avec succes</h3>
 <?php
+if (!empty($errormsg))
+	showError($errormsg);
+else
 	echo $receipt;
 ?>
 </div>
