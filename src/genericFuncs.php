@@ -1,6 +1,23 @@
 <?php
+
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
+
+function makeGetUrl()
+{
+	if (empty($_GET))
+		return "";
+	$rep = "?";
+	$getarraykey = array_keys($_GET);
+	$lastKey = end($getarraykey);
+	foreach ($_GET as $key => $elem)
+	{	
+		$rep .= "$key=$elem";
+		if ($key !== $lastKey)
+			$rep .= "&";
+	}
+	return $rep;
+}
 
 function setPrevPage()
 {

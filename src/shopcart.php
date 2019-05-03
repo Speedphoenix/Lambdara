@@ -8,6 +8,23 @@ $items = getFromIDs(array_keys($currShopcart));
 
 $pageTitle = "Votre Panier";
 
+/*
+
+
+3
+4
+4
+4
+0
+1
+2
+1
+2
+
+
+*/
+
+
 include "header.php";
 ?>
 
