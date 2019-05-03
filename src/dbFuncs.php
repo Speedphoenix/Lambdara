@@ -235,4 +235,28 @@ function getCB($username)
 		return false;
 	return $result->fetch_assoc();
 }
+
+
+//récupérer les variations correspondant à un article en particulier
+function getVariation($id){
+	$query = "SELECT * 
+		FROM variation
+		WHERE article_id='$id';";
+
+	$conn = connectDB('central');
+
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	$rep = array();
+	while ($row = $result->fetch_assoc())
+	{
+		if (!isset($rep[$row['type']]))
+			$rep[$row['type']] = array();
+		array_push($rep[$row['type']], $row);
+	}
+	return $rep;
+}
+
 ?>

@@ -98,9 +98,17 @@
     
     
 }
-.articleUnique{
-	width: 100%;
-  
+.articleUniqueTab{
+	width: 100%; 
+}
+
+.singleImage{
+    border: 1px solid black;
+    width: 2%;
+}
+
+.singleArticle{
+    padding-left: 5%;
 }
 
 .articleDetail{
