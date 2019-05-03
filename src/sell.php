@@ -1,6 +1,26 @@
 <?php
 
+include_once "config.php";
+include_once "dbFuncs.php";
 
+$allFields = array('product_name', 'product_description', 'number_of_products', 'unit_price');
+
+$errormsg = "";
+
+if (isset($_POST['askedadd']))
+{
+	$isvalid = true;
+	foreach ($allFields as $i)
+	{
+		if (empty($_POST[$i]))
+		{
+			$isvalid = false;
+			break;
+		}
+	}
+	if (!$isvalid)
+		$errormsg = ERREMPTYFIELD;
+}
 
 
 

@@ -34,18 +34,21 @@ else
 	$dump = explode('-', $_POST['date_exp']);
 	if (count($dump) !== 2 || !is_numeric($dump[1]) || !is_numeric($dump[0]))
 		$errormsg .= " " . PHP_EOL . ERRCARDNOTV;
-	$properDate = $dump[1] . '-' . $dump[0] . '-00';
-	$_POST['date_exp'] = $properDate; //strtotime($properDate);
-	$_POST['num_carte'] = str_replace('-', '', $_POST['num_carte']); 
-	$_POST['num_carte'] = str_replace(' ', '', $_POST['num_carte']); 
-	$_POST['num_carte'] = str_replace('_', '', $_POST['num_carte']); 
-	$_POST['num_carte'] = str_replace('/', '', $_POST['num_carte']); 
-	if (!isValidCard($_POST))
-		$errormsg .= " " . PHP_EOL . ERRCARDNOTV;
-	if (!empty($_POST['remembercard']))
+	else
 	{
-		if (addCard($_SESSION['username'], $_POST) !== true)
-			$errormsg .= ERRSQLINSI . " (secure)";
+		$properDate = $dump[1] . '-' . $dump[0] . '-00';
+		$_POST['date_exp'] = $properDate; //strtotime($properDate);
+		$_POST['num_carte'] = str_replace('-', '', $_POST['num_carte']); 
+		$_POST['num_carte'] = str_replace(' ', '', $_POST['num_carte']); 
+		$_POST['num_carte'] = str_replace('_', '', $_POST['num_carte']); 
+		$_POST['num_carte'] = str_replace('/', '', $_POST['num_carte']); 
+		if (!isValidCard($_POST))
+			$errormsg .= " " . PHP_EOL . ERRCARDNOTV;
+		if (!empty($_POST['remembercard']))
+		{
+			if (addCard($_SESSION['username'], $_POST) !== true)
+				$errormsg .= ERRSQLINSI . " (secure)";
+		}
 	}
 }
 
@@ -61,10 +64,10 @@ if (!empty($errormsg))
 
 
 $receipt = "";
+$total = 0;
 if (!empty($currShopcart))
 {
 	$items = getFromIDs(array_keys($currShopcart));
-	$total = 0;
 
 	$receipt .= "<table>
 	<tr>
@@ -121,10 +124,14 @@ $message = "<html>
 // To send HTML mail, the Content-type header must be set
 $headers[] = "MIME-Version: 1.0";
 $headers[] = "Content-type: text/html; charset=iso-8859-1";
+$headers[] = 'From:"Lambdara"';
+$headers[] = 'Content-Type:text/html; charset="utf-8"';
+$headers[] = 'Content-Transfer-Encoding: 8bit';
 
 // Mail it
 mail($to, $subject, $message, implode("\r\n", $headers));
 
+$nbShopcart = 0;
 
 include "header.php";
 ?>

@@ -99,32 +99,80 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	return $rep;
 }
 
+function addInDB($table, $values, $db = 'central')
+{
+	$colNames = "";
+	$valueslist = "";
+
+	$allkeys = array_keys($values);
+	$lastKey = end($allkeys);
+	foreach ($values as $key => $i)
+	{
+		$colNames .= $key;
+		$valueslist .= "'$i'";
+
+		if ($key !== $lastKey)
+		{
+			$colNames .= ", ";
+			$valueslist .= ", ";
+		}
+	}
+	$query = "INSERT INTO $table ($colNames) VALUES ($valueslist);";
+
+	$conn = connectDB($db);
+	$result = $conn->query($query);
+	$lastId = $conn->insert_id;
+	$conn->close();
+	return $lastId;
+}
+
+function updateInDb($table, $values, $where, $db = 'central')
+{
+	$conn = connectDB($db);
+
+	$valueslist = "";
+	$allkeys = array_keys($values);
+	$lastKey = end($allkeys);
+	foreach ($values as $key => $i)
+	{
+		$valueslist .= "$key='$i'";
+		if ($key !== $lastKey)
+			$valueslist .= ", ";
+	}
+
+	$query = "UPDATE $table SET $valueslist WHERE $where;";
+	$result = $conn->query($query);
+	$conn->close();
+	return $result;
+}
+
 function addAddr($username, $addr)
 {
 	$addrId = getUserInfo($username, 'adress_id');
 
-	$result;
-	$conn = connectDB('central');
+	$result = true;
 	if ($addrId === NULL)
 	{
-		$query = "INSERT INTO adresse (adresse_ligne, code_postal, telephone, ville, pays)
-			VALUES ('" . $addr['adresse_ligne'] . "', '" . $addr['code_postal'] . "', '"
-			. $addr['telephone'] . "', '" . $addr['ville'] . "', '" . $addr['pays'] . "');";
-		$result = $conn->query($query);
-		$lastId = $conn->insert_id;
-		$query = "UPDATE users SET adress_id='$lastId' WHERE username='$username';";
+		$adressId = addInDB('adresse', array(
+			'adresse_ligne' => $addr['adresse_ligne'],
+			'code_postal' => $addr['code_postal'],
+			'telephone' => $addr['telephone'],
+			'ville' => $addr['ville'],
+			'pays' => $addr['pays']));
+		$conn = connectDB('central');
+		$query = "UPDATE users SET adress_id='$adressId' WHERE username='$username';";
 		$result2 = $conn->query($query);
+		$conn->close();
 	}
 	else
 	{
-		$query = "UPDATE adresse
-			SET adresse_ligne='" . $addr['adresse_ligne'] . "', code_postal='"
-			. $addr['code_postal'] . "', telephone='" . $addr['telephone'] . "', ville='"
-			. $addr['ville'] . "', pays='" . $addr['pays'] . "'
-			WHERE ID='" . $addrId . "';";
-		$result = $conn->query($query);
+		$result = updateInDb('adresse', array(
+			'adresse_ligne' => $addr['adresse_ligne'],
+			'code_postal' => $addr['code_postal'],
+			'telephone' => $addr['telephone'],
+			'ville' => $addr['ville'],
+			'pays' => $addr['pays']), "ID='" . $addrId . "'");
 	}
-	$conn->close();
 
 	return ($result === true && (!isset($result2) || $result2 === true));
 }
@@ -134,28 +182,30 @@ function addCard($username, $card)
 {
 	$cardId = getUserInfo($username, 'bank_info_id', 'secure');
 
-	$result;
-	$conn = connectDB('secure');
+	$result = true;
 	if ($cardId === NULL)
 	{
-		$query = "INSERT INTO bank_info (type_carte, num_carte, nom, date_exp, code_secur)
-			VALUES ('" . $card['type_carte'] . "', '" . $card['num_carte'] . "', '"
-			. $card['nom'] . "', '" . $card['date_exp'] . "', '" . $card['code_secur'] . "');";
-		$result = $conn->query($query);
-		$lastId = $conn->insert_id;
-		$query = "UPDATE users SET bank_info_id='$lastId' WHERE username='$username';";
+		$cardId = addInDB('bank_info', array(
+			'type_carte' => $card['type_carte'],
+			'code_secur' => $card['code_secur'],
+			'num_carte' => $card['num_carte'],
+			'date_exp' => $card['date_exp'],
+			'nom' => $card['nom']), 'secure');
+
+		$conn = connectDB('secure');
+		$query = "UPDATE users SET bank_info_id='$cardId' WHERE username='$username';";
 		$result2 = $conn->query($query);
+		$conn->close();
 	}
 	else
 	{
-		$query = "UPDATE bank_info
-			SET type_carte='" . $card['type_carte'] . "', num_carte='"
-			. $card['num_carte'] . "', nom='" . $card['nom'] . "', date_exp='"
-			. $card['date_exp'] . "', code_secur='" . $card['code_secur'] . "'
-			WHERE ID='" . $cardId . "';";
-		$result = $conn->query($query);
+		$result = updateInDb('bank_info', array(
+			'type_carte' => $card['type_carte'],
+			'num_carte' => $card['num_carte'],
+			'nom' => $card['nom'],
+			'date_exp' => $card['date_exp'],
+			'code_secur' => $card['code_secur']), "ID='" . $cardId . "'", 'secure');
 	}
-	$conn->close();
 
 	return ($result === true && (!isset($result2) || $result2 === true));
 }
