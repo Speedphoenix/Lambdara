@@ -62,22 +62,31 @@ function addToShopcartForm($what)
 }
 
 //affichage des variations d'articles s'ils existent
-function repeatVariation($var, $compteur)
-{   
-	foreach ($var as $i) 
+function repeatVariation($variation)
+{
+	foreach ($variation as $typevari => $i) 
 	{
-		if($i!=null)
-		    echo "<tr><td>".$i['type']."<td/></tr>";
-	}	
+		echo "<tr><td>";
+
+	    echo $typevari;
+
+		echo "<select name='choix_de_tri'>
+	                <option value='' selected>Choisir $typevari</option>";
+	  	foreach($i as $varindividuelle)
+	    {
+	    	echo "<option>" . $varindividuelle["nom"] . "</option> ";
+	    }
+	    
+	     echo "</select></tr></td>";
+	}    	
 }
 
 //affiche un seul article
 function showSingleArticle($what){
 
 //remplir un tableau des variation ayant le artice_id=$what['ID']
-	$var=getVariation($what['ID']);
-	$compteur=0;
-	$taille=max(sizeof($var),5);
+	$variations = getVariation($what['ID']);
+	$taille = 5;
 
 
 echo "	<table class='articleUniqueTab'>
@@ -87,7 +96,7 @@ echo "	<table class='articleUniqueTab'>
 		    <th class='singleArticle'>".$what["nom"]."</th>
 		    <td rowspan='".$taille."'> 
 		    	<table>";
-		    		repeatVariation($var,$compteur);
+		    		repeatVariation($variations);
 		    echo"</table>
 		    </td>		
 		  </tr>
