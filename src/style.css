@@ -50,7 +50,6 @@
     font-size: 12px;   
     font-weight: normal;   
     letter-spacing: 1px;
-    color: red;
 }
 
 /*Input type button*/
@@ -99,9 +98,17 @@
     
     
 }
-.articleUnique{
-	width: 100%;
-  
+.articleUniqueTab{
+	width: 100%; 
+}
+
+.singleImage{
+    border: 1px solid black;
+    width: 2%;
+}
+
+.singleArticle{
+    padding-left: 5%;
 }
 
 .articleDetail{
@@ -546,7 +553,7 @@ button:hover{
 .vente .tab{
     margin: auto;
 }
-.vente.btn{
+.vente_btn{
     background-color: #E8B960;   
     border-style: solid;   
     border-width: 1px;   
@@ -564,7 +571,38 @@ button:hover{
     color: #ffffff; 
 }
 
-.vente.btn:hover{
+.vente_btn:hover{
+    background-color: darkorange;
+}
+
+.upload_btn{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.upload_btn + label {
+    background-color: #E8B960;   
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #E8B960;
+    padding: 5px 10px 5px 10px;
+    margin: auto;
+    margin-top: 20px;
+    width: 98%;   
+    box-sizing: border-box;   
+    font-family: PT sans;   
+    font-size: 13px;   
+    font-weight: normal;   
+    letter-spacing: 2px;
+    text-transform: uppercase;   
+    color: #ffffff; 
+}
+
+.upload_btn:focus + label,
+.upload_btn + label:hover {
     background-color: darkorange;
 }
 
