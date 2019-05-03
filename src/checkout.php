@@ -73,8 +73,12 @@ else // default stuff
         <form action='laststep.php' method='post'>
             <table class="tab">
                 <tr>
-                    <td><input class="field" type='text' name='adresse_ligne' placeholder="Addresse"/></td>
+                    <td>
+                        Adresse: <br>
+                        <input class="field" type='text' name='adresse_ligne' placeholder="Addresse"/>
+                    </td>
                     <td rowspan="2">
+                        Info carte:<br>
                         <?php
                             foreach (TYPECARDID as $key => $elem)
                             {
