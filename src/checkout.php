@@ -49,7 +49,10 @@ if ($card !== false)
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("input[name='num_carte']").val("<?= $card['num_carte'] ?>");
-		$("input[name='date_exp']").val("<?= $card['date_exp'] ?>");
+		$("input[name='date_exp']").val("<?php
+		$textdate = explode('-', $card['date_exp']);
+		echo $textdate[1] . "-" . substr($textdate[0], 2);
+		?>");
 		$("input[name='nom']").val("<?= $card['nom'] ?>");
 		$("input[name='code_secur']").val("<?= $card['code_secur'] ?>");
 		$("input[name='type_carte'][value='<?= $card['type_carte'] ?>']").prop("checked", true);

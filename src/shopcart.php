@@ -8,10 +8,33 @@ $items = getFromIDs(array_keys($currShopcart));
 
 $pageTitle = "Votre Panier";
 
+/*
+
+
+3
+4
+4
+4
+0
+1
+2
+1
+2
+
+
+*/
+
+
 include "header.php";
 ?>
 
 <div id='mainContainer'>
+<?php
+if (empty($currShopcart))
+	showError(ERRCARTEMPTY);
+else
+{
+?>
 	<table>
 <?php
 
@@ -49,6 +72,11 @@ echo "</tr>";
 ?>
 	</table>
 	<a href="checkout.php"><button class="btn">Passer à la commande</button></a>
+
+<?php
+}
+?>
+
 </div>
 
 <?php
