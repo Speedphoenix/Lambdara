@@ -2,6 +2,9 @@
 
 include_once "config.php";
 
+
+
+//Affiche un tableau d'articles
 function showArticle($what)
 {
 
@@ -50,25 +53,39 @@ function addToShopcartForm($what)
 }
 
 
+
+//affiche un seul article
+//style='  border: 1px solid black', width: 2%>
 function showSingleArticle($what){
-echo "	<table class='articleUnique'>
+echo "	<table class='articleUniqueTab'>
 
 		  <tr>
-		    <td rowspan='2'><img src='".$what["photo"]."'width='400' height='400' style='float : left,  border: 1px solid black;'/></td>
-		    <th class='articleDetail'>".$what["nom"]."</th>
-		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
-		    <td class='articleDetail'>note :".$what["note"]."/5</td>
-
-		    <td class='articleDetail'>Quantité restante : " . $what['quantite'];
-			addToShopcartForm($what);
-			echo"</td>
+		    <td class='sigleImage' rowspan='6' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
+		    <th class='singleArticle'>".$what["nom"]."</th>
+			</td>
 		  </tr>
-
 		  <tr>
-		  	<td colspan='4'>".$what["description"]."</td>
+		  	<td class='singleArticle'>Quantité restante : " . $what['quantite']."
 		  </tr>
-		 
+		  <tr>
+		  	<td class='singleArticle'>prix :".$what["prix"]."</td>
+		  </tr>
+		  <tr>
+		  	<td>".$what["note"]."/5</td>
+		  </tr>
+		  <tr>
+		  	<td class='singleArticle'>saisissez votre note sur 5</td>
+		  </tr>
+		  <tr>
+		  	<td class='singleArticle'>".$what["description"]."</td>
+		  </tr>		 
 		</table> ";
+
+echo "Quelle quantité désirez vous commander ?<br>";
+		addToShopcartForm($what);
+
+echo "<br><br><br>";
+
 echo "</div>";
 }
 ?>
