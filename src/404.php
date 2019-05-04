@@ -11,10 +11,8 @@ include "header.php";
 ?>
 
 <div>
-	<h1 style="text-align: center;">Error 404</h1>
+<?php showError("Error 404") ?>
 </div>
-
-
 
 <?php
 include "footer.php";
