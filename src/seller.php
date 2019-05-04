@@ -25,6 +25,19 @@ function updateUser()
         $values_to_change["email"] = $_POST['email'];
     if(!empty($_POST['surname']) && !empty($_POST['name']))
         $values_to_change["nom_complet"] = $_POST['surname']." ".$_POST['name'];
+    
+    $dump = receiveImage('fileToUpload1');
+    if (is_array($dump))
+        $values_to_change['img_couverture'] = $dump['filename'];
+    else
+        $errormsg = $dump;
+
+        $dump = receiveImage('fileToUpload2');
+    if (is_array($dump))
+        $values_to_change['img_profil'] = $dump['filename'];
+    else
+        $errormsg = $dump;
+    
    /* if(!empty($_POST['fileToUpload1']))
         $values_to_change["img_couverture"] = $_POST['fileToUpload1'];
     if(!empty($_POST['fileToUpload2']))
@@ -81,14 +94,14 @@ include "header.php";
 ?>
     <div class='clearfix'>
 		<div class='vendeur'>
-			<form action="seller.php" method="post">
+			<form action="seller.php" method="post" enctype="multipart/form-data">
                 <table class="tab">
                     <tr>
                         <?php
                         echo "<th class='bkg' colspan='3' style='background-image: url($bckimg);'>";
                         ?>
-                            <input class="upload_btn" type="file" name="fileToUpload" id="fileToUpload" />
-                            <label style="margin:auto; margin-top:150px; margin-left:75%; width:23%;"  for="fileToUpload">Changer photo de couverture</label>
+                            <input class="upload_btn" type="file" name="fileToUpload1" id="fileToUpload1" />
+                            <label style="margin:auto; margin-top:150px; margin-left:75%; width:23%;"  for="fileToUpload1">Changer photo de couverture</label>
                         </th>
                     </tr>
                     <tr>
