@@ -90,7 +90,13 @@ if ($nbShopcart !== 0)
 			<td>" . $i['prix'] . "</td>
 			<td>" . ($currShopcart[$i['ID']] * $i['prix']) . "</td>
 			</tr>";
-			updateItemInfo($i['ID'], 'quantite', $i['quantite'] - $currShopcart[$i['ID']]);
+			updateInDb('Articles', array(
+				'quantite' => $i['quantite'] - $currShopcart[$i['ID']],
+				'popularite' => $i['popularite'] + $currShopcart[$i['ID']]
+			), "ID='" . $i['ID'] . "'");
+
+			//updateItemInfo($i['ID'], 'quantite', $i['quantite'] - $currShopcart[$i['ID']]);
+
 			$total += ($currShopcart[$i['ID']] * $i['prix']); 
 		}
 		$receipt .= "<tr>

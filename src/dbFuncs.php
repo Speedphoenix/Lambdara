@@ -164,10 +164,7 @@ function addAddr($username, $addr)
 			'telephone' => $addr['telephone'],
 			'ville' => $addr['ville'],
 			'pays' => $addr['pays']));
-		$conn = connectDB('central');
-		$query = "UPDATE users SET adress_id='$adressId' WHERE username='$username';";
-		$result2 = $conn->query($query);
-		$conn->close();
+		$result2 = updateInDb('users', array('adress_id' => $adressId), "username='$username'");
 	}
 	else
 	{
@@ -196,11 +193,7 @@ function addCard($username, $card)
 			'num_carte' => $card['num_carte'],
 			'date_exp' => $card['date_exp'],
 			'nom' => $card['nom']), 'secure');
-
-		$conn = connectDB('secure');
-		$query = "UPDATE users SET bank_info_id='$cardId' WHERE username='$username';";
-		$result2 = $conn->query($query);
-		$conn->close();
+		$result2 = updateInDb('users', array('bank_info_id' => $cardId), "username='$username'", 'secure');
 	}
 	else
 	{
