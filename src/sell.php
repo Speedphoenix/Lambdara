@@ -42,6 +42,7 @@ include "header.php";
 ?>
 	<div class='clearfix'>
 		<div class='vente'>
+            <a href="seller.php"><button class='vente_btn' style="width:50%;">Votre profile</button></a>
 			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data">
 				<input type="hidden" name="askedadd" value="true"/>
 				<table class="tab">
@@ -82,6 +83,9 @@ include "header.php";
 					<tr>
 						<td colspan="2"><input class='vente_btn' type="submit" value="Mettre le produit" name="submit"/></td>
 					</tr>
+                    <!--<tr>
+                        <td colspan="2"><a href="seller.php"><button class='vente_btn'>Votre profile</button></a></td>
+					</tr>-->
 				</table>
 				</form>
 		</div>
