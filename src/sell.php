@@ -38,7 +38,7 @@ if (isset($_POST['askedadd']))
 	else
 	{
 		$dump = receiveImage('itemImage');
-		if (isset($dump[0]))
+		if (is_array($dump))
 			$filename = $dump['filename'];
 		else
 			$errormsg = $dump;
