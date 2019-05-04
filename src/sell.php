@@ -20,6 +20,10 @@ if (isset($_POST['askedadd']))
 	}
 	if (!$isvalid)
 		$errormsg = ERREMPTYFIELD;
+	else
+	{
+		
+	}
 }
 
 
