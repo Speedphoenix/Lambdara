@@ -98,7 +98,7 @@ include "header.php";
                 <table class="tab">
                     <tr>
                         <?php
-                        echo "<th class='bkg' colspan='3' style='background-image: url($bckimg);'>";
+                        echo "<th class='bkg' colspan='3' style='background-image: url('$bckimg');'>";
                         ?>
                             <input class="upload_btn" type="file" name="fileToUpload1" id="fileToUpload1" />
                             <label style="margin:auto; margin-top:150px; margin-left:75%; width:23%;"  for="fileToUpload1">Changer photo de couverture</label>
@@ -106,7 +106,7 @@ include "header.php";
                     </tr>
                     <tr>
                         <?php
-                            echo"<td class='prof' style='width:30%; background-image: url($profimg);'>";
+                            echo"<td class='prof' style='width:30%; background-image: url('$profimg');'>";
                             /*echo"<div  style='width:auto; margin:auto; margin-top:10%; margin-left:400px;'>$nom_compl</div> ";*/
                         ?>
                             <input class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" />
