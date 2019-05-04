@@ -235,6 +235,8 @@ function getUserInfo($username, $what, $db = 'central')
 	
 	if ($result === false)
 		return false;
+	if ($what === false || $what === "TOUT")
+		return $return->fetch_assoc();
 	return $result->fetch_assoc()[$what];
 }
 
