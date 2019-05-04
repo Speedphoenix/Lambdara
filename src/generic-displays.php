@@ -126,9 +126,7 @@ function miniatureImage($what){
 			}
 		});
 	</script>
-
 	<?php
-	return $img;
 }
 
 //affiche un seul article
@@ -144,7 +142,7 @@ function showSingleArticle($what){
 echo "	<table class='articleUniqueTab'>
 		  <tr>
 		    <td rowspan='".$taille."'>";
-			$imge=miniatureImage($what);
+			miniatureImage($what);
 			echo"</td>
 		    <td class='singleImage' rowspan='".$taille."' ><img id='imagePrincipale' src='".$imge."' width='300' height='300' style='float : left,'/></td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
