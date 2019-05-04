@@ -31,8 +31,8 @@ else
                 echo "<tr style='border-bottom: 1px solid #ddd;'>";
                 echo "<td>";
                 echo "Nombre dans le panier: " . $currShopcart[$i['ID']] . "</br>";
-                echo "Prix à l'unité: " . $i['prix'] . "</br>";
-                echo "Coût total: " . ($currShopcart[$i['ID']] * $i['prix']);
+                echo "Prix à l'unité: " . $i['prix'] . "€</br>";
+                echo "Coût total: " . ($currShopcart[$i['ID']] * $i['prix']) . "€";
                 $total += ($currShopcart[$i['ID']] * $i['prix']); 
 
                 addToShopcartForm($i);
@@ -46,7 +46,7 @@ else
             }
             echo "<tr>";
             echo "<td colspan='2'>";
-            echo "Coût total: " . $total; 
+            echo "Coût total: " . $total . "€";
             echo "</td>";
             echo "<td>";
             // tous les trucs à afficher ici
