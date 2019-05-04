@@ -14,11 +14,14 @@ if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'buyer')
 	header("location: category.php");
 */
 $nom_compl = getUserInfo($_SESSION['username'], 'nom_complet');
-//$bckimg = getUserInfo($_SESSION['username'], 'img_couverture');
+$bckimg = getUserInfo($_SESSION['username'], 'img_couverture');
 $profimg = getUserInfo($_SESSION['username'], 'img_profil');
 
-//if(empty($bckimg))
+if(empty($bckimg))
     $bckimg='https://www.doctorkweightloss.com/wp-content/uploads/Default-background-image.png';
+
+if(empty($profimg))
+    $profimg='https://profiles.utdallas.edu/img/default.png';
 
 
 
@@ -54,13 +57,20 @@ include "header.php";
                 <table class="tab">
                     <tr>
                         <?php
-                            echo "<th class='bkg' style='background-image: url($bckimg);'>";
+                        echo "<th class='bkg' style='background-image: url($bckimg);'>";
                         ?>
                             <input class="upload_btn" type="file" name="fileToUpload" id="fileToUpload" required/>
                             <label style="margin:auto; margin-top:150px; margin-left:75%; width:23%;"  for="fileToUpload">Changer photo de couverture</label>
                         </th>
                     </tr>
-                    <tr><td></td></tr>
+                    <tr>
+                        <?php
+                            echo"<td class='prof' style='background-image: url($profimg);'>";
+                        ?>
+                            <input class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" required/>
+                            <label style="margin:auto; margin-top:300px; margin-right:100%; margin-left:13px; width:250px;"  for="fileToUpload2">Changer photo de profile</label>
+                        </td>
+                    </tr>
                 </table>
             </form>
         </div>

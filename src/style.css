@@ -691,7 +691,7 @@ button:hover{
     padding: 15px;
 }
 .vendeur .tab{
-    width: 80%;
+    width: 60%;
     height:auto;
     margin: auto;
 }
@@ -702,6 +702,11 @@ button:hover{
     /*https://www.doctorkweightloss.com/default-background-image/ SOURCE*/
 }
 .vendeur .tab .prof{
+    padding: 15px;
+    height: 350px;
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+    background-position: left top;
     
 }
 .vend_btn{
