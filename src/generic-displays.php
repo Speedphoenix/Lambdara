@@ -86,9 +86,8 @@ function miniatureImage($what){
 	$photoArticle=explode(";", $what['photo']);
 	$img = $photoArticle[0];
 	$currId = 0;
-	echo "
-	
-	<table>";
+
+	echo "<table>";
 			
 			foreach($photoArticle as $i)
 			{
@@ -104,12 +103,14 @@ function miniatureImage($what){
 				foreach ($i as $varindividuelle) 
 				{
 					if($varindividuelle['photo']!=null)
+					{
 						echo "<tr>
 							<td>
 							<a href='#'><img id='imgNo$currId' src='".$varindividuelle['photo']."' width='50' height='50' style='float : left,'/></a>
 							</td>
 							</tr>";
 						$currId++;
+					}
 				}			
 			}
 	echo "		
