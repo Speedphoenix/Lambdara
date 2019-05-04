@@ -10,7 +10,7 @@ if (empty($_SESSION['username']))
 	$_SESSION['previouspage'] = $_SERVER['PHP_SELF'];
 	header("location: login.php");
 }
-if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'buyer')
+if (!SELLERSCANBUY && USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'buyer')
 	header("location: category.php");
 
 $addr = getAdress($_SESSION['username']);
