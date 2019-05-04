@@ -82,12 +82,18 @@ function repeatVariation($variation)
 }
 
 function miniatureImage($what){
-	$variation=getVariationFctNom($what['ID']);
-	echo "<table>
-			<tr>
-				<td><img src='".$what["photo"]."'width='50' height='50' style='float : left,'/></td>
-			</tr>";
-			foreach ($variation as $nomvari => $i) 
+	$photoVariations=getVariationFctNom($what['ID']);
+	$photoArticle=explode(";", $what['photo']);
+
+	echo "<table>";
+			foreach($photoArticle as $i)
+			{
+				echo"<tr>
+						<td><img src='".$i."'width='50' height='50' style='float : left,'/></td>
+					</tr>";
+			}
+			
+			foreach ($photoVariations as $nomvari => $i) 
 			{
 				foreach ($i as $varindividuelle) {
 					if($varindividuelle['photo']!=null)
