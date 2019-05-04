@@ -30,6 +30,7 @@ $pageTitle = $categ . " items";
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
 $items = getAllItems($categ); // et le tri si besoin
+$items = getAllItems($tri); 
 
 
 include_once "shopcart-general.php";
