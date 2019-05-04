@@ -25,6 +25,8 @@ if (!empty($_SESSION['errormsg']))
 	unset($_SESSION['errormsg']);
 }
 
+$pageTitle = "Passer la commande";
+
 include "header.php";
 
 if ($addr !== false)

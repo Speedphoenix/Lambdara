@@ -137,6 +137,8 @@ else
 	$errormsg = ERRCARTEMPTY;
 
 $nbShopcart = 0;
+if ($errormsg !== "")
+	$pageTitle = "Commande effectuée";
 
 include "header.php";
 ?>

@@ -3,6 +3,44 @@
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
+function receiveImage($nameInForm)
+{
+	if (empty($_FILES[$nameInForm])
+		|| !file_exists($_FILES[$nameInForm]['tmp_name'])
+		|| !is_uploaded_file($_FILES[$nameInForm]['tmp_name']))
+		return ERRNOFILE;
+
+	$fileBaseName = basename($_FILES[$nameInForm]["name"]);
+
+	$correctImg = true;
+
+	$imageFileType = strtolower(pathinfo($fileBaseName, PATHINFO_EXTENSION));
+	// Check if image file is a actual image or fake image
+	$isImage = getimagesize($_FILES[$nameInForm]["tmp_name"]);
+	if ($isImage === false)
+	{
+		return ERRNOTIMG;
+	}
+	if ($_FILES[$nameInForm]['size'] > MAXIMGSIZE)
+		return ERRFILESIZE;
+	$i = 0;
+	do
+	{
+		$i++;
+		$target_file = SERVERIMGDIR . $i . $fileBaseName;
+	} while (file_exists($target_file));
+
+	if (move_uploaded_file($_FILES[$nameInForm]['tmp_name'], $target_file))
+	{
+		return array(
+			0 => true,
+			'filename' => CLIENTIMGDIR . $i . $fileBaseName
+		);
+	}
+	else
+		return ERRUPLOAD;
+}
+
 function makeGetUrl()
 {
 	if (empty($_GET))
