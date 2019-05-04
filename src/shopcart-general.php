@@ -43,7 +43,7 @@ $cookiemapfunc = function($key, $elem) {
 	return $key . COOKIEITEMSEP . $elem;
 };
 
-if (isset($_POST['addAmount']) && is_numeric($_POST['addAmount']) && $_POST['addAmount'] > 0 &&
+if (isset($_POST['addAmount']) && is_numeric($_POST['addAmount']) && $_POST['addAmount'] >= 0 &&
 	isset($_POST['addShopcart']) && itemExists($_POST['addShopcart']))
 {
 	$currShopcart[$_POST['addShopcart']] = $_POST['addAmount'];
