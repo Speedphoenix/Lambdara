@@ -36,6 +36,9 @@ define("MAXPRICESORT", 5000);
 
 define("POSSIBLEPRICESORT", range(MINPRICESORT, MAXPRICESORT, 1));
 
+define("SERVERIMGDIR", $_SERVER['DOCUMENT_ROOT'] . "/images/");
+define("CLIENTIMGDIR", "/images/");
+define("MAXIMGSIZE", 2000000); //2MB ?
 
 
 define("COOKIESEP", ';');
@@ -104,6 +107,7 @@ define("TYPECARDID", array(
 	
 );*/
 
+define("SUCCESADD", "Article ajouté avec succes");
 
 define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
 define("ERRNAMETAKEN", "Un utilisateur avec ce nom existe déjà");
@@ -115,6 +119,10 @@ define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
 define("ERRCHEATER", "Please don't try to cheat the system");
 define("ERRCARDNOTV", "Carte de crédit non valide");
 define("ERRCARTEMPTY", "Votre panier est vide!");
+define("ERRNOFILE", "Veuillez fournir un fichier");
+define("ERRNOTIMG", "Veuillez fournir une image");
+define("ERRFILESIZE", "Le fichier fourni est trop lourd");
+define("ERRUPLOAD", "Une erreur est survenue lors de l'upload du fichier");
 
 // TODO: À changer!!
 function failedSql($msg)
@@ -128,13 +136,13 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 foreach ($_POST as $key => $elem)
 {
 	if ($key !== 'password' && $key !== 'confirm-password')
-		$_POST[$key] = htmlspecialchars($elem);
+		$_POST[$key] = htmlspecialchars($elem, ENT_QUOTES);
 }
 
 foreach ($_GET as $key => $elem)
 {
 	if ($key !== 'password' && $key !== 'confirm-password')
-		$_GET[$key] = htmlspecialchars($elem);
+		$_GET[$key] = htmlspecialchars($elem, ENT_QUOTES);
 }
 
 

@@ -39,46 +39,46 @@ include "header.php";
 ?>
 <div id="mainContainer">
 <div id="leftpart" class="clearfix">
-    <div class="column search">
-        <input class="field" name="q" type="text" placeholder="Rechercher" /><br>
-        <input class="btn" type="submit" value="Rechercher" /><br><br>
-        <form action='<?php echo $_SERVER['PHP_SELF']; ?>' method="get" >
-            <select name='categ'>
-                <option value="" selected disabled hidden>Categorie</option>
-                <?php
-                    foreach(POSSIBLECATEGS as $key => $val)
-                    {
-                        echo "<option value='$key'>$val</option>";
-                    }
-                ?>
-            </select><br><br>
-            <select name="choix_de_tri">
-                <option value="" selected disabled hidden>Trier par</option>
-                <?php
-                    foreach(CHOIXDETRI as $key => $val)
-                    {
-                        echo "<option value='$key'>$val</option>"; 
-                    }
-                ?>
-            </select><br><br>
-            <select name="date_sort_choice">
-                <option value="" selected disabled hidden>Depuis:</option>
-                <?php
-                    foreach(CHOIXDETRI as $key => $val)
-                    {
-                        echo "<option value='$key'>$val</option>"; 
-                    }
-                ?>
-            </select><br><br>
-            <!--<?php/*
-                echo "<input type='range' max=" . MAXPRICESORT . " min=" . MINPRICESORT . " value=" . $s_price . " name='price_sort' oninput='sort_price_outp.value=sort_price_inp.value'/><br>";*/
-            ?>-->
-            <!--<output class='price_show' name='sort_price_show' id='sort_price_outp'></output><br>-->
-            <input type="range" max='<?php echo MAXPRICESORT; ?>' min=<?php echo MINPRICESORT; ?>' value=<?php echo $s_price; ?>' name="sort_price" id="sort_price_inp" oninput="sort_price_outp.value=sort_price_inp.value"/><br>
-            <div class="price_show"><output name="sort_price_show" id="sort_price_outp"><?php echo $s_price ?></output> $</div>
+	<div class="column search">
+		<input class="field" name="q" type="text" placeholder="Rechercher" /><br>
+		<input class="btn" type="submit" value="Rechercher" /><br><br>
+		<form action='<?php echo $_SERVER['PHP_SELF']; ?>' method="get" >
+			<select name='categ'>
+				<option value="" selected disabled hidden>Categorie</option>
+				<?php
+					foreach(POSSIBLECATEGS as $key => $val)
+					{
+						echo "<option value='$key'>$val</option>";
+					}
+				?>
+			</select><br><br>
+			<select name="choix_de_tri">
+				<option value="" selected disabled hidden>Trier par</option>
+				<?php
+					foreach(CHOIXDETRI as $key => $val)
+					{
+						echo "<option value='$key'>$val</option>"; 
+					}
+				?>
+			</select><br><br>
+			<select name="date_sort_choice">
+				<option value="" selected disabled hidden>Depuis:</option>
+				<?php
+					foreach(CHOIXDETRI as $key => $val)
+					{
+						echo "<option value='$key'>$val</option>"; 
+					}
+				?>
+			</select><br><br>
+			<!--<?php/*
+				echo "<input type='range' max=" . MAXPRICESORT . " min=" . MINPRICESORT . " value=" . $s_price . " name='price_sort' oninput='sort_price_outp.value=sort_price_inp.value'/><br>";*/
+			?>-->
+			<!--<output class='price_show' name='sort_price_show' id='sort_price_outp'></output><br>-->
+			<input type="range" max='<?php echo MAXPRICESORT; ?>' min=<?php echo MINPRICESORT; ?>' value=<?php echo $s_price; ?>' name="sort_price" id="sort_price_inp" oninput="sort_price_outp.value=sort_price_inp.value"/><br>
+			<div class="price_show"><output name="sort_price_show" id="sort_price_outp"><?php echo $s_price ?></output> $</div>
 			<input class="btn" type='submit' value="C'est parti!">
-        </form>
-    </div>
+		</form>
+	</div>
 </div>
 
 <div id='articleListing'>
@@ -99,10 +99,10 @@ foreach ($items as $i)
 	</table>
 </div><!--
 <div id="upperpart" class="clearfix">
-    <div  class="column search">
-        <input class="field" name="q" type="text" placeholder="Rechercher" /><br>
-        <input class="btn" type="submit" value="Rechercher" />
-    </div>
+	<div  class="column search">
+		<input class="field" name="q" type="text" placeholder="Rechercher" /><br>
+		<input class="btn" type="submit" value="Rechercher" />
+	</div>
 </div>
 -->
 </div>
