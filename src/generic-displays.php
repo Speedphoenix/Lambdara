@@ -84,26 +84,51 @@ function repeatVariation($variation)
 function miniatureImage($what){
 	$photoVariations=getVariationFctNom($what['ID']);
 	$photoArticle=explode(";", $what['photo']);
-
-	echo "<table>";
+	$img = $photoArticle[0];
+	$currId = 0;
+	echo "
+	
+	<table>";
+			
 			foreach($photoArticle as $i)
 			{
 				echo"<tr>
-						<td><img src='".$i."'width='50' height='50' style='float : left,'/></td>
-					</tr>";
+						<td>
+						<a href='#'><img id='imgNo$currId' src='".$i."' width='50' height='50' style='float : left,'/></a>
+						</td></tr>";		
+				$currId++;		
 			}
-			
+
 			foreach ($photoVariations as $nomvari => $i) 
 			{
-				foreach ($i as $varindividuelle) {
+				foreach ($i as $varindividuelle) 
+				{
 					if($varindividuelle['photo']!=null)
 						echo "<tr>
-								<td><img src='".$varindividuelle['photo']."'width='50' height='50' style='float : left,'/></td>
+							<td>
+							<a href='#'><img id='imgNo$currId' src='".$varindividuelle['photo']."' width='50' height='50' style='float : left,'/></a>
+							</td>
 							</tr>";
-				}
+						$currId++;
+				}			
 			}
 	echo "		
 	</table>";
+	$nbImage=$currId;
+	?>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			for(let i=0; i< <?= $nbImage ?>; i++){
+				$("#imgNo" + i).click(function(event){
+					$("#imagePrincipale").attr("src", $(event.target).attr("src"));
+				});
+			}
+		});
+	</script>
+
+	<?php
+	return $img;
 }
 
 //affiche un seul article
@@ -112,14 +137,16 @@ function showSingleArticle($what){
 //remplir un tableau des variation ayant le artice_id=$what['ID']
 	$variations = getVariationFctType($what['ID']);
 	$taille = 5;
+	$photoArticle=explode(";", $what['photo']);
+	$imge=$photoArticle[0];
 
 
 echo "	<table class='articleUniqueTab'>
 		  <tr>
 		    <td rowspan='".$taille."'>";
-			miniatureImage($what);
+			$imge=miniatureImage($what);
 			echo"</td>
-		    <td class='singleImage' rowspan='".$taille."' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
+		    <td class='singleImage' rowspan='".$taille."' ><img id='imagePrincipale' src='".$imge."' width='300' height='300' style='float : left,'/></td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
 		    <td rowspan='".$taille."'> 
 		    	<table>";
