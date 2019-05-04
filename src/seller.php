@@ -22,10 +22,10 @@ function updateUser()
         $values_to_change["email"] = $_POST['email'];
     if(!empty($_POST['surname']) && !empty($_POST['name']))
         $values_to_change["nom_complet"] = $_POST['surname']." ".$_POST['name'];
-    if(!empty($_POST['fileToUpload1']))
+   /* if(!empty($_POST['fileToUpload1']))
         $values_to_change["img_couverture"] = $_POST['fileToUpload1'];
     if(!empty($_POST['fileToUpload2']))
-        $values_to_change["img_profil"] = $_POST['fileToUpload2'];
+        $values_to_change["img_profil"] = $_POST['fileToUpload2'];*/
     //var_dump($values_to_change);
     if(!empty($values_to_change))     
 		$result = updateInDb('users', $values_to_change, "username='" . $_SESSION['username'] . "'");
