@@ -11,7 +11,7 @@ include "header.php";
 ?>
 
 <div>
-<?php showError(Error 404) ?>
+<?php showError("Error 404") ?>
 </div>
 
 <?php
