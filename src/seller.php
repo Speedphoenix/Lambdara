@@ -13,6 +13,9 @@ if (empty($_SESSION['username']))
 	header("location: login.php");
 }
 
+if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
+	header("location: category.php");
+
 function updateUser()
 {
     global $errormsg;
@@ -37,12 +40,6 @@ function updateUser()
 if(isset($_POST["submit"]))
     updateUser();
 
-
-
-/*
-if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
-	header("location: category.php");
-*/
 $nom_compl = getUserInfo($_SESSION['username'], 'nom_complet');
 $bckimg = getUserInfo($_SESSION['username'], 'img_couverture');
 $profimg = getUserInfo($_SESSION['username'], 'img_profil');

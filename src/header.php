@@ -29,7 +29,15 @@ if (session_status() == PHP_SESSION_NONE)
 		
 		<div class="column menu">
             <a href="category.php"><button>Accueil</button></a>
-			<a href="sell.php"><button>Vendre</button></a>
+            <?php
+                if (!empty($_SESSION['username']))
+                {
+                    if(USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] == 'seller')
+                    {
+                        echo"<a href='sell.php'><button>Vendre</button></a>";
+                    }
+                }
+            ?>
 			<a href="shopcart.php"><button>Panier
 				<?php
 					if (isset($nbShopcart))
