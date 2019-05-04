@@ -35,7 +35,12 @@ define("MINPRICESORT", 0);
 define("MAXPRICESORT", 5000);
 
 define("POSSIBLEPRICESORT", range(MINPRICESORT, MAXPRICESORT, 1));
-
+/*
+define ("DEFAULTBCGIMG", url('https://www.doctorkweightloss.com/wp-content/uploads/Default-background-image.png'));
+//https://www.doctorkweightloss.com/default-background-image/ SOURCE
+define ("DEFAULTBCGIMG", url('https://cdn1.vectorstock.com/i/1000x1000/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg'));
+//https://www.vectorstock.com/royalty-free-vector/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730 SOURCE
+*/
 
 
 define("COOKIESEP", ';');
