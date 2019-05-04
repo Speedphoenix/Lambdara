@@ -2,6 +2,8 @@
 
 include_once "config.php";
 include_once "dbFuncs.php";
+include_once "shopcart-general.php";
+include_once "generic-displays.php";
 
 //on verifie que l'article est bien passé
 if (empty($_GET['ID']))
@@ -13,15 +15,12 @@ $itemID = $_GET['ID']; //on set notre article avec celui de la BDD correspondant
 if (!itemExists($itemID))
     header("location: 404.php");
 
-$article = getFromIDs(array($_GET['ID']))[0];
+$article = getFromIDs(array($itemID))[0];
 
-$pageTitle = "article".$itemID;
+$pageTitle = $article['nom'];
 
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
-
-include_once "shopcart-general.php";
-include_once "generic-displays.php";
 
 include "header.php";
 ?>

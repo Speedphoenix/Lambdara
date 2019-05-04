@@ -1,4 +1,7 @@
 <?php
+
+$pageTitle = "Admin";
+
 include "header.php";
 ?>
 

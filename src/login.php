@@ -12,7 +12,7 @@ if (!empty($_SESSION['username'])
 	header("location: " . getPrevPage("category.php"));
 }
 
-$pageTitle = "Login";
+$pageTitle = "Enregistrement - Login";
 
 include "header.php";
 ?>

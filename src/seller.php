@@ -69,6 +69,7 @@ if (isset($_POST['askedadd']))
 		$errormsg = ERREMPTYFIELD;
 }
 
+$pageTitle = "Vos ventes";
 
 include "header.php";
 ?>
@@ -96,7 +97,7 @@ include "header.php";
                             /*echo"<div  style='width:auto; margin:auto; margin-top:10%; margin-left:400px;'>$nom_compl</div> ";*/
                         ?>
                             <input class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" />
-                            <label style="margin:auto; margin-top:270px; margin-right:100%; margin-left:13px; width:250px;"  for="fileToUpload2">Changer photo de profile</label>
+                            <label style="margin:auto; margin-top:270px; margin-right:100%; margin-left:13px; width:250px;"  for="fileToUpload2">Changer photo de profil</label>
                         </td>
                         <td style='width:30%;'>
                             <?php
