@@ -66,6 +66,7 @@ if (isset($_POST['askedadd']))
 // separator
 
 
+$pageTitle = "Nouvel article en vente";
 
 include "header.php";
 ?>

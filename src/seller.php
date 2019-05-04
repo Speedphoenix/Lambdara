@@ -72,6 +72,7 @@ if (isset($_POST['askedadd']))
 		$errormsg = ERREMPTYFIELD;
 }
 
+$pageTitle = "Vos ventes";
 
 include "header.php";
 ?>
