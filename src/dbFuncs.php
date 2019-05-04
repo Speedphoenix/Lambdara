@@ -31,10 +31,15 @@ function itemExists($whatID)
 }
 
 //TODO
-function orderByTri($tri)
+function orderByTri($tri = "prix-up")
 {
-	return "";
-	//return " ORDER BY"....
+	$tritab = explode('-', $tri);
+	$rep = " ORDER BY " . $tritab[0];
+	if ($tritab[1] === 'up')
+		$rep .= " DESC";
+	else
+		$rep .= " ASC";
+	return $rep;
 }
 
 function getAllItems($categ = DEFAULTCATEG, $tri = DEFAULTTRI)
@@ -43,7 +48,7 @@ function getAllItems($categ = DEFAULTCATEG, $tri = DEFAULTTRI)
 	$query = "SELECT * FROM Articles";
 	if ($categ !== 'all')
 		$query .= " WHERE categorie='$categ'";
-	
+
 	$query .= orderByTri($tri);
 	$query .= ';';
 
