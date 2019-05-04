@@ -29,7 +29,7 @@ $pageTitle = $categ . " items";
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
-$items = getAllItems($categ); // et le tri si besoin
+$items = getAllItems($categ, $tri); // et le tri si besoin
 //$items = getAllItems($tri); 
 
 
@@ -65,7 +65,7 @@ include "header.php";
 			<select name="date_sort_choice">
 				<option value="" selected disabled hidden>Depuis:</option>
 				<?php
-					foreach(CHOIXDETRI as $key => $val)
+					foreach(DATESORT as $key => $val)
 					{
 						echo "<option value='$key'>$val</option>"; 
 					}
