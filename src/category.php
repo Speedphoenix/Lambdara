@@ -2,6 +2,8 @@
 
 include_once "config.php";
 include_once "dbFuncs.php";
+include_once "shopcart-general.php";
+include_once "generic-displays.php";
 
 if (isset($_GET['categ']) && in_array($_GET['categ'], array_keys(POSSIBLECATEGS)))
 	$categ = $_GET['categ'];
@@ -23,9 +25,6 @@ if (isset($_GET['price_sort']) && in_array($_GET['price_sort'], array_keys(DATES
 else
 	$s_price = DEFAULTPRICESORT;
 
-
-$pageTitle = $categ . " items";
-
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
@@ -33,8 +32,7 @@ $items = getAllItems($categ, $tri); // et le tri si besoin
 //$items = getAllItems($tri); 
 
 
-include_once "shopcart-general.php";
-include_once "generic-displays.php";
+$pageTitle = $categ . " items";
 
 include "header.php";
 ?>

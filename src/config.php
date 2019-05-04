@@ -5,6 +5,8 @@ define("SITENAMEASCII", "Lambdara");
 
 define("TESTING", false);
 
+define("SELLERSCANBUY", true);
+
 define("DEFAULTCATEG", "all");
 
 define("POSSIBLECATEGS", array(
@@ -14,13 +16,27 @@ define("POSSIBLECATEGS", array(
 	"vetements" => "Vetements",
 	"sportloisir" => "Sport et Loisir"));
 
-define("CHOIXDETRI", array(
-	"date" => "Date d'ajout",
-	"priceup" => "Prix croissant",
-	"pricedown" => "Prix decroissant",
-	"rating" => "Notes"));
 
-define("DEFAULTTRI", "date");
+define("CHOIXDETRI", array(
+	"date_ajout-do" => "Date d'ajout↑",
+	"date_ajout-up" => "Date d'ajout↓",
+	"prix-do" => "Prix↑",
+	"prix-up" => "Prix↓",
+	"note-up" => "Note↓",
+	"note-do" => "Note↑",
+	"nom-up" => "Nom↓",
+	"nom-do" => "Nom↑",
+	"popularite-up" => "Popularité↓",
+	"popularite-do" => "Popularité↑",
+	"quantite-up" => "Quantité disponible↓",
+	"quantite-do" => "Quantité disponible↑",
+	"vendeur_username-up" => "Vendeur↓",
+	"vendeur_username-do" => "Vendeur↑",
+	"categorie-up" => "Catégorie↓",
+	"categorie-do" => "Catégorie↑",
+));
+
+define("DEFAULTTRI", "popularite-up");
 
 define("DATESORT", array(
 	"1m" => "Un mois",
