@@ -290,7 +290,8 @@ function getCB($username)
 
 
 //récupérer les variations correspondant à un article en particulier
-function getVariation($id){
+//renvoie un tableau avec pour indice, le type
+function getVariationFctType($id){
 	$query = "SELECT * 
 		FROM variation
 		WHERE article_id='$id';";
@@ -307,6 +308,29 @@ function getVariation($id){
 		if (!isset($rep[$row['type']]))
 			$rep[$row['type']] = array();
 		array_push($rep[$row['type']], $row);
+	}
+	return $rep;
+}
+
+//récupérer les variations correspondant à un article en particulier
+//renvoie un tableau avec pour indice, le nom
+function getVariationFctNom($id){
+	$query = "SELECT * 
+		FROM variation
+		WHERE article_id='$id';";
+
+	$conn = connectDB('central');
+
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	$rep = array();
+	while ($row = $result->fetch_assoc())
+	{
+		if (!isset($rep[$row['nom']]))
+			$rep[$row['nom']] = array();
+		array_push($rep[$row['nom']], $row);
 	}
 	return $rep;
 }
