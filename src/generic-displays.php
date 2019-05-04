@@ -81,17 +81,44 @@ function repeatVariation($variation)
 	}    	
 }
 
+function miniatureImage($what){
+	$photoVariations=getVariationFctNom($what['ID']);
+	$photoArticle=explode(";", $what['photo']);
+
+	echo "<table>";
+			foreach($photoArticle as $i)
+			{
+				echo"<tr>
+						<td><img src='".$i."'width='50' height='50' style='float : left,'/></td>
+					</tr>";
+			}
+			
+			foreach ($photoVariations as $nomvari => $i) 
+			{
+				foreach ($i as $varindividuelle) {
+					if($varindividuelle['photo']!=null)
+						echo "<tr>
+								<td><img src='".$varindividuelle['photo']."'width='50' height='50' style='float : left,'/></td>
+							</tr>";
+				}
+			}
+	echo "		
+	</table>";
+}
+
 //affiche un seul article
 function showSingleArticle($what){
 
 //remplir un tableau des variation ayant le artice_id=$what['ID']
-	$variations = getVariation($what['ID']);
+	$variations = getVariationFctType($what['ID']);
 	$taille = 5;
 
 
 echo "	<table class='articleUniqueTab'>
-
 		  <tr>
+		    <td rowspan='".$taille."'>";
+			miniatureImage($what);
+			echo"</td>
 		    <td class='singleImage' rowspan='".$taille."' ><img src='".$what["photo"]."'width='300' height='300' style='float : left,'/></td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
 		    <td rowspan='".$taille."'> 
@@ -102,7 +129,7 @@ echo "	<table class='articleUniqueTab'>
 		  </tr>
 		  <tr>
 		  	<td class='singleArticle'>Quantité restante : " . $what['quantite']."</td>";
-		  	echo "<td>  </td>
+		  	echo "
 		  </tr>
 		  <tr>
 		  	<td class='singleArticle'>prix :".$what["prix"]."</td>
@@ -120,7 +147,8 @@ echo "<table>
 			<td>(Il reste ".$what["quantite"]." artticle(s))<br>Je commande : ";
 			addToShopcartForm($what);
 			echo "<td/>
-			<td rowspan='2'>mettez votre note sur 5<td/>
+			<td rowspan='2' style='    padding-left: 10%;
+    width: 50%;'>mettez votre note sur 5<td/>
 		</tr>
 	  </table>";
 
