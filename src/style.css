@@ -777,6 +777,16 @@ button:hover{
     font-weight: normal;   
     letter-spacing: 1px;
 }
+.vendeur util {
+    width: 100%;
+    font-size:25px;
+    color: darkgrey;
+}
+.vendeur tit{
+    width: 100%;
+    font-size:30px;
+    text-transform: uppercase; 
+}
 
 
 
