@@ -63,9 +63,11 @@ function repeatVariation($variation)
 {
 	foreach ($variation as $typevari => $i) 
 	{
-		echo "<tr><td>";
+		echo "<tr><td style='text-transform: uppercase;'>";
 
 	    echo $typevari;
+        
+        echo "<br>";
 
 		echo "<select name='choix_de_tri'>
 	                <option value='' selected>Choisir $typevari</option>";
@@ -74,7 +76,7 @@ function repeatVariation($variation)
 	    	echo "<option>" . $varindividuelle["nom"] . "</option> ";
 	    }
 	    
-	     echo "</select></tr></td>";
+	     echo "</select></tr></td><br>";
 	}    	
 }
 
@@ -86,13 +88,13 @@ function miniatureImage($what){
 	$currId = 0;
 	$testVideo=0;
 
-	echo "<table>";
+	echo "<table style='width:100%;'>";
 			
 	foreach($photoArticle as $i)
 	{
 		echo"<tr>
-				<td>
-				<a href='#'><img id='imgNo$currId' src='".$i."' width='50' height='50' style='float : left,'/></a>
+				<td style='vertical-align:top middle;'>
+				<a href='#'><img id='imgNo$currId' src='".$i."' width='50' height='50'/></a>
 				</td></tr>";		
 		$currId++;		
 	}
@@ -169,7 +171,7 @@ function showSingleArticle($what){
 	$imge=$photoArticle[0];
 	$video = $what["video"];
 
-
+/*
 echo "	<table class='articleUniqueTab'>
 		  <tr>
 		    <td rowspan='".$taille."'>";
@@ -215,6 +217,43 @@ echo "<table>
 
 echo "<br><br><br>";
 
-echo "</div>";
+echo "</div>";*/
+    
+    
+   echo "<div class='sarticle'>
+    <table class='tab'>
+        <tr>
+            <td class='td1' rowspan='".$taille."'>"; miniatureImage($what); echo"</td>
+            <td class='td2' rowspan='".$taille."'><img id='imagePrincipale' src='".$imge."' class='primg'/></td>
+            <td class='td3 art_name'>".$what["nom"]."</td>
+            <td class='td4' rowspan='".$taille."'>
+                <table class='int_table'>";repeatVariation($variations); echo "</table><br><br>
+                <table class='int_table'>
+                    <td>
+                        Il reste ".$what["quantite"]." artticle(s)<br>
+                        Je commande :";
+
+                        addToShopcartForm($what);
+
+                    echo"<td/>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class='art_quant'>Quantité restante : " . $what['quantite']."</td>
+        </tr>
+        <tr>
+            <td class='art_price'>Prix : " . $what["prix"] . "€</td>
+        </tr>
+        <tr>
+            <td class='art_rate'>Note : ".$what["note"]."/5</td>
+        </tr>
+        <tr>
+            <td class='art_desc'>".$what["description"]."</td>
+        </tr>	
+    </table>
+</div>";
+    
+    
 }
 ?>

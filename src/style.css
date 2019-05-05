@@ -927,6 +927,120 @@ button:hover{
 
 
 
+
+/*!!!!!!!!!!!!!!!!*/
+/*SINGLEARTICLE*/
+
+.sarticle{
+    text-align: center;
+    font-family: Lato;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.sarticle .tab{
+    width: 80%;
+    height:auto;
+    margin: auto;
+}
+
+.sarticle .td1{
+    vertical-align: top middle;
+    width:10%;
+}
+.sarticle .td2{
+    vertical-align: top middle;
+    width: 35%;
+}
+.sarticle .td3{
+    vertical-align: top middle;
+    width: 35%;
+}
+.sarticle .td4{
+    vertical-align: top middle;
+    width: 20%;
+}
+.sarticle .tab .primg{
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px;
+    width: 400px;
+    height: 400px;
+}
+
+.int_table{
+    width: 100%;
+    vertical-align: top middle;
+}
+
+.sarticle .tab .field{
+    background-color: #ffffff;  
+    border-style: solid;   
+    border-width: 1px;   
+    border-color: #dddddd;  
+    padding: 5px 10px 5px 10px;
+    margin: auto;
+    margin-top: 5px;
+    width: 98%;  
+    box-sizing: border-box;  
+    font-family: Lato; 
+    font-size: 12px;   
+    font-weight: normal;   
+    letter-spacing: 1px;
+}
+
+.sarticle select{
+    width: 90%;
+    height: auto;
+    padding: 5px;
+    margin: auto;
+    font-family: PT sans;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #E8B960;
+    text-decoration-color: aqua;
+    border-color: #E8B960;
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    -ms-appearance: none;
+    appearance: none; 
+    cursor: pointer; 
+    background: url(white-down-arrow-png-2.png) 96% / 5% no-repeat #E8B960;
+}
+.sarticle select::-ms-expand { 
+    display: none; 
+}
+.sarticle select:hover{
+    background: url(white-down-arrow-png-2.png) 96% / 5% no-repeat darkorange;
+}
+
+.art_name{
+    font-size: 25px;
+}
+.art_quant{
+    font-size: 20px;
+}
+.art_price{
+    font-size: 20px;
+}
+.art_rate{
+    font-size: 20px;
+}
+.art_desc{
+    font-size: 18px;
+    border-top: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+
+
 /*!!!!!!!!!!!!!!!!*/
 /*ERROR*/
 
@@ -949,6 +1063,8 @@ button:hover{
     color: orangered;
     text-align: center;
 }
+
+
 
 /*!!!!!!!!!!!!!!!!*/
 /*FOOTER*/
