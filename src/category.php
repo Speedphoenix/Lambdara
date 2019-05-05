@@ -23,7 +23,7 @@ else
 if (isset($_GET['price_sort']) && in_array($_GET['price_sort'], array_keys(POSSIBLEPRICESORT)))
 	$s_price = $_GET['price_sort'];
 else
-	$s_price = DEFAULTPRICESORT;
+	$s_price = 12;
 
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
@@ -76,8 +76,8 @@ include "header.php";
 				echo "<input type='range' max=" . MAXPRICESORT . " min=" . MINPRICESORT . " value=" . $s_price . " name='price_sort' oninput='sort_price_outp.value=sort_price_inp.value'/><br>";*/
 			?>-->
 			<!--<output class='price_show' name='sort_price_show' id='sort_price_outp'></output><br>-->
-			<input type="range" max='<?php echo MAXPRICESORT; ?>' min=<?php echo MINPRICESORT; ?>' value=<?php echo $s_price; ?>' name="sort_price" id="sort_price_inp" oninput="sort_price_outp.value=sort_price_inp.value"/><br>
-			<div class="price_show"><output name="sort_price_show" id="sort_price_outp"><?php echo $s_price ?></output> $</div>
+			<input type="range" max='<?php echo MAXPRICESORT; ?>' min=<?php echo MINPRICESORT; ?>' value=<?php echo $s_price; ?>' name="price_sort" id="sort_price_inp" oninput="sort_price_outp.value=sort_price_inp.value"/><br>
+			<div class="price_show"><output  id="sort_price_outp"><?php echo $s_price ?></output> $</div>
 			<input class="btn" type='submit' value="C'est parti!">
 		</form>
 	</div>
