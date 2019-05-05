@@ -20,7 +20,7 @@ if (isset($_GET['date_sort_choice']) && in_array($_GET['date_sort_choice'], arra
 else
 	$date_sort = DEFAULTDATESORT;
 
-if (isset($_GET['price_sort']) && in_array($_GET['price_sort'], array_keys(DATESORT)))
+if (isset($_GET['price_sort']) && in_array($_GET['price_sort'], array_keys(POSSIBLEPRICESORT)))
 	$s_price = $_GET['price_sort'];
 else
 	$s_price = DEFAULTPRICESORT;
@@ -28,8 +28,11 @@ else
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
 
-$items = getAllItems($categ, $tri); // et le tri si besoin
-//$items = getAllItems($tri); 
+$filtrer=array($categ,$date_sort,$s_price);
+
+
+$items = getAllItems($filtrer, $tri); // et le tri si besoin
+
 
 
 $pageTitle = $categ . " items";
