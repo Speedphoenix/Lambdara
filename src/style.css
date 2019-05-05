@@ -1094,6 +1094,17 @@ button:hover{
 
 
 /*!!!!!!!!!!!!!!!!*/
+/*EMAIL*/
+
+.em_table, .em_td, .em_th {
+    text-align: center;
+    vertical-align: middle;
+    border: 3px solid black; 
+    background-color: lightgrey;
+}
+
+
+/*!!!!!!!!!!!!!!!!*/
 /*ERROR*/
 
 .error{
