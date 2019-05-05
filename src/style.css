@@ -928,6 +928,45 @@ button:hover{
 
 
 
+
+/*!!!!!!!!!!!!!!!!*/
+/*SINGLEARTICLE*/
+
+.sarticle{
+    text-align: center;
+    font-family: Lato;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.sarticle .tab{
+    width: 80%;
+    height:auto;
+    margin: auto;
+}
+
+.td1{
+    vertical-align: top middle;
+    width:10%;
+}
+.td2{
+    vertical-align: top middle;
+    width: 40%;
+}
+.td3{
+    vertical-align: top middle;
+    width: 30%;
+}
+.td4{
+    vertical-align: top middle;
+    width: 20%;
+}
+
+
+
+
+
 /*!!!!!!!!!!!!!!!!*/
 /*ERROR*/
 
@@ -950,6 +989,8 @@ button:hover{
     color: orangered;
     text-align: center;
 }
+
+
 
 /*!!!!!!!!!!!!!!!!*/
 /*FOOTER*/
