@@ -46,14 +46,15 @@ function orderByTri($tri = "prix-up")
 function getAllItems($filtrer, $tri = DEFAULTTRI)
 {
 	$rep = array();
-	$query = "SELECT * FROM Articles WHERE";
+	$query = "SELECT * FROM Articles WHERE 1";
 	if ($filtrer[0] !== 'all')
-		$query .= " categorie='$filtrer[0]' AND";
+		$query .= " AND categorie='$filtrer[0]'";
 
 	if ($filtrer[1] !== 'ttt')
-		$query .= " date_ajout> ADDDATE(NOW(), INTERVAL -'$filtrer[1]' MONTH) AND";
+		$query .= " AND date_ajout> ADDDATE(NOW(), INTERVAL -'$filtrer[1]' MONTH)";
 
-	$query .= " prix<'$filtrer[2]'";
+	if ($filtrer[2] > 0)
+		$query .= " AND prix<'$filtrer[2]'";
 
 	$query .= orderByTri($tri);
 	$query .= ';';
@@ -107,6 +108,33 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	}
 
 	return $rep;
+}
+
+function getUsersItems($username, $tri = DEFAULTTRI)
+{
+	if (empty($username))
+		return array();
+
+	$rep = array();
+	$query = "SELECT * FROM Articles";
+
+	$query .= " WHERE vendeur_username='$username'";
+
+	$query .= orderByTri($tri);
+	$query .= ';';
+
+	$conn = connectDB('central');
+	
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	while($row = $result->fetch_assoc()) {
+		array_push($rep, $row);
+	}
+
+	return $rep;
+
 }
 
 // adds those values to a single row in $table in that database
@@ -240,10 +268,10 @@ function getUserInfo($username, $what, $db = 'central')
 	
 	$conn->close();
 	
-	if ($result === false)
+	if ($result === false || $result->num_rows == 0)
 		return false;
 	if ($what === false || $what === "TOUT")
-		return $return->fetch_assoc();
+		return $result->fetch_assoc();
 	return $result->fetch_assoc()[$what];
 }
 
