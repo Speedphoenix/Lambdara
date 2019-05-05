@@ -147,7 +147,8 @@ define("ERRNOTIMG", "Veuillez fournir une image");
 define("ERRFILESIZE", "Le fichier fourni est trop lourd");
 define("ERRUPLOAD", "Une erreur est survenue lors de l'upload du fichier");
 
-// TODO: À changer!!
+// what to do when the initial connection to a database fails
+// this is a temporarily brutal way of doing things and will be changed in time
 function failedSql($msg)
 {
 	die($msg);
