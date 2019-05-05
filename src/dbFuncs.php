@@ -74,6 +74,24 @@ function getAllItems($filtrer, $tri = DEFAULTTRI)
 	return $rep;
 }
 
+//returns all users
+function getAllUsers($db = "central")
+{
+	$rep = array();
+	$query = "SELECT * FROM users;";
+
+	$conn = connectDB('central');
+	
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	while($row = $result->fetch_assoc()) {
+		array_push($rep, $row);
+	}
+
+	return $rep;
+}
 
 // returns an array of items from the DB that have these IDs
 // $IDs is an array of ids
@@ -283,7 +301,7 @@ function addUserCentral($username, $fullname, $email, $userstatus)
 		'email' => $email,
 		'statut' => $userstatus,
 		'est_verifie' => '0'), 'central');
-	return ($result === true);
+	return true;
 }   
 
 // returns a user's info. $what is the column in the users table that will be given

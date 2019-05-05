@@ -78,7 +78,7 @@ function listArticles($items)
 	if (USERSTATUSES[$userstatus] === 'admin'
 		|| USERSTATUSES[$userstatus] === 'seller')
 	{
-		echo "<input type='submit' value='Supprimer les articles selectionnés'/>";
+		echo "<input type='submit' class='btn' style='width: unset;' value='Supprimer les articles selectionnés'/>";
 		echo "</form>";
 	}
 }

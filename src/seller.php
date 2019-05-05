@@ -114,8 +114,9 @@ include "header.php";
     <div class='clearfix'>
 		<div class='vendeur'>
 			<?php
-				if ($isowner)
+				/*if ($isowner)
 					echo '<form action="seller.php" method="post" enctype="multipart/form-data">';
+				*/
 			?>
                 <table class="tab">
                     <tr>
@@ -124,7 +125,7 @@ include "header.php";
 						if ($isowner)
 						{
 						?>
-                            <input class="upload_btn" type="file" name="fileToUpload1" id="fileToUpload1" />
+                            <input form="updateUserForm" class="upload_btn" type="file" name="fileToUpload1" id="fileToUpload1" />
                             <label style="margin:auto; margin-top:150px; margin-left:75%; width:23%;"  for="fileToUpload1">Changer photo de couverture</label>
 						<?php
 						}
@@ -138,7 +139,7 @@ include "header.php";
 							if ($isowner)
 							{
 							?>
-								<input class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" />
+								<input form="updateUserForm" class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" />
 								<label style="margin:auto; margin-top:270px; margin-right:100%; margin-left:13px; width:250px;"
 									for="fileToUpload2">Changer photo de profil</label>
 							<?php
@@ -156,11 +157,13 @@ include "header.php";
 							{
 							?>
 								<br><br>
+								<form id="updateUserForm">
 								<span>Changer les informations:</span><br><br>
 								<input class="field" type='text' name='surname' placeholder="Nom:" /><br><br>
 								<input class="field" type='text' name='name' placeholder="Prenom:" /><br><br>
 								<input class="field" type='text' name='email' placeholder="E-mail:" /><br><br>
 								<input class="vend_btn" type='submit' name="submit" value="Enregistrer les changements">
+								</form>
 							<?php
 							}
 							?>
@@ -189,8 +192,9 @@ include "header.php";
 					</tr>
                 </table>
 			<?php
-				if ($isowner)
+				/*if ($isowner)
 					echo '</form>';
+				*/
 			?>
         </div>
     </div>

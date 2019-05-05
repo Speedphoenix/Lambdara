@@ -21,24 +21,8 @@ if (empty($_POST['deleteItems']))
 //this will only give items that exist
 $items = getFromIDs($_POST['deleteItems'], "");
 
-$itemsToDelete = array();
-$imagesToDelete = array();
+deleteItems($items);
 
-foreach ($items as $elem)
-{
-	if ((USERSTATUSES[$userstatus] !== 'admin')
-		|| ($elem['vendeur_username'] === $_SESSION['username']))
-	{
-		array_push($itemsToDelete, $elem['ID']);
-		array_push($imagesToDelete, $elem['photo']);
-	}
-}
-
-if (REMOVEIMAGES)
-	clearImages($imagesToDelete);
-
-delInDB('Articles', 'ID', $itemsToDelete);
-
-header("location: " . getPrevPage("category.php"));
+$itemsToDelete = arheader("location: " . getPrevPage("category.php"));
 
 ?>

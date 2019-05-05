@@ -56,6 +56,30 @@ function clearImages($images)
 	}
 }
 
+//will delete an Item
+function deleteItems($items)
+{
+	$itemsToDelete = array();
+	$imagesToDelete = array();
+
+	foreach ($items as $elem)
+	{
+		if ((USERSTATUSES[$userstatus] !== 'admin')
+			|| ($elem['vendeur_username'] === $_SESSION['username']))
+		{
+			delInDB('variation', 'article_id', array($elem['ID']));
+			array_push($itemsToDelete, $elem['ID']);
+			if(substr($i['photo'],0,4)!=='http')
+				array_push($imagesToDelete, $elem['photo']);
+		}
+	}
+
+	if (REMOVEIMAGES)
+		clearImages($imagesToDelete);
+
+	delInDB('Articles', 'ID', $itemsToDelete);
+}
+
 //will return the part after an url with all the get variables
 function makeGetUrl()
 {
