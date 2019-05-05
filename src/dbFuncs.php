@@ -219,7 +219,7 @@ function addCard($username, $card)
 
 // all the parameters should be right, make sure to check wrong input before alling this function
 // adds a user in the central database (the user is added in the secure database in auth.php)
-/*function addUserCentral($username, $fullname, $email, $userstatus)
+function addUserCentral($username, $fullname, $email, $userstatus)
 {
 	$result = addInDB('users', array(
 		'username' => $username,
@@ -228,7 +228,7 @@ function addCard($username, $card)
 		'statut' => $userstatus,
 		'est_verifie' => '0'), 'central');
 	return ($result === true);
-}   */
+}   
 
 // returns a user's info. $what is the column in the users table that will be given
 function getUserInfo($username, $what, $db = 'central')
