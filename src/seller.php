@@ -150,45 +150,45 @@ include "header.php";
                                 echo"<div style='width:80%; margin:auto; margin-bottom:100%; margin-top:10%; margin-left:20px;'><tit>Utilisateur:</tit><br><util>$nom_compl</util></div> ";
                             ?>
                         </td>
-						<?php
-						if ($isowner)
-						{
+						<td style='width:40%; vertical-align:top;'>
+							<?php
+							if ($isowner)
+							{
 							?>
-							<td style='width:40%; vertical-align:top;'>
 								<br><br>
 								<span>Changer les informations:</span><br><br>
 								<input class="field" type='text' name='surname' placeholder="Nom:" /><br><br>
 								<input class="field" type='text' name='name' placeholder="Prenom:" /><br><br>
 								<input class="field" type='text' name='email' placeholder="E-mail:" /><br><br>
 								<input class="vend_btn" type='submit' name="submit" value="Enregistrer les changements">
-							</td>
-						<?php
-						}
-						?>
+							<?php
+							}
+							?>
+						</td>
                     </tr>
+					<tr>
+						<th style="text-align: left" colspan="3">Articles mis en vente par <?= $whatuser ?>:</th>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class='articleUnique'>
+								<?php
+								foreach ($items as $i)
+								{
+									echo "<tr><td>";
+									showArticle($i);
+									echo "</td></tr>";
+								}
+								?>
+							</table>
+						</td>
+					</tr>
                 </table>
 			<?php
 				if ($isowner)
 					echo '</form>';
 			?>
         </div>
-
-		<div id='articleListing'>
-
-			<table class='articleUnique'>
-
-		<?php
-
-		foreach ($items as $i)
-		{
-			echo "<tr><td>";
-			showArticle($i);
-			echo "</td></tr>";
-		}
-		?>
-
-			</table>
-		</div>
     </div>
 </div>
 
