@@ -9,6 +9,7 @@ include_once "generic-displays.php";
 
 $currShopcart = array();
 
+// basic limiting of vaiables. can't have more items in the cart than are currently available
 function limitItemNB()
 {
 	global $currShopcart;
@@ -39,6 +40,7 @@ if (isset($_COOKIE['shopcart']))
 	}
 }
 
+// mapped funtion to make strings out of the (item-amount) sets
 $cookiemapfunc = function($key, $elem) {
 	return $key . COOKIEITEMSEP . $elem;
 };
@@ -62,6 +64,7 @@ foreach ($currShopcart as $id => $i)
 	$nbShopcart += $i;
 }
 
+//empties the shopcart in the user's cookies
 function clearShopcart()
 {
 	// setting the expiration date in the past will delete the cookie

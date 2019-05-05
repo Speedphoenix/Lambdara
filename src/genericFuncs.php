@@ -3,6 +3,7 @@
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
+// will properly take in the image uploaded and return an error message or the filename
 function receiveImage($nameInForm)
 {
 	if (empty($_FILES[$nameInForm])
@@ -41,6 +42,7 @@ function receiveImage($nameInForm)
 		return ERRUPLOAD;
 }
 
+//will return the part after an url with all the get variables
 function makeGetUrl()
 {
 	if (empty($_GET))
@@ -57,6 +59,7 @@ function makeGetUrl()
 	return $rep;
 }
 
+// sets the session variable to remember the previous page to come back to later using the get and post variables
 function setPrevPage()
 {
 	if (!empty($_GET['previouspage']))
@@ -71,6 +74,7 @@ function setPrevPage()
 	}
 }
 
+// takes in the above function and returns what the currently previous page is
 function getPrevPage($defaultpage)
 {
 	setPrevPage();
@@ -80,6 +84,7 @@ function getPrevPage($defaultpage)
 		return $defaultpage;
 }
 
+// some checks on whether a credit card is valid
 function isValidCard($card)
 {
 	/*
@@ -97,6 +102,7 @@ function isValidCard($card)
 	return true;
 }
 
+// will eventually be implemented to process a payment
 function doPayment($price, $card)
 {
 	return true;

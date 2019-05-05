@@ -4,16 +4,13 @@ include_once "config.php";
 include_once "genericFuncs.php";
 
 
-
-
-//Affiche un tableau d'articles
-
+// prints a pretty error
 function showError($errmsg)
 {
 	echo "<h2 class='error'>$errmsg</h2>" . PHP_EOL;
 }
 
-
+// Prints a small article (those you can see in category.php or in the shopcart)
 function showArticle($what)
 {
 
@@ -34,7 +31,7 @@ echo "	<table class='articleUnique'>
 		  <tr>
 		    <td rowspan='2'><a href='singleArticle.php?ID=" . $what['ID'] . "'><img src='".$what["photo"]."'width='100' height='100' style='float : left'/></a></td>
 		    <th class='articleDetail'><a href='singleArticle.php?ID=" . $what['ID'] . "' >".$what["nom"]."</a></th>
-		    <td class='articleDetail'>prix : ".$what["prix"]."$</td>
+		    <td class='articleDetail'>prix : ".$what["prix"]."€</td>
 		    <td class='articleDetail'>note :".$what["note"]."/5</td>
 		    <td class='articleDetail'>Quantité restante : ".$what['quantite']."</td>
 		  </tr>
@@ -46,6 +43,7 @@ echo "	<table class='articleUnique'>
 echo "</div>";
 }
 
+// the small form next to an item to add it to cart
 function addToShopcartForm($what)
 {
 	global $currShopcart;
@@ -81,6 +79,7 @@ function repeatVariation($variation)
 	}    	
 }
 
+// prints the small images to the left of the big one when showing an article
 function miniatureImage($what){
 	$photoVariations=getVariationFctNom($what['ID']);
 	$photoArticle=explode(";", $what['photo']);
@@ -89,30 +88,32 @@ function miniatureImage($what){
 
 	echo "<table>";
 			
-			foreach($photoArticle as $i)
-			{
-				echo"<tr>
-						<td>
-						<a href='#'><img id='imgNo$currId' src='".$i."' width='50' height='50' style='float : left,'/></a>
-						</td></tr>";		
-				$currId++;		
-			}
+	foreach($photoArticle as $i)
+	{
+		echo"<tr>
+				<td>
+				<a href='#'><img id='imgNo$currId' src='".$i."' width='50' height='50' style='float : left,'/></a>
+				</td></tr>";		
+		$currId++;		
+	}
 
-			foreach ($photoVariations as $nomvari => $i) 
+
+	foreach ($photoVariations as $nomvari => $i) 
+	{
+		foreach ($i as $varindividuelle) 
+		{
+			if($varindividuelle['photo']!=null)
 			{
-				foreach ($i as $varindividuelle) 
-				{
-					if($varindividuelle['photo']!=null)
-					{
-						echo "<tr>
-							<td>
-							<a href='#'><img id='imgNo$currId' src='".$varindividuelle['photo']."' width='50' height='50' style='float : left,'/></a>
-							</td>
-							</tr>";
-						$currId++;
-					}
-				}			
+				echo "<tr>
+					<td>
+					<a href='#'><img id='imgNo$currId' src='".$varindividuelle['photo']."' width='50' height='50' style='float : left,'/></a>
+					</td>
+					</tr>";
+				$currId++;
 			}
+		}			
+	}
+
 	echo "		
 	</table>";
 	$nbImage=$currId;
@@ -130,7 +131,7 @@ function miniatureImage($what){
 	<?php
 }
 
-//affiche un seul article
+//affiche un seul article sur la page
 function showSingleArticle($what){
 
 //remplir un tableau des variation ayant le artice_id=$what['ID']
@@ -158,7 +159,7 @@ echo "	<table class='articleUniqueTab'>
 		  	echo "
 		  </tr>
 		  <tr>
-		  	<td class='singleArticle'>prix :".$what["prix"]."</td>
+		  	<td class='singleArticle'>prix :" . $what["prix"] . "€</td>
 		  			  </tr>
 		  <tr>
 		  	<td class='singleArticle'>".$what["note"]."/5</td>

@@ -16,6 +16,7 @@ if (empty($_SESSION['username']))
 if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
 	header("location: category.php");
 
+// update the user's info/images in the db
 function updateUser()
 {
     global $errormsg;

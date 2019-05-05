@@ -6,13 +6,15 @@ include_once "dbFuncs.php";
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
+// returns whether the given password is secure or not
 function passIsSecure($password)
 {
-	return (is_string($password) && (strlen($password) >= 2));
+	return (is_string($password) && (strlen($password) >= 8));
 }
 
 $errormsg = null;
 
+// does various checks and logs user in. will return an error message if it failed
 function loginusr($conn)
 {
 	if (empty($_POST['username']) || empty($_POST['password']))
@@ -42,6 +44,7 @@ function loginusr($conn)
 	return "";
 }
 
+// does various checks and registers user (does not log in) . will return an error message if it failed
 function registerusr($conn)
 {
 	if (empty($_POST['fullname']) || empty($_POST['username']) || empty($_POST['email'])
@@ -81,6 +84,7 @@ function registerusr($conn)
 	return "";
 }
 
+// does various checks and will use user input to log them in (and maybe register before that)
 function loginon()
 {
 	global $errormsg;

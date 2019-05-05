@@ -4,6 +4,7 @@ include_once "config.php";
 
 //ce fichier contient les fonctions génériques pour certaines opérations avec la base de donnée
 
+// initializes a connection to the database $which
 function connectDB($which)
 {
 	$conn = new mysqli(DBHOST, DBS[$which]['DBuser'], DBS[$which]['password'],
@@ -17,7 +18,7 @@ function connectDB($which)
 	return $conn;
 }
 
-//make this check in the datbase its existence
+// returns whether an item with this ID exists
 function itemExists($whatID)
 {
 	$conn = connectDB('central');
@@ -30,7 +31,7 @@ function itemExists($whatID)
 	return ($result->num_rows > 0);
 }
 
-//TODO
+// returns the string to be used to order the SQL query results
 function orderByTri($tri = "prix-up")
 {
 	$tritab = explode('-', $tri);
@@ -109,6 +110,7 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	return $rep;
 }
 
+// adds those values to a single row in $table in that database
 function addInDB($table, $values, $db = 'central')
 {
 	$colNames = "";
@@ -136,6 +138,7 @@ function addInDB($table, $values, $db = 'central')
 	return $lastId;
 }
 
+// updates the row(s) specified by the where string, with those values in $table in that database $db
 function updateInDb($table, $values, $where, $db = 'central')
 {
 	$conn = connectDB($db);
@@ -156,6 +159,7 @@ function updateInDb($table, $values, $where, $db = 'central')
 	return $result;
 }
 
+// adds an adress in the database. $addr must be an array containing the right keys for an adress
 function addAddr($username, $addr)
 {
 	$addrId = getUserInfo($username, 'adress_id');
@@ -169,10 +173,7 @@ function addAddr($username, $addr)
 			'telephone' => $addr['telephone'],
 			'ville' => $addr['ville'],
 			'pays' => $addr['pays']));
-		$conn = connectDB('central');
-		$query = "UPDATE users SET adress_id='$adressId' WHERE username='$username';";
-		$result2 = $conn->query($query);
-		$conn->close();
+		$result2 = updateInDb('users', array('adress_id' => $adressId), "username='$username'");
 	}
 	else
 	{
@@ -188,6 +189,7 @@ function addAddr($username, $addr)
 }
 
 // pretty much the previous function copypasted
+// adds a credit card in the database. $card must be an array containing the right keys for a card
 function addCard($username, $card)
 {
 	$cardId = getUserInfo($username, 'bank_info_id', 'secure');
@@ -201,11 +203,7 @@ function addCard($username, $card)
 			'num_carte' => $card['num_carte'],
 			'date_exp' => $card['date_exp'],
 			'nom' => $card['nom']), 'secure');
-
-		$conn = connectDB('secure');
-		$query = "UPDATE users SET bank_info_id='$cardId' WHERE username='$username';";
-		$result2 = $conn->query($query);
-		$conn->close();
+		$result2 = updateInDb('users', array('bank_info_id' => $cardId), "username='$username'", 'secure');
 	}
 	else
 	{
@@ -221,19 +219,19 @@ function addCard($username, $card)
 }
 
 // all the parameters should be right, make sure to check wrong input before alling this function
+// adds a user in the central database (the user is added in the secure database in auth.php)
 function addUserCentral($username, $fullname, $email, $userstatus)
 {
-	$query = "INSERT INTO users (username, nom_complet, email, statut, est_verifie)
-		VALUES ('$username', '$fullname', '$email', '$userstatus', '0');";
-
-	$conn = connectDB('central');
-	$result = $conn->query($query);
-	
-	$conn->close();
-
+	$result = addInDB('users', array(
+		'username' => $username,
+		'nom_complet' => $fullname,
+		'email' => $email,
+		'statut' => $userstatus,
+		'est_verifie' => '0'), 'central');
 	return ($result === true);
 }
 
+// returns a user's info. $what is the column in the users table that will be given
 function getUserInfo($username, $what, $db = 'central')
 {
 	$query = "SELECT * FROM users WHERE username='$username';";
@@ -250,6 +248,7 @@ function getUserInfo($username, $what, $db = 'central')
 	return $result->fetch_assoc()[$what];
 }
 
+// will update a single collumn in an Item's row
 function updateItemInfo($ID, $what, $value)
 {
 	$db = 'central';
@@ -263,7 +262,7 @@ function updateItemInfo($ID, $what, $value)
 	return ($result !== false);
 }
 
-
+// returns the address of a user
 function getAdress($username)
 {
 	$query = "SELECT adresse.* 
@@ -281,6 +280,7 @@ function getAdress($username)
 	return $result->fetch_assoc();
 }
 
+// returns the credit card of a user
 function getCB($username)
 {
 	$query = "SELECT bank_info.* 
