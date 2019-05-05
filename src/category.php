@@ -75,7 +75,7 @@ include "header.php";
 			?>-->
 			<!--<output class='price_show' name='sort_price_show' id='sort_price_outp'></output><br>-->
 			<input type="range" max='<?php echo MAXPRICESORT; ?>' min=<?php echo MINPRICESORT; ?>' value=<?php echo $s_price; ?>' name="price_sort" id="sort_price_inp" oninput="sort_price_outp.value=sort_price_inp.value"/><br>
-			<div class="price_show"><output  id="sort_price_outp"><?php echo $s_price ?></output> $</div>
+			<div class="price_show"><output  id="sort_price_outp"><?php echo $s_price ?></output> €</div>
 			<input class="btn" type='submit' value="C'est parti!">
 		</form>
 	</div>
