@@ -119,7 +119,7 @@ function miniatureImage($what){
 					</video>*/
 	if($what["video"]!=null)
 	{
-		$testVideo++;
+		$testVideo=1;
 		echo "<tr>
 				<td>
 				<a href='#'>
@@ -128,6 +128,9 @@ function miniatureImage($what){
 				</td>
 				</tr>";		
 	}
+
+	else
+		$testVideo=0;
 
 	echo "		
 	</table>";
@@ -139,15 +142,16 @@ function miniatureImage($what){
 			for(let i=0; i< <?= $nbImage ?>; i++){
 				$("#imgNo" + i).click(function(event){
 					$("#imagePrincipale").attr("src", $(event.target).attr("src"));
-					style.getElementById(articleVideo).style.opacity = "0";
-					style.getElementById(imagePrincipale).style.opacity = "1";
+					test.getElementById("#imagePrincipale").style.display = "none";
+					//$().style("width", "2px");
+					$("#articleVideo").style("display", "none");
 				});
 			}
 
 			if($testVideo){
 				$("#vidNo").click(function(event){
-					style.getElementById(imagePrincipale).style.opacity = "0";
-					style.getElementById(articleVideo).style.opacity = "1";
+					$("#imagePrincipale").style("display", "none");
+					$("#articleVideo").style("display", "bloc");
 				});
 			}
 
@@ -173,10 +177,10 @@ echo "	<table class='articleUniqueTab'>
 		    <td rowspan='".$taille."'>";
 			miniatureImage($what);
 			echo"</td>
-		    <td class='singleImage' rowspan='".$taille."' ><img id='imagePrincipale' src='".$imge."' />
-		    	<video id='articleVideo' width='300' height='300' controls='controls'>
-						<source src='".$what["video"]."' type='video/mp4' />
-					</video>
+		    <td class='singleImage' rowspan='".$taille."' >
+		    	<img id='imagePrincipale' width='300' height='300' src='".$imge."' />
+				<iframe id='articleVideo' width='300' height='300' style='display: none' src='https://www.youtube.com/embed/NIYZVSElmj4'></iframe>
+		    	
 		    </td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
 		    <td rowspan='".$taille."'> 
