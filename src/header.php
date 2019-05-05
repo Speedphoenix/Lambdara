@@ -32,7 +32,7 @@ if (session_status() == PHP_SESSION_NONE)
             <?php
                 if (!empty($_SESSION['username']))
                 {
-                    if(USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] == 'seller')
+                    if(USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] === 'seller')
                     {
                         echo"<a href='sell.php'><button>Vendre</button></a>";
                     }
@@ -53,9 +53,24 @@ if (session_status() == PHP_SESSION_NONE)
 			}
 			else
 			{
-				echo '
-				<a id="logout-link" href="logout.php?previouspage=' . $_SERVER['PHP_SELF'] . '"><button>Deconnection</button></a>
-				<a id="settings-link" href="#"><button>Paramètres</button></a>';
+				echo '<a id="logout-link" href="logout.php?previouspage=' . $_SERVER['PHP_SELF'] . '"><button>Deconnection</button></a>';
+				switch (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')])
+				{
+					default:
+					case 'buyer':
+						$targeturl = "user-page.php";
+						$message = "Ma page";
+						break;
+					case 'seller':
+						$targeturl = "seller.php";
+						$message = "Ma page";
+						break;
+					case 'admin':
+						$targeturl = "admin.php";
+						$message = "admin";
+						break;
+				}
+				echo "<a id='userpage-link' href='$targeturl'><button>" . $_SESSION['username'] . " - $message</button></a>";
 			}
 			?>
 		</div>
