@@ -43,16 +43,20 @@ function orderByTri($tri = "prix-up")
 	return $rep;
 }
 
-function getAllItems($categ = DEFAULTCATEG, $tri = DEFAULTTRI)
+function getAllItems($filtrer, $tri = DEFAULTTRI)
 {
 	$rep = array();
-	$query = "SELECT * FROM Articles";
-	if ($categ !== 'all')
-		$query .= " WHERE categorie='$categ'";
+	$query = "SELECT * FROM Articles WHERE";
+	if ($filtrer[0] !== 'all')
+		$query .= " categorie='$filtrer[0]' AND";
+
+	if ($filtrer[1] !== 'ttt')
+		$query .= " date_ajout> ADDDATE(NOW(), INTERVAL -'$filtrer[1]' MONTH) AND";
+
+	$query .= " prix<'$filtrer[2]'";
 
 	$query .= orderByTri($tri);
 	$query .= ';';
-
 
 	$conn = connectDB('central');
 	
@@ -224,7 +228,7 @@ function addUserCentral($username, $fullname, $email, $userstatus)
 		'statut' => $userstatus,
 		'est_verifie' => '0'), 'central');
 	return ($result === true);
-}
+}   
 
 // returns a user's info. $what is the column in the users table that will be given
 function getUserInfo($username, $what, $db = 'central')

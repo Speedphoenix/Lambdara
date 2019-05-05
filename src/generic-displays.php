@@ -85,9 +85,8 @@ function miniatureImage($what){
 	$photoArticle=explode(";", $what['photo']);
 	$img = $photoArticle[0];
 	$currId = 0;
-	echo "
-	
-	<table>";
+
+	echo "<table>";
 			
 	foreach($photoArticle as $i)
 	{
@@ -98,19 +97,23 @@ function miniatureImage($what){
 		$currId++;		
 	}
 
+
 	foreach ($photoVariations as $nomvari => $i) 
 	{
 		foreach ($i as $varindividuelle) 
 		{
 			if($varindividuelle['photo']!=null)
+			{
 				echo "<tr>
 					<td>
 					<a href='#'><img id='imgNo$currId' src='".$varindividuelle['photo']."' width='50' height='50' style='float : left,'/></a>
 					</td>
 					</tr>";
 				$currId++;
+			}
 		}			
 	}
+
 	echo "		
 	</table>";
 	$nbImage=$currId;
@@ -125,9 +128,7 @@ function miniatureImage($what){
 			}
 		});
 	</script>
-
 	<?php
-	return $img;
 }
 
 //affiche un seul article sur la page
@@ -143,7 +144,7 @@ function showSingleArticle($what){
 echo "	<table class='articleUniqueTab'>
 		  <tr>
 		    <td rowspan='".$taille."'>";
-			$imge=miniatureImage($what);
+			miniatureImage($what);
 			echo"</td>
 		    <td class='singleImage' rowspan='".$taille."' ><img id='imagePrincipale' src='".$imge."' width='300' height='300' style='float : left,'/></td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
