@@ -85,6 +85,7 @@ function miniatureImage($what){
 	$photoArticle=explode(";", $what['photo']);
 	$img = $photoArticle[0];
 	$currId = 0;
+	$testVideo=0;
 
 	echo "<table>";
 			
@@ -113,6 +114,23 @@ function miniatureImage($what){
 			}
 		}			
 	}
+/*<video width='50' height='50' controls='controls'>
+						<source src='".$what["video"]."' type='video/mp4' />
+					</video>*/
+	if($what["video"]!=null)
+	{
+		$testVideo=1;
+		echo "<tr>
+				<td>
+				<a href='#'>
+					<p id='vidNo'>Video</p>
+				</a>
+				</td>
+				</tr>";		
+	}
+
+	else
+		$testVideo=0;
 
 	echo "		
 	</table>";
@@ -124,9 +142,20 @@ function miniatureImage($what){
 			for(let i=0; i< <?= $nbImage ?>; i++){
 				$("#imgNo" + i).click(function(event){
 					$("#imagePrincipale").attr("src", $(event.target).attr("src"));
+					//test.getElementById("#imagePrincipale").style.display = "none";
+					$("#imagePrincipale").css("display", "block");
+					$("#articleVideo").css("display", "none");
 				});
 			}
+
+				$("#vidNo").click(function(event){
+					$("#imagePrincipale").css("display", "none");
+					$("#articleVideo").css("display", "block");
+				});
+			
+
 		});
+			
 	</script>
 	<?php
 }
@@ -139,6 +168,7 @@ function showSingleArticle($what){
 	$taille = 5;
 	$photoArticle=explode(";", $what['photo']);
 	$imge=$photoArticle[0];
+	$video = $what["video"];
 
 
 echo "	<table class='articleUniqueTab'>
@@ -146,7 +176,11 @@ echo "	<table class='articleUniqueTab'>
 		    <td rowspan='".$taille."'>";
 			miniatureImage($what);
 			echo"</td>
-		    <td class='singleImage' rowspan='".$taille."' ><img id='imagePrincipale' src='".$imge."' width='300' height='300' style='float : left,'/></td>
+		    <td class='singleImage' rowspan='".$taille."' >
+		    	<img id='imagePrincipale' width='300' height='300' style='display: block' src='".$imge."' />
+				<iframe id='articleVideo' width='300' height='300' style='display: none' src='https://www.youtube.com/embed/".$video."'></iframe>
+		    	
+		    </td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
 		    <td rowspan='".$taille."'> 
 		    	<table>";
