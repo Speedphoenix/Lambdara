@@ -9,7 +9,19 @@ if (session_status() == PHP_SESSION_NONE)
 // returns whether the given password is secure or not
 function passIsSecure($password)
 {
-	return (is_string($password) && (strlen($password) >= 8));
+	if (!is_string($password))
+		return false;
+	if (!USEANNOYINGPASSWORD)
+		return true;
+	if (strlen($password) < 8)
+		return false;
+	if (!preg_match('~[0-9]~', $password))
+		return false;
+	if (!preg_match('~[a-z]~', $password))
+		return false;
+	if (!preg_match('~[A-Z]~', $password))
+		return false;
+	return true;
 }
 
 $errormsg = null;

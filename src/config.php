@@ -1,13 +1,40 @@
 <?php
 
+// general information on the project
 define("SITENAME", "Λara");
 define("SITENAMEASCII", "Lambdara");
 
+//constants to be used to tweak the site to your liking
 define("TESTING", false);
 
 define("SELLERSCANBUY", true);
 
 define("REMOVEIMAGES", true);
+
+define("USEANNOYINGPASSWORD", false);
+
+
+// error and success message
+
+define("SUCCESADD", "Article ajouté avec succes");
+
+define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
+define("ERRNAMETAKEN", "Un utilisateur avec ce nom existe déjà");
+define("ERREMAILTAKEN", "Un utilisateur avec cet email existe déjà");
+define("ERRUNSAFEPASS", "Mot de passe pas suffisament complexe");
+define("ERRPASSNOMATCH", "Le mot de passe ne correspond pas à sa confirmation");
+define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
+define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
+define("ERRCHEATER", "Please don't try to cheat the system");
+define("ERRCARDNOTV", "Carte de crédit non valide");
+define("ERRCARTEMPTY", "Votre panier est vide!");
+define("ERRNOFILE", "Veuillez fournir un fichier");
+define("ERRNOTIMG", "Veuillez fournir une image");
+define("ERRFILESIZE", "Le fichier fourni est trop lourd");
+define("ERRUPLOAD", "Une erreur est survenue lors de l'upload du fichier");
+
+
+//from here on are general constants
 
 define("DEFAULTCATEG", "all");
 
@@ -131,23 +158,6 @@ define("TYPECARDID", array(
 		),
 	
 );*/
-
-define("SUCCESADD", "Article ajouté avec succes");
-
-define("ERRUSRNOTFOUND", "Nom d'utilisateur ou mot de passe non valide");
-define("ERRNAMETAKEN", "Un utilisateur avec ce nom existe déjà");
-define("ERREMAILTAKEN", "Un utilisateur avec cet email existe déjà");
-define("ERRUNSAFEPASS", "Mot de passe pas suffisament complexe");
-define("ERRPASSNOMATCH", "Le mot de passe ne correspond pas à sa confirmation");
-define("ERREMPTYFIELD", "Veuillez remplir les bons champs du formulaire");
-define("ERRSQLINSI", "Problème d'insertion sql, voir les développeurs");
-define("ERRCHEATER", "Please don't try to cheat the system");
-define("ERRCARDNOTV", "Carte de crédit non valide");
-define("ERRCARTEMPTY", "Votre panier est vide!");
-define("ERRNOFILE", "Veuillez fournir un fichier");
-define("ERRNOTIMG", "Veuillez fournir une image");
-define("ERRFILESIZE", "Le fichier fourni est trop lourd");
-define("ERRUPLOAD", "Une erreur est survenue lors de l'upload du fichier");
 
 // what to do when the initial connection to a database fails
 // this is a temporarily brutal way of doing things and will be changed in time
