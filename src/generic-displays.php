@@ -265,7 +265,10 @@ echo "</div>";*/
     <table class='tab'>
         <tr>
             <td class='td1' rowspan='".$taille."'>"; miniatureImage($what); echo"</td>
-            <td class='td2' rowspan='".$taille."'><img id='imagePrincipale' src='".$imge."' class='primg' style='margin:auto; margin-right:100%; margin-left:13%;'/></td>
+            <td class='td2' rowspan='".$taille."'>
+				<img id='imagePrincipale' src='".$imge."' class='primg' style='margin:auto; margin-right:100%; margin-left:13%;'/>
+				<iframe id='articleVideo' width='300' height='300' style='display: none' src='https://www.youtube.com/embed/".$video."'></iframe>
+			</td>
             <td class='td3 art_name'>".$what["nom"]."</td>
             <td class='td4' rowspan='".$taille."'>";
                 //Changer la quantite de prod
