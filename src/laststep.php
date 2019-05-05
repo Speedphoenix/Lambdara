@@ -71,12 +71,13 @@ if ($nbShopcart !== 0)
 	{
 		$items = getFromIDs(array_keys($currShopcart));
 
-		$receipt .= "<table>
+		$receipt .= "<table class='em_table'>
 		<tr>
-			<th>Nom de l'article</th>
-			<th>Quantité achetée</th>
-			<th>Prix unitaire</th>
-			<th>prix total</th>
+			<th class='em_th'>Nom de l'article</th>
+			<th class='em_th'>Quantité achetée</th>
+			<th class='em_th'>Prix unitaire</th>
+			<th class='em_th'>Prix total</th>
+            <th class='em_th'>Image</th>
 		</tr>";
 
 
@@ -85,11 +86,24 @@ if ($nbShopcart !== 0)
 			if (!isset($currShopcart[$i['ID']]))
 				continue;
 			$receipt .= "<tr>
-			<td>" . $i['nom'] . "</td>
-			<td>" . $currShopcart[$i['ID']] . "</td>
-			<td>" . $i['prix'] . "€</td>
-			<td>" . ($currShopcart[$i['ID']] * $i['prix']) . "€</td>
-			</tr>";
+			<td class='em_td'>" . $i['nom'] . "</td>
+			<td class='em_td'>" . $currShopcart[$i['ID']] . "</td>
+			<td class='em_td'>" . $i['prix'] . "€</td>
+			<td class='em_td'>" . ($currShopcart[$i['ID']] * $i['prix']) . "€</td>
+            <td class='em_td'><img src='";
+            if(substr($i['photo'],0,4)==='http')
+                $receipt.=$i['photo'];
+            else
+                $receipt.="https://".$_SERVER['SERVER_NAME'] .$i['photo'];
+            
+        $receipt.="' width='100px' height='100px'></td>
+			</tr>
+            <tr>
+                <th colspan='5' class='em_th'>Description:</th>
+            </tr>
+            <tr>
+                <td colspan='5' class='em_td'>".$i['description']." </td>
+            </tr>";
 			updateInDb('Articles', array(
 				'quantite' => $i['quantite'] - $currShopcart[$i['ID']],
 				'popularite' => $i['popularite'] + $currShopcart[$i['ID']]
@@ -99,8 +113,9 @@ if ($nbShopcart !== 0)
 
 			$total += ($currShopcart[$i['ID']] * $i['prix']); 
 		}
-		$receipt .= "<tr>
-		<td>
+		$receipt .= "
+        <tr>
+		<td class='em_td' colspan='5'>
 		Total: $total" . "€
 		</td>
 		</tr>
