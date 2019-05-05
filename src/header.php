@@ -14,9 +14,9 @@ if (session_status() == PHP_SESSION_NONE)
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 	<?php
 	echo "<title>";
 	if (isset($pageTitle))
@@ -38,7 +38,9 @@ if (session_status() == PHP_SESSION_NONE)
                     }
                 }
             ?>
-			<a href="shopcart.php"><button>Panier
+           <!-- <img src="https://i.pinimg.com/236x/4b/a7/d8/4ba7d8d3c62e961494a50de2f61b2cc8.jpg" width="50" height="50" /> <span class="glyphicon">&#xe116;</span>-->
+
+			<a href="shopcart.php"><button><span class="glyphicon glyphicon-shopping-cart"></span>Panier 
 				<?php
 					if (isset($nbShopcart))
 						echo "(".$nbShopcart.")";
