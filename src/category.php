@@ -23,7 +23,7 @@ else
 if (isset($_GET['price_sort']) && in_array($_GET['price_sort'], array_keys(POSSIBLEPRICESORT)))
 	$s_price = $_GET['price_sort'];
 else
-	$s_price = 12;
+	$s_price = DEFAULTPRICESORT;
 
 //ici on chargera tous les items à afficher à partir des BDD
 //tableau de tableaux, chaque sous tableau contient les données de chaque truc
