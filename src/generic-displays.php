@@ -13,7 +13,6 @@ function showError($errmsg)
 // Prints a small article (those you can see in category.php or in the shopcart)
 function showArticle($what)
 {
-
 	$lim = 120;
 	if(strlen($what["description"])>$lim){
 		$toto= "";

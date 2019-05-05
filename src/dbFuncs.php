@@ -46,14 +46,15 @@ function orderByTri($tri = "prix-up")
 function getAllItems($filtrer, $tri = DEFAULTTRI)
 {
 	$rep = array();
-	$query = "SELECT * FROM Articles WHERE";
+	$query = "SELECT * FROM Articles WHERE 1";
 	if ($filtrer[0] !== 'all')
-		$query .= " categorie='$filtrer[0]' AND";
+		$query .= " AND categorie='$filtrer[0]'";
 
 	if ($filtrer[1] !== 'ttt')
-		$query .= " date_ajout> ADDDATE(NOW(), INTERVAL -'$filtrer[1]' MONTH) AND";
+		$query .= " AND date_ajout> ADDDATE(NOW(), INTERVAL -'$filtrer[1]' MONTH)";
 
-	$query .= " prix<'$filtrer[2]'";
+	if ($filtrer[2] > 0)
+		$query .= " AND prix<'$filtrer[2]'";
 
 	$query .= orderByTri($tri);
 	$query .= ';';
