@@ -26,7 +26,7 @@ function showArticle($what)
 		$what["description"]=$toto;
 	}
 echo "<div id='articles'>";
-echo "	<table class='articleUnique'>
+echo "	<table class='articleUniqueTab'>
 
 		  <tr>
 		    <td rowspan='2'><a href='singleArticle.php?ID=" . $what['ID'] . "'><img src='".$what["photo"]."'width='100' height='100' style='float : left'/></a></td>
