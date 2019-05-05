@@ -13,7 +13,8 @@ if (empty($_SESSION['username']))
 if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
 	header("location: category.php");
 
-$allFields = array('nom', 'categorie', 'prix', 'description', 'quantite');
+$allFields = array('nom', 'categorie', 'prix', 'description', 'quantite', 'video');
+$notRequiredFields = array('video');
 
 $errormsg = "";
 $success = "";
@@ -23,7 +24,7 @@ if (isset($_POST['askedadd']))
 	$isvalid = true;
 	foreach ($allFields as $i)
 	{
-		if (empty($_POST[$i]))
+		if (empty($_POST[$i]) && !in_array($_POST[$i], $notRequiredFields))
 		{
 			$isvalid = false;
 			break;
@@ -48,14 +49,13 @@ if (isset($_POST['askedadd']))
 		$valuesToAdd = array();
 		foreach ($allFields as $i)
 		{
-			$valuesToAdd[$i] = $_POST[$i];
+			$valuesToAdd[$i] = (empty($_POST[$i]) ? "" : $_POST[$i]);
 		}
 		$valuesToAdd['date_ajout'] = date("Y-m-d H:i:s");
 		$valuesToAdd['photo'] = $filename;
 		$valuesToAdd['popularite'] = '0';
 		$valuesToAdd['note'] = '0';
 		$valuesToAdd['vendeur_username'] = $_SESSION['username'];
-		$valuesToAdd['video'] = "";
 
 		$itemId = addInDB('Articles', $valuesToAdd);
 		if ($itemId !== false)
@@ -90,7 +90,7 @@ include "header.php";
 						</th>
 					</tr>
 					<tr>
-						<td rowspan='5'>
+						<td rowspan='6'>
 							<span> Select image to upload:</span><br>
 							<input class="upload_btn" type="file" name="itemImage" id="itemImage" required/>
 							<label for="itemImage">Choisir un fichier</label>
@@ -131,6 +131,12 @@ include "header.php";
 						<td>
 							<span>Prix unitaire</span>
 							<input class="field" type='number' name='prix' required/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>ID de la video youtube</span>
+							<input class="field" type='text' name='video'/>
 						</td>
 					</tr>
 					<tr>

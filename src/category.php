@@ -93,7 +93,6 @@ foreach ($items as $i)
 {
 	echo "<tr><td>";
 	showArticle($i);
-// tous les trucs à afficher ici
 	echo "</td></tr>";
 }
 ?>

@@ -5,21 +5,37 @@ include_once "genericFuncs.php";
 include_once "dbFuncs.php";
 include_once "shopcart-general.php";
 
-
-
-if (empty($_SESSION['username']))
+$isowner = false;
+if (!empty($_GET['user']))
+{
+	if (getUserInfo($_GET['user'], false) !== false)
+		$whatuser = $_GET['user'];
+}
+if (!empty($_SESSION['username']))
+{
+	if (empty($whatuser))
+		$whatuser = $_SESSION['username'];
+	if ($whatuser === $_SESSION['username'])
+		$isowner = true;
+}
+if (empty($whatuser))
 {
 	$_SESSION['previouspage'] = $_SERVER['PHP_SELF'];
 	header("location: login.php");
 }
 
-if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
+if (USERSTATUSES[getUserInfo($whatuser, 'statut')] !== 'seller')
 	header("location: category.php");
 
 // update the user's info/images in the db
 function updateUser()
 {
     global $errormsg;
+	if (!$isowner)
+	{
+		$errormsg = ERRCHEATER;
+		return ;
+	}
 	$result = true;
     $values_to_change=array();
     if(!empty($_POST['email']))
@@ -54,9 +70,9 @@ function updateUser()
 if(isset($_POST["submit"]))
     updateUser();
 
-$nom_compl = getUserInfo($_SESSION['username'], 'nom_complet');
-$bckimg = getUserInfo($_SESSION['username'], 'img_couverture');
-$profimg = getUserInfo($_SESSION['username'], 'img_profil');
+$nom_compl = getUserInfo($whatuser, 'nom_complet');
+$bckimg = getUserInfo($whatuser, 'img_couverture');
+$profimg = getUserInfo($whatuser, 'img_profil');
 
 if(empty($bckimg))
     $bckimg='https://www.doctorkweightloss.com/wp-content/uploads/Default-background-image.png';
@@ -83,7 +99,9 @@ if (isset($_POST['askedadd']))
 		$errormsg = ERREMPTYFIELD;
 }
 
-$pageTitle = "Vos ventes";
+$items = getUsersItems($whatuser);
+
+$pageTitle = $whatuser;
 
 include "header.php";
 ?>
@@ -95,41 +113,82 @@ include "header.php";
 ?>
     <div class='clearfix'>
 		<div class='vendeur'>
-			<form action="seller.php" method="post" enctype="multipart/form-data">
+			<?php
+				if ($isowner)
+					echo '<form action="seller.php" method="post" enctype="multipart/form-data">';
+			?>
                 <table class="tab">
                     <tr>
                         <?php
-                        echo "<th class='bkg' colspan='3' style='background-image: url('$bckimg');'>";
-                        ?>
+                        echo "<th class='bkg' colspan='3' style='background-image: url(\"$bckimg\");'>";
+						if ($isowner)
+						{
+						?>
                             <input class="upload_btn" type="file" name="fileToUpload1" id="fileToUpload1" />
                             <label style="margin:auto; margin-top:150px; margin-left:75%; width:23%;"  for="fileToUpload1">Changer photo de couverture</label>
+						<?php
+						}
+                        ?>
                         </th>
                     </tr>
                     <tr>
                         <?php
-                            echo"<td class='prof' style='width:30%; background-image: url('$profimg');'>";
+                            echo"<td class='prof' style='width:30%; background-image: url(\"$profimg\");'>";
                             /*echo"<div  style='width:auto; margin:auto; margin-top:10%; margin-left:400px;'>$nom_compl</div> ";*/
+							if ($isowner)
+							{
+							?>
+								<input class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" />
+								<label style="margin:auto; margin-top:270px; margin-right:100%; margin-left:13px; width:250px;"
+									for="fileToUpload2">Changer photo de profil</label>
+							<?php
+							}
                         ?>
-                            <input class="upload_btn" type="file" name="fileToUpload2" id="fileToUpload2" />
-                            <label style="margin:auto; margin-top:270px; margin-right:100%; margin-left:13px; width:250px;"  for="fileToUpload2">Changer photo de profil</label>
                         </td>
                         <td style='width:30%;'>
                             <?php
                                 echo"<div style='width:80%; margin:auto; margin-bottom:100%; margin-top:10%; margin-left:20px;'><tit>Utilisateur:</tit><br><util>$nom_compl</util></div> ";
                             ?>
                         </td>
-                        <td style='width:40%; vertical-align:top;'>
-                            <br><br>
-                            <span>Changer les informations:</span><br><br>
-                            <input class="field" type='text' name='surname' placeholder="Nom:" /><br><br>
-                            <input class="field" type='text' name='name' placeholder="Prenom:" /><br><br>
-                            <input class="field" type='text' name='email' placeholder="E-mail:" /><br><br>
-                            <input class="vend_btn" type='submit' name="submit" value="Enregistrer les changements">
-                        </td>
+						<?php
+						if ($isowner)
+						{
+							?>
+							<td style='width:40%; vertical-align:top;'>
+								<br><br>
+								<span>Changer les informations:</span><br><br>
+								<input class="field" type='text' name='surname' placeholder="Nom:" /><br><br>
+								<input class="field" type='text' name='name' placeholder="Prenom:" /><br><br>
+								<input class="field" type='text' name='email' placeholder="E-mail:" /><br><br>
+								<input class="vend_btn" type='submit' name="submit" value="Enregistrer les changements">
+							</td>
+						<?php
+						}
+						?>
                     </tr>
                 </table>
-            </form>
+			<?php
+				if ($isowner)
+					echo '</form>';
+			?>
         </div>
+
+		<div id='articleListing'>
+
+			<table class='articleUnique'>
+
+		<?php
+
+		foreach ($items as $i)
+		{
+			echo "<tr><td>";
+			showArticle($i);
+			echo "</td></tr>";
+		}
+		?>
+
+			</table>
+		</div>
     </div>
 </div>
 

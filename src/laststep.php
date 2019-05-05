@@ -101,7 +101,7 @@ if ($nbShopcart !== 0)
 		}
 		$receipt .= "<tr>
 		<td>
-		Total: $total€
+		Total: $total" . "€"
 		</td>
 		</tr>
 		</table>";

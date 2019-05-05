@@ -109,6 +109,33 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	return $rep;
 }
 
+function getUsersItems($username, $tri = DEFAULTTRI)
+{
+	if (empty($username))
+		return array();
+
+	$rep = array();
+	$query = "SELECT * FROM Articles";
+
+	$query .= " WHERE vendeur_username='$username'";
+
+	$query .= orderByTri($tri);
+	$query .= ';';
+
+	$conn = connectDB('central');
+	
+	$result = $conn->query($query);
+
+	$conn->close();
+
+	while($row = $result->fetch_assoc()) {
+		array_push($rep, $row);
+	}
+
+	return $rep;
+
+}
+
 // adds those values to a single row in $table in that database
 function addInDB($table, $values, $db = 'central')
 {
@@ -240,10 +267,10 @@ function getUserInfo($username, $what, $db = 'central')
 	
 	$conn->close();
 	
-	if ($result === false)
+	if ($result === false || $result->num_rows == 0)
 		return false;
 	if ($what === false || $what === "TOUT")
-		return $return->fetch_assoc();
+		return $result->fetch_assoc();
 	return $result->fetch_assoc()[$what];
 }
 
