@@ -221,7 +221,7 @@ function addUserCentral($username, $fullname, $email, $userstatus)
 		'username' => $username,
 		'nom_complet' => $fullname,
 		'email' => $email,
-		'statut' => $userstatus,
+		'statut' => $userstatus,
 		'est_verifie' => '0'), 'central');
 	return ($result === true);
 }
