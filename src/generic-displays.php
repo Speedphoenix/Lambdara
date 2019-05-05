@@ -142,18 +142,17 @@ function miniatureImage($what){
 			for(let i=0; i< <?= $nbImage ?>; i++){
 				$("#imgNo" + i).click(function(event){
 					$("#imagePrincipale").attr("src", $(event.target).attr("src"));
-					test.getElementById("#imagePrincipale").style.display = "none";
-					//$().style("width", "2px");
-					$("#articleVideo").style("display", "none");
+					//test.getElementById("#imagePrincipale").style.display = "none";
+					$("#imagePrincipale").css("display", "block");
+					$("#articleVideo").css("display", "none");
 				});
 			}
 
-			if($testVideo){
 				$("#vidNo").click(function(event){
-					$("#imagePrincipale").style("display", "none");
-					$("#articleVideo").style("display", "bloc");
+					$("#imagePrincipale").css("display", "none");
+					$("#articleVideo").css("display", "block");
 				});
-			}
+			
 
 		});
 			
@@ -178,8 +177,8 @@ echo "	<table class='articleUniqueTab'>
 			miniatureImage($what);
 			echo"</td>
 		    <td class='singleImage' rowspan='".$taille."' >
-		    	<img id='imagePrincipale' width='300' height='300' src='".$imge."' />
-				<iframe id='articleVideo' width='300' height='300' style='display: none' src='https://www.youtube.com/embed/NIYZVSElmj4'></iframe>
+		    	<img id='imagePrincipale' width='300' height='300' style='display: block' src='".$imge."' />
+				<iframe id='articleVideo' width='300' height='300' style='display: none' src='https://www.youtube.com/embed/".$video."'></iframe>
 		    	
 		    </td>
 		    <th class='singleArticle'>".$what["nom"]."</th>
