@@ -57,7 +57,6 @@ function getAllItems($filtrer, $tri = DEFAULTTRI)
 
 	$query .= orderByTri($tri);
 	$query .= ';';
-	var_dump($query);
 
 	$conn = connectDB('central');
 	
@@ -229,7 +228,7 @@ function addUserCentral($username, $fullname, $email, $userstatus)
 		'statut' => $userstatus,
 		'est_verifie' => '0'), 'central');
 	return ($result === true);
-}
+}   
 
 // returns a user's info. $what is the column in the users table that will be given
 function getUserInfo($username, $what, $db = 'central')
