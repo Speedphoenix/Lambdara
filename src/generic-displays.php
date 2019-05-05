@@ -224,9 +224,21 @@ echo "</div>";*/
     <table class='tab'>
         <tr>
             <td class='td1' rowspan='".$taille."'>"; miniatureImage($what); echo"</td>
-            <td class='td2' rowspan='".$taille."'><img id='imagePrincipale' src='".$imge."' class='primg'/></td>
+            <td class='td2' rowspan='".$taille."'><img id='imagePrincipale' src='".$imge."' class='primg' style='margin:auto; margin-right:100%; margin-left:13%;'/></td>
             <td class='td3 art_name'>".$what["nom"]."</td>
-            <td class='td4' rowspan='".$taille."'>
+            <td class='td4' rowspan='".$taille."'>";
+                //Changer la quantite de prod
+                if($what['vendeur_username']==$_SESSION['username'])
+                {
+                    echo"<table class='int_table'>
+                            <td>
+                                Changer la quantité de produit : <br> 
+                                <input class='field' type='number' name='prod_num_to_change' value='0'/>
+                                <input class='sarticle_btn' type='submit' name='add_quantity' value='Changer la quantité'/>
+                            </td>
+                        </table>";
+                }
+                echo"
                 <table class='int_table'>";repeatVariation($variations); echo "</table><br><br>
                 <table class='int_table'>
                     <td>
@@ -250,7 +262,10 @@ echo "</div>";*/
         </tr>
         <tr>
             <td class='art_desc'>".$what["description"]."</td>
-        </tr>	
+        </tr>
+        <tr>
+            <td colspan='".$taille."'><a href='seller.php?user=".$what['vendeur_username']." '><button>Page du vendeur</button></a></td>
+        </tr>
     </table>
 </div>";
     
