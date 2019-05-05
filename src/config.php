@@ -39,16 +39,16 @@ define("CHOIXDETRI", array(
 define("DEFAULTTRI", "popularite-up");
 
 define("DATESORT", array(
-	"1m" => "Un mois",
-	"3m" => "Trois mois",
-	"1a" => "Un an",
-	"ttt" => "Tout le temps"));
+	"ttt" => "Tout le temps",
+	"1" => "1 mois",
+	"2" => "2 mois",
+	"3" => "3 mois"));
 
-define("DEFAULTDATESORT", "1m");
+define("DEFAULTDATESORT", "ttt");
 
-define("DEFAULTPRICESORT", 500);
+define("DEFAULTPRICESORT", 250);
 define("MINPRICESORT", 0);
-define("MAXPRICESORT", 5000);
+define("MAXPRICESORT", 500);
 
 define("POSSIBLEPRICESORT", range(MINPRICESORT, MAXPRICESORT, 1));
 
