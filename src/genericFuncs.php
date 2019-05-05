@@ -28,18 +28,32 @@ function receiveImage($nameInForm)
 	do
 	{
 		$i++;
-		$target_file = SERVERIMGDIR . $i . $fileBaseName;
+		$target_file = SERVERROOT . IMGDIR . $i . $fileBaseName;
 	} while (file_exists($target_file));
 
 	if (move_uploaded_file($_FILES[$nameInForm]['tmp_name'], $target_file))
 	{
 		return array(
 			0 => true,
-			'filename' => CLIENTIMGDIR . $i . $fileBaseName
+			'filename' => IMGDIR . $i . $fileBaseName
 		);
 	}
 	else
 		return ERRUPLOAD;
+}
+
+// this will delete all the images given
+function clearImages($images)
+{
+	foreach ($images as $elem)
+	{
+		$fileName = SERVERROOT . $elem;
+		if (file_exists($fileName))
+		{
+			//this can not be undone
+			unlink($fileName);
+		}
+	}
 }
 
 //will return the part after an url with all the get variables
@@ -75,7 +89,7 @@ function setPrevPage()
 }
 
 // takes in the above function and returns what the currently previous page is
-function getPrevPage($defaultpage)
+function getPrevPage($defaultpage = "category.php")
 {
 	setPrevPage();
 	if (!empty($_SESSION['previouspage']))

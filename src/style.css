@@ -78,14 +78,14 @@
 /*ARTICLES*/
 #articleListing{
     float: right;
-    margin:auto;
+    margin: auto;
     background-color: #cccccc;
     border-style: solid;
     border-width: 1px;
     border-color: slategray;
     padding: 10px 10px 10px 10px;
     text-align: center;
-    width:75%;
+    width: 75%;
 }
 
 #articles{
@@ -93,7 +93,7 @@
     border-width: 1px;
     border-color: slategray;
     background-color: #cccccc;
-    width:100%;
+    width: 100%;
     
     
 }

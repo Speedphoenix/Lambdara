@@ -7,6 +7,8 @@ define("TESTING", false);
 
 define("SELLERSCANBUY", true);
 
+define("REMOVEIMAGES", true);
+
 define("DEFAULTCATEG", "all");
 
 define("POSSIBLECATEGS", array(
@@ -52,8 +54,8 @@ define("MAXPRICESORT", 500);
 
 define("POSSIBLEPRICESORT", range(MINPRICESORT, MAXPRICESORT, 1));
 
-define("SERVERIMGDIR", $_SERVER['DOCUMENT_ROOT'] . "/images/");
-define("CLIENTIMGDIR", "/images/");
+define("SERVERROOT", $_SERVER['DOCUMENT_ROOT']);
+define("IMGDIR", "/images/");
 define("MAXIMGSIZE", 2000000); //2MB ?
 
 /*
@@ -154,20 +156,23 @@ function failedSql($msg)
 	die($msg);
 }
 
-
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-foreach ($_POST as $key => $elem)
+function converthtmlspecialchars(&$tab)
 {
-	if ($key !== 'password' && $key !== 'confirm-password')
-		$_POST[$key] = htmlspecialchars($elem, ENT_QUOTES);
+	foreach ($tab as $key => $elem)
+	{
+		if ($key !== 'password' && $key !== 'confirm-password')
+		{
+			if (!is_array($elem))
+				$tab[$key] = htmlspecialchars($elem, ENT_QUOTES);
+			else
+				converthtmlspecialchars($tab[$key]);
+		}
+	}
 }
 
-foreach ($_GET as $key => $elem)
-{
-	if ($key !== 'password' && $key !== 'confirm-password')
-		$_GET[$key] = htmlspecialchars($elem, ENT_QUOTES);
-}
-
+converthtmlspecialchars($_GET);
+converthtmlspecialchars($_POST);
 
 ?>

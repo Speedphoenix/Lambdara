@@ -34,6 +34,8 @@ function itemExists($whatID)
 // returns the string to be used to order the SQL query results
 function orderByTri($tri = "prix-up")
 {
+	if (empty($tri))
+		return "";
 	$tritab = explode('-', $tri);
 	$rep = " ORDER BY " . $tritab[0];
 	if ($tritab[1] === 'up')
@@ -108,6 +110,32 @@ function getFromIDs($IDs, $tri = DEFAULTTRI)
 	}
 
 	return $rep;
+}
+
+// deletes those rows in $table, where the values match the column the database
+function delInDB($table, $colName, $values, $db = 'central')
+{
+	if (empty($colName) || empty($values) || empty($table))
+		return false;
+	$valuesRestrict = "";
+
+	$allkeys = array_keys($values);
+	$lastKey = end($allkeys);
+	foreach ($values as $key => $i)
+	{
+		$valuesRestrict .= "$colName='$i'";
+
+		if ($key !== $lastKey)
+		{
+			$valuesRestrict .= " OR ";
+		}
+	}
+	$query = "DELETE FROM $table WHERE $valuesRestrict;";
+
+	$conn = connectDB($db);
+	$result = $conn->query($query);
+	$conn->close();
+	return ($result !== false);
 }
 
 function getUsersItems($username, $tri = DEFAULTTRI)

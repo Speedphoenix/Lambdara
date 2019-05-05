@@ -42,6 +42,47 @@ echo "	<table class='articleUniqueTab'>
 echo "</div>";
 }
 
+// prints a table containing all articles given in $items
+// this makes use of showArticle()
+function listArticles($items)
+{
+	if (empty($_SESSION['username']))
+		$userstatus = 0;
+	else
+		$userstatus = getUserInfo($_SESSION['username'], 'statut');
+	if (USERSTATUSES[$userstatus] === 'admin'
+		|| USERSTATUSES[$userstatus] === 'seller')
+	{
+		echo "<form action='delete-items.php' method='post'>
+		<input type='hidden' name='previouspage' value='" . $_SERVER['PHP_SELF'] . "'/>";
+	}
+	echo "<table class='articleUnique'>";
+	foreach ($items as $i)
+	{
+		echo "<tr>";
+		echo "<td>";
+		showArticle($i);
+		echo "</td>";
+		if (USERSTATUSES[$userstatus] === 'admin'
+			|| (USERSTATUSES[$userstatus] === 'seller'
+				&& $i['vendeur_username'] === $_SESSION['username']))
+		{
+			echo "<td>";
+			echo "<label><input type='checkbox' name='deleteItems[]'
+				value='" . $i['ID'] . "'/></label>";
+			echo "</td>";
+		}
+		echo "</tr>";
+	}
+	echo "</table>";
+	if (USERSTATUSES[$userstatus] === 'admin'
+		|| USERSTATUSES[$userstatus] === 'seller')
+	{
+		echo "<input type='submit' value='Supprimer les articles selectionnés'/>";
+		echo "</form>";
+	}
+}
+
 // the small form next to an item to add it to cart
 function addToShopcartForm($what)
 {

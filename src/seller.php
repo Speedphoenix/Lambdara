@@ -171,6 +171,9 @@ include "header.php";
 					</tr>
 					<tr>
 						<td colspan="3">
+							<?php
+								listArticles($items);
+							/*
 							<table class='articleUnique'>
 								<?php
 								foreach ($items as $i)
@@ -179,8 +182,9 @@ include "header.php";
 									showArticle($i);
 									echo "</td></tr>";
 								}
-								?>
 							</table>
+							*/
+							?>
 						</td>
 					</tr>
                 </table>

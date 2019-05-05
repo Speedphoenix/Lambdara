@@ -8,3 +8,6 @@ https://favicon.io/favicon-generator/ for the favicons
 https://www.php.net/manual/en/
 
 https://www.merchantequip.com/information-center/credit-card-logos/
+
+For some nice values to test:
+https://lingojam.com/WeirdTextGenerator

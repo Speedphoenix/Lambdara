@@ -10,7 +10,8 @@ if (empty($_SESSION['username']))
 	$_SESSION['previouspage'] = $_SERVER['PHP_SELF'];
 	header("location: login.php");
 }
-if (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
+if ((USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'seller')
+	&& (USERSTATUSES[getUserInfo($_SESSION['username'], 'statut')] !== 'admin'))
 	header("location: category.php");
 
 $allFields = array('nom', 'categorie', 'prix', 'description', 'quantite', 'video');
@@ -24,12 +25,13 @@ if (isset($_POST['askedadd']))
 	$isvalid = true;
 	foreach ($allFields as $i)
 	{
-		if (empty($_POST[$i]) && !in_array($_POST[$i], $notRequiredFields))
+		if (empty($_POST[$i]) && !in_array($i, $notRequiredFields))
 		{
 			$isvalid = false;
 			break;
 		}
 	}
+	$_POST['prix'] = str_replace(array('$', '€', '£'), '', $_POST['prix']);
 	if (!is_numeric($_POST['prix']))
 		$isvalid = false;
 	if ($_POST['categorie'] === 'all' || !isset(POSSIBLECATEGS[$_POST['categorie']]))

@@ -83,9 +83,11 @@ include "header.php";
 
 <div id='articleListing'>
 
+<?php
+listArticles($items);
+/*
 	<table class='articleUnique'>
 
-<?php
 
 foreach ($items as $i)
 {
@@ -93,9 +95,10 @@ foreach ($items as $i)
 	showArticle($i);
 	echo "</td></tr>";
 }
+	</table>
+	*/
 ?>
 
-	</table>
 </div><!--
 <div id="upperpart" class="clearfix">
 	<div  class="column search">
