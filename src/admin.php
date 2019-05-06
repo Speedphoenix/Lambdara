@@ -21,7 +21,7 @@ if (!empty($_POST['makeAdmin']))
 
 if (!empty($_POST['delUser']))
 {
-	deleteItems(getUsersItems($_POST['delUser']));
+	deleteItems(getUsersItems($_POST['delUser']), 2);
 	delInDb('users', 'username',  array($_POST['delUser']), 'central');
 	delInDb('users', 'username',  array($_POST['delUser']), 'secure');
 }

@@ -31,6 +31,7 @@ if (USERSTATUSES[getUserInfo($whatuser, 'statut')] !== 'seller')
 function updateUser()
 {
     global $errormsg;
+	global $isowner;
 	if (!$isowner)
 	{
 		$errormsg = ERRCHEATER;
@@ -157,7 +158,7 @@ include "header.php";
 							{
 							?>
 								<br><br>
-								<form id="updateUserForm">
+								<form action="seller.php" method="post" enctype="multipart/form-data" id="updateUserForm">
 								<span>Changer les informations:</span><br><br>
 								<input class="field" type='text' name='surname' placeholder="Nom:" /><br><br>
 								<input class="field" type='text' name='name' placeholder="Prenom:" /><br><br>

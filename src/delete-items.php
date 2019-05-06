@@ -21,8 +21,8 @@ if (empty($_POST['deleteItems']))
 //this will only give items that exist
 $items = getFromIDs($_POST['deleteItems'], "");
 
-deleteItems($items);
+deleteItems($items, $userstatus);
 
-$itemsToDelete = arheader("location: " . getPrevPage("category.php"));
+header("location: " . getPrevPage("category.php"));
 
 ?>

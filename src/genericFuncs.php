@@ -57,7 +57,7 @@ function clearImages($images)
 }
 
 //will delete an Item
-function deleteItems($items)
+function deleteItems($items, $userstatus)
 {
 	$itemsToDelete = array();
 	$imagesToDelete = array();
@@ -69,7 +69,7 @@ function deleteItems($items)
 		{
 			delInDB('variation', 'article_id', array($elem['ID']));
 			array_push($itemsToDelete, $elem['ID']);
-			if(substr($i['photo'],0,4)!=='http')
+			if(substr($elem['photo'],0,4)!=='http')
 				array_push($imagesToDelete, $elem['photo']);
 		}
 	}

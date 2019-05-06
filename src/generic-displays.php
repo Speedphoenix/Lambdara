@@ -272,7 +272,7 @@ echo "</div>";*/
             <td class='td3 art_name'>".$what["nom"]."</td>
             <td class='td4' rowspan='".$taille."'>";
                 //Changer la quantite de prod
-                if($what['vendeur_username']==$_SESSION['username'])
+                if(!empty($_SESSION['username']) && $what['vendeur_username']==$_SESSION['username'])
                 {
                     echo"<table class='int_table'>
                             <td>
